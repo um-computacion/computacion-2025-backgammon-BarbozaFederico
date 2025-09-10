@@ -100,11 +100,49 @@ Los principios SOLID son cinco reglas para escribir código orientado a objetos 
 
 ---
 
+# Prompt: Crea una clase "dice" con 2 dados que arrojen valores random para futura implementacion en board
+
+## Modelo / herramienta usada: GitHub Copilot
+
+### Instrucciones del sistema: Siempre sigue los principios SOLID, incluye docstrings y comentarios claros, documenta el prompt y la respuesta en prompts/prompts-desarrollo.md
+
+### Respuesta
+
+¡Mirá, te lo explico como Ricardo Fort, papá!
+
+Se creó la clase `Dice` en el archivo `core/dice.py`, que representa dos dados para Backgammon. Cada dado puede arrojar valores aleatorios entre 1 y 6. La clase incluye métodos para lanzar los dados (`roll`) y obtener sus valores actuales (`get_values`). La lógica está separada del tablero para respetar SOLID y facilitar la integración futura con la clase `Board`.
+
+#### Ejemplo de implementación
+
+```python
+import random
+
+class Dice:
+    """Clase que representa dos dados para Backgammon."""
+    def __init__(self):
+        # Cada dado comienza en 1
+        self.die1 = 1
+        self.die2 = 1
+
+    def roll(self):
+        """Lanza ambos dados y actualiza sus valores con números aleatorios entre 1 y 6."""
+        self.die1 = random.randint(1, 6)
+        self.die2 = random.randint(1, 6)
+        return (self.die1, self.die2)
+
+    def get_values(self):
+        """Devuelve los valores actuales de los dados."""
+        return (self.die1, self.die2)
+```
+
+---
+
 **Indicación de uso:**
 
-- Usá estos pasos y principios para crear clases limpias y mantenibles en tu proyecto.
+- Usá la clase `Dice` para lanzar los dados y obtener sus valores en la lógica del juego.
 - Documentá siempre el prompt y la respuesta en prompts/prompts-desarrollo.md.
 
 **Referencia:**
 
+- Archivo generado/modificado: core/dice.py
 - Documentación: prompts/prompts-desarrollo.md
