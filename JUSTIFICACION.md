@@ -9,6 +9,7 @@
 ## Justificación de las clases elegidas
 
 - Se creo la clase [Board](./backgammon/core/board.py) para comenzar a programar la logica basica del tablero
+- se creo la clase [dice](./backgammon/core/dice.py) para futura implementacion con board, debido a que es parte esencial del juego
 
 ## Justificación de atributos
 
