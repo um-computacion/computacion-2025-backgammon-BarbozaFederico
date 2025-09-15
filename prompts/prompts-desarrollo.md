@@ -134,3 +134,24 @@ class Dice:
         """Devuelve los valores actuales de los dados."""
         return (self.die1, self.die2)
 ```
+
+---
+
+# Prompt: Crea tests minimos e indispensables para board.py
+
+## Modelo / herramienta usada: GitHub Copilot
+
+### Instrucciones del sistema: Siempre sigue los principios SOLID, incluye docstrings y comentarios claros, documenta el prompt y la respuesta en prompts/prompts-desarrollo.md
+
+### Respuesta
+
+Se crearon dos tests mínimos para `board.py` en el archivo `tests/test_board_min.py`:
+
+1. `test_board_initialization`: Verifica que la clase `Board` se inicializa con 24 puntas vacías, cada una representada por una lista.
+2. `test_board_display`: Verifica que el método `display` imprime correctamente las 24 puntas en la salida estándar.
+
+Ambos tests incluyen docstrings claros y cubren la funcionalidad básica y esencial de la clase `Board`.
+s
+
+**Salida usada sin cambios.**
+**Referencia:** `tests/test_board_min.py`
