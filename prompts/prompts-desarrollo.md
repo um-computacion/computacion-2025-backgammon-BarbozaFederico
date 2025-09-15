@@ -134,15 +134,3 @@ class Dice:
         """Devuelve los valores actuales de los dados."""
         return (self.die1, self.die2)
 ```
-
----
-
-**Indicación de uso:**
-
-- Usá la clase `Dice` para lanzar los dados y obtener sus valores en la lógica del juego.
-- Documentá siempre el prompt y la respuesta en prompts/prompts-desarrollo.md.
-
-**Referencia:**
-
-- Archivo generado/modificado: core/dice.py
-- Documentación: prompts/prompts-desarrollo.md

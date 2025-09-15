@@ -1,2 +1,13 @@
-coverage==7.10.6
-pygame==2.6.1
+pytest
+coverage
+requests
+pandas
+numpy
+matplotlib
+seaborn
+scipy
+scikit-learn
+statsmodels
+lxml
+beautifulsoup4
+pylint
