@@ -15,7 +15,7 @@ class Board:
 
     """
 
-    def __init__(self)-> None:
+    def __init__(self) -> None:
         """Inicializa un tablero vacío con 24 puntas.
 
         Notes
@@ -25,7 +25,7 @@ class Board:
 
         """
         # Inicializa las 24 puntas del tablero como listas vacías
-        self.__triangulo__ = [[] for x in range(1, 25)] 
+        self.__triangulo__ = [[] for x in range(1, 25)]
         # No se maneja la lógica de fichas aquí
 
     def display(self) -> None:
