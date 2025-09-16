@@ -25,7 +25,7 @@ class Board:
 
         """
         # Inicializa las 24 puntas del tablero como listas vacías
-        self.__triangulo__ = [[] for x in range(1, 25)]
+        self.triangulo = [[] for x in range(1, 25)]
         # No se maneja la lógica de fichas aquí
 
     def display(self) -> None:
@@ -44,5 +44,7 @@ class Board:
             print(f"Punta {i+1}: {point}")
 
 
-prueba = Board()
-prueba.display()
+# Test code removed - should be in test files instead
+# if __name__ == "__main__":
+#     prueba = Board()
+#     prueba.display()

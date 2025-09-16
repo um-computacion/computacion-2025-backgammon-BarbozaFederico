@@ -137,7 +137,7 @@ class Dice:
 
 ---
 
-# Prompt: Crea tests minimos e indispensables para board.py
+# Prompt: Genera tests minimos e indispensables con pytests para la clase board.py, escribelos su respectivo apartado "test_boar_mi.py" y este prompt añadelo a "prompts de desarrollo"
 
 ## Modelo / herramienta usada: GitHub Copilot
 
@@ -145,13 +145,57 @@ class Dice:
 
 ### Respuesta
 
-Se crearon dos tests mínimos para `board.py` en el archivo `tests/test_board_min.py`:
+Se generaron dos tests mínimos en `tests/test_board_min.py` para la clase `Board`:
 
-1. `test_board_initialization`: Verifica que la clase `Board` se inicializa con 24 puntas vacías, cada una representada por una lista.
-2. `test_board_display`: Verifica que el método `display` imprime correctamente las 24 puntas en la salida estándar.
+1. `test_board_initialization`: Verifica que el tablero se inicializa con 24 puntas vacías.
+2. `test_board_display`: Verifica que el método `display` imprime correctamente las 24 puntas.
 
-Ambos tests incluyen docstrings claros y cubren la funcionalidad básica y esencial de la clase `Board`.
-s
+Ambos tests usan pytest, incluyen docstrings y cubren la funcionalidad esencial de la clase.
 
 **Salida usada sin cambios.**
 **Referencia:** `tests/test_board_min.py`
+**Referencia:** `tests/test_board_min.py`
+
+# Fix de errores de importación en los tests with warp IA
+
+**Excellent!** He solucionado todos los errores de importación en los archivos de test.  
+A continuación un resumen de lo que se hizo:
+
+---
+
+## Summary of Fixes
+
+1. **Created missing `__init__.py` file**
+   - Added `backgammon/__init__.py` to make the backgammon directory a proper Python package.
+
+2. **Fixed import inconsistencies**
+   - Changed `tests/test_dice.py` from using incorrect relative imports  
+     (`from ..backgammon.core.board import Board`)  
+     to proper absolute imports  
+     (`from backgammon.core.board import Board`).
+   - Standardized all test files to use the same import pattern.
+
+3. **Fixed `Board` class implementation issues**
+   - Corrected attribute naming inconsistency: changed `self.__triangulo__` to `self.triangulo` in the `Board.__init__()` method.
+   - Removed problematic test code that was executing during module import (lines 47-48 in `board.py`).
+
+4. **Added permanent path configuration**
+   - Created `tests/conftest.py` to automatically add the project root directory to Python's path.
+   - This ensures imports work correctly without needing to manually set `PYTHONPATH`.
+
+---
+
+## Results
+
+- **Before:**  
+  `pytest -v` failed with `ModuleNotFoundError: No module named 'backgammon'` and `AttributeError` issues.
+
+- **After:**  
+  All 3 tests now pass successfully:
+  - `tests/test_board.py::test_board_initialization PASSED`
+  - `tests/test_board.py::test_board_display PASSED`
+  - `tests/test_dice.py::test_import_board_and_dice PASSED`
+
+---
+
+✅ The import errors have been completely resolved, and the tests now run successfully without any configuration needed from the user.
