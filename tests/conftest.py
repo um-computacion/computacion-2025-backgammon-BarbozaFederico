@@ -2,6 +2,7 @@
 Configuration file for pytest.
 Adds the project root directory to Python path so modules can be imported.
 """
+
 import sys
 import os
 
