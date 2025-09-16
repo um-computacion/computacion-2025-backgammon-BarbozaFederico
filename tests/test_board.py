@@ -1,4 +1,3 @@
-import pytest
 from backgammon.core.board import Board
 
 
@@ -17,4 +16,5 @@ def test_board_display(capsys):
     board.display()
     captured = capsys.readouterr()
     for i in range(1, 25):
+
         assert f"Punta {i}:" in captured.out

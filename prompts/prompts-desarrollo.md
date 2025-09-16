@@ -199,3 +199,20 @@ A continuación un resumen de lo que se hizo:
 ---
 
 ✅ The import errors have been completely resolved, and the tests now run successfully without any configuration needed from the user.
+
+---
+
+# Prompt: Completa checker siguiendo la logica escritra haciendo codigo funcional para la clase y plantea este promt en prompts de desarrollo
+
+## Modelo / herramienta usada: GitHub Copilot
+
+### Instrucciones del sistema: Siempre sigue los principios SOLID, incluye docstrings y comentarios claros, documenta el prompt y la respuesta en prompts/prompts-desarrollo.md
+
+### Respuesta
+
+Se completó la clase `Checker` en `backgammon/core/checker.py` siguiendo la lógica y estructura propuesta.  
+La clase ahora es funcional: permite crear fichas, consultar su estado (en tablero, barra, fuera), cambiar su estado (colocar, mover, enviar a barra, sacar), y provee métodos de utilidad y representación textual.  
+Se respetó la separación de responsabilidades y se agregaron docstrings claros en cada método.
+
+**Salida usada sin cambios.**
+**Referencia:** `backgammon/core/checker.py`
