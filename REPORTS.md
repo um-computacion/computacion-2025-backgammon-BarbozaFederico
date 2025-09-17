@@ -1,5 +1,7 @@
 # Automated Reports
+
 ## Coverage Report
+
 ```text
 ........                                                                 [100%]
 ================================ tests coverage ================================
@@ -22,7 +24,9 @@ Coverage XML written to file cobertura.xml
 8 passed in 0.09s
 
 ```
+
 ## Pylint Report
+
 ```text
 ************* Module backgammon.__init__
 backgammon/__init__.py:4:0: C0304: Final newline missing (missing-final-newline)
