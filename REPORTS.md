@@ -21,7 +21,7 @@ E   ImportError: cannot import name 'Checker' from partially initialized module 
 =========================== short test summary info ============================
 ERROR tests/test_checker.py
 !!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!
-1 error in 0.07s
+1 error in 0.06s
 
 ```
 
