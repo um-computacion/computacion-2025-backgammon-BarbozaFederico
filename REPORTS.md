@@ -1,5 +1,7 @@
 # Automated Reports
+
 ## Coverage Report
+
 ```text
 
 ==================================== ERRORS ====================================
@@ -22,7 +24,9 @@ ERROR tests/test_checker.py
 1 error in 0.06s
 
 ```
+
 ## Pylint Report
+
 ```text
 ************* Module backgammon.__init__
 backgammon/__init__.py:4:0: C0304: Final newline missing (missing-final-newline)

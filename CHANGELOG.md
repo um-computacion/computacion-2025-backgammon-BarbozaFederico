@@ -5,6 +5,29 @@ Todas las modificaciones notables de este proyecto serán documentadas en este a
 El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/),
 y este proyecto sigue [Semantic Versioning](https://semver.org/lang/es/).
 
+## [0.6.0] 17/09/2025
+
+### Added
+
+- Creacion de [test_player.py](./tests/test_player.py) para la clase [player](./backgammon/core/player.py)
+- Creacion del archivo [coverage_report.txt](./coverage_report.txt) para dejar registro del porcentaje de codigo cubierto
+
+### Fixed
+
+- Se resolvió el problema de importación circular entre `checker.py` y `player.py` usando `TYPE_CHECKING` para anotaciones de tipo.
+
+### Changed
+
+- Se mejoró la cobertura y claridad de la documentación y los tests para las clases principales del núcleo del juego.
+
+---
+
+**Referencias:**  
+
+- `backgammon/core/player.py`  
+- `backgammon/core/checker.py`  
+- `tests/test_player.py`
+
 ## [0.5.0] 16/09/2025
 
 ### Added
