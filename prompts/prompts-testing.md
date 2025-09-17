@@ -34,3 +34,57 @@ Todos los tests usan pytest, incluyen docstrings y cubren la funcionalidad esenc
 
 **Salida usada sin cambios.**  
 **Referencia:** `tests/test_player.py`
+
+---
+
+# Prompt: Evalua si estos test cubren toda la clase "checker.py", si no es asi genera los necesario para cubrir el 100% de la clase
+
+Plantea este prompt en "prompts-testing"
+
+## Modelo / herramienta usada: GitHub Copilot
+
+### Instrucciones del sistema: Siempre sigue los principios SOLID, incluye docstrings y comentarios claros, documenta el prompt y la respuesta en prompts/prompts-testing.md
+
+### Respuesta
+
+Se evaluó la cobertura de los tests para la clase `Checker` y se detectó que faltaban pruebas para los métodos `get_owner`, `__str__` y `__repr__`.  
+Se agregaron tests unitarios para cubrir estos métodos y alcanzar el 100% de cobertura de la clase.
+
+**Salida usada sin cambios.**  
+**Referencia:** `tests/test_checker.py`
+
+---
+
+# Prompt: Evalua si estos test cubren toda la clase "player.py", si no es asi genera los necesario para cubrir el 100% de la clase
+
+Plantea este prompt en "prompts-testing"
+
+## Modelo / herramienta usada: GitHub Copilot
+
+### Instrucciones del sistema: Siempre sigue los principios SOLID, incluye docstrings y comentarios claros, documenta el prompt y la respuesta en prompts/prompts-testing.md
+
+### Respuesta
+
+Se evaluó la cobertura de los tests para la clase `Player` y se detectó que faltaban pruebas para asegurar que `get_checkers()` retorna una copia defensiva y que los métodos de gestión no alteran el estado de otras fichas.  
+Se agregaron tests unitarios para cubrir estos aspectos y alcanzar el 100% de cobertura de la clase.
+
+**Salida usada sin cambios.**  
+**Referencia:** `tests/test_player.py`
+
+---
+
+# Prompt: genera test para cubrir el 100% de la clase "dice.py"
+
+Plantea este prompt en "prompts-testing"
+
+## Modelo / herramienta usada: GitHub Copilot
+
+### Instrucciones del sistema: Siempre sigue los principios SOLID, incluye docstrings y comentarios claros, documenta el prompt y la respuesta en prompts/prompts-testing.md
+
+### Respuesta
+
+Se generaron tests unitarios en `tests/test_dice.py` para cubrir el 100% de la clase `Dice`, incluyendo inicialización, lanzamiento y consulta de valores.  
+Todos los tests usan pytest, incluyen docstrings y cubren la funcionalidad esencial y avanzada de la clase.
+
+**Salida usada sin cambios.**  
+**Referencia:** `tests/test_dice.py`

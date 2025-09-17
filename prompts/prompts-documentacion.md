@@ -90,3 +90,21 @@ Incluye detalles sobre la documentación agregada, los tests implementados y la 
 
 **Salida usada sin cambios.**  
 **Referencia:** `CHANGELOG.md`
+
+---
+
+# Prompt: Genera tests con pytest para la clase "board.py" haciendo que este totalmente cubierta por los tests
+
+este prompt añadelo a "prompts-desarrollo" siguiendo regla y formato pertinente
+
+## Modelo / herramienta usada: GitHub Copilot
+
+### Instrucciones del sistema: Siempre sigue los principios SOLID, incluye docstrings y comentarios claros, documenta el prompt y la respuesta en prompts/prompts-desarrollo.md
+
+### Respuesta
+
+Se generaron tests completos en `tests/test_board.py` para la clase `Board`, cubriendo inicialización, gestión de jugadores, colocación y movimiento de fichas, barra, borne off, consultas, display y reset.  
+Todos los tests usan pytest, incluyen docstrings y cubren la funcionalidad esencial y avanzada de la clase.
+
+**Salida usada sin cambios.**  
+**Referencia:** `tests/test_board.py`
