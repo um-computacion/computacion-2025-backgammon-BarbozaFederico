@@ -153,3 +153,29 @@ def test_politicanula_elegir_none():
     opciones = [OpcionMovimiento([PasoMovimiento(0, 1, 2)], "hash", 1.0)]
     assert politica.elegir(opciones) is None
     assert politica.elegir([]) is None
+
+
+def test_get_checkers_returns_copy():
+    """Testea que get_checkers retorna una copia defensiva de la lista de fichas."""
+    p = make_player()
+    checkers = p.get_checkers()
+    checkers.append(Checker("blancas"))
+    # La lista interna no debe verse afectada
+    assert len(p.get_checkers()) == 3
+
+
+def test_gestion_no_altera_otras_fichas():
+    """Testea que los métodos de gestión no alteran el estado de otras fichas."""
+    p = make_player()
+    c1, c2, c3 = p.get_checkers()
+    p.colocar_checker_en_posicion(c1, 2)
+    p.mover_checker_a(c1, 3)
+    p.enviar_checker_a_barra(c1)
+    p.sacar_checker(c1)
+    # Las otras fichas deben permanecer sin estado alterado
+    assert not c2.en_tablero()
+    assert not c2.en_barra()
+    assert not c2.fuera()
+    assert not c3.en_tablero()
+    assert not c3.en_barra()
+    assert not c3.fuera()

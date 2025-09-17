@@ -54,3 +54,26 @@ def test_resetear():
     assert not checker.en_barra()
     assert not checker.fuera()
     assert checker.get_posicion() is None
+
+
+def test_get_owner():
+    """Testea el método get_owner para obtener el dueño de la ficha."""
+
+    class DummyPlayer:
+        pass
+
+    owner = DummyPlayer()
+    checker = Checker(color="blancas", player=owner)
+    assert checker.get_owner() is owner
+
+
+def test_str_repr():
+    """Testea las representaciones __str__ y __repr__ de Checker."""
+    checker = Checker(color="negras", posicion=3, identificador="A1")
+    s = str(checker)
+    r = repr(checker)
+    assert "Checker(" in s
+    assert "negras" in s
+    assert "pos 3" in s
+    assert "Checker(color=negras" in r
+    assert "id='A1'" in r or "id=A1" in r

@@ -1,4 +1,4 @@
-..................                                                       [100%]
+.................................                                        [100%]
 =============================== tests coverage ================================
 _______________ coverage: platform win32, python 3.13.6-final-0 _______________
 
@@ -8,12 +8,12 @@ backgammon\__init__.py                 0      0   100%
 backgammon\cli\__init__.py             0      0   100%
 backgammon\core\__init__.py            0      0   100%
 backgammon\core\backgammon.py          0      0   100%
-backgammon\core\board.py               6      0   100%
-backgammon\core\checker.py            44      4    91%   100, 139-152, 156
-backgammon\core\dice.py               11      6    45%   24-25, 36-38, 49
+backgammon\core\board.py              52      0   100%
+backgammon\core\checker.py            44      0   100%
+backgammon\core\dice.py               11      0   100%
 backgammon\core\player.py             80      1    99%   370
 backgammon\pygame_ui\__init__.py       0      0   100%
 ----------------------------------------------------------------
-TOTAL                                141     11    92%
+TOTAL                                187      1    99%
 Coverage XML written to file cobertura.xml
-18 passed in 0.13s
+33 passed in 0.16s
