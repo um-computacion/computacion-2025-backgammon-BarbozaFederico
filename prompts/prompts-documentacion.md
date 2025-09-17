@@ -70,3 +70,23 @@ La documentación describe atributos, métodos y parámetros de forma clara y es
 
 **Salida usada sin cambios.**  
 **Referencia:** `backgammon/core/player.py`
+
+# Prompt: Plantea los cambios realizados en CHANGELOG.md siguiendo lo escrito en copilot-instructions.md de los siguientes archivos "test_player.py", "player.py","checker.py", este promt plantealo en "promts-documentacion"
+
+## Modelo / herramienta usada: GitHub Copilot
+
+### Instrucciones del sistema
+
+Siempre sigue los principios SOLID, incluye docstrings y comentarios claros, documenta el prompt y la respuesta en prompts/prompts-documentacion.md
+
+### Prompt exacto
+
+Plantea los cambios realizados en CHANGELOG.md siguiendo lo escrito en copilot-instructions.md de los siguientes archivos "test_player.py", "player.py","checker.py", este promt plantealo en "promts-documentacion"
+
+### Respuesta
+
+Se agregó una nueva entrada de versión en `CHANGELOG.md` documentando los cambios realizados en los archivos `test_player.py`, `player.py` y `checker.py`, siguiendo el formato de copilot-instructions.md.  
+Incluye detalles sobre la documentación agregada, los tests implementados y la resolución de problemas de importación.
+
+**Salida usada sin cambios.**  
+**Referencia:** `CHANGELOG.md`

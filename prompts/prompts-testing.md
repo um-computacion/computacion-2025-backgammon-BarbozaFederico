@@ -18,3 +18,19 @@ Todos los tests usan pytest, incluyen docstrings y cubren la funcionalidad esenc
 
 **Salida usada sin cambios.**
 **Referencia:** `tests/test_checker.py`
+
+---
+
+# Prompt: genera tests completos cubriendo todo con pytest para el archivo "player.py" y deja este promt planteado en "promt-testing.md"
+
+## Modelo / herramienta usada: GitHub Copilot
+
+### Instrucciones del sistema: Siempre sigue los principios SOLID, incluye docstrings y comentarios claros, documenta el prompt y la respuesta en prompts/prompts-testing.md
+
+### Respuesta
+
+Se generaron tests completos en `tests/test_player.py` para la clase `Player`, cubriendo inicialización, getters, gestión de fichas, filtros de estado, delegación al tablero, obtención y selección de movimientos, confirmación de movimientos, consulta de bear off y representaciones de texto.  
+Todos los tests usan pytest, incluyen docstrings y cubren la funcionalidad esencial y avanzada de la clase.
+
+**Salida usada sin cambios.**  
+**Referencia:** `tests/test_player.py`

@@ -1,6 +1,7 @@
-from typing import Optional
+from typing import Optional, TYPE_CHECKING
 
-from backgammon.core.player import Player
+if TYPE_CHECKING:
+    from backgammon.core.player import Player
 
 
 class Checker:

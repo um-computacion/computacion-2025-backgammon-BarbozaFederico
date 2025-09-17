@@ -1,8 +1,9 @@
 from __future__ import annotations
 from dataclasses import dataclass
-from typing import Protocol, Optional, List, Iterable, Sequence
+from typing import Protocol, Optional, List, Iterable, Sequence, TYPE_CHECKING
 
-from backgammon.core.checker import Checker
+if TYPE_CHECKING:
+    from backgammon.core.checker import Checker
 
 ValorDado = int  # 1..6
 
@@ -52,15 +53,15 @@ class TableroFachada(Protocol):
     La implementación concreta vive en core/board.py.
     """
 
-    def jugador_tiene_en_barra(self, jugador: Player) -> bool: ...
-    def jugador_todo_en_home(self, jugador: Player) -> bool: ...
-    def jugador_pip_count(self, jugador: Player) -> int: ...
+    def jugador_tiene_en_barra(self, jugador: "Player") -> bool: ...
+    def jugador_todo_en_home(self, jugador: "Player") -> bool: ...
+    def jugador_pip_count(self, jugador: "Player") -> int: ...
     def enumerar_opciones_legales(
-        self, jugador: Player, dados: Sequence[ValorDado]
+        self, jugador: "Player", dados: Sequence[ValorDado]
     ) -> List[OpcionMovimiento]: ...
 
     def aplicar_movimiento(
-        self, jugador: Player, secuencia: SecuenciaMovimiento
+        self, jugador: "Player", secuencia: SecuenciaMovimiento
     ) -> None: ...
 
 
