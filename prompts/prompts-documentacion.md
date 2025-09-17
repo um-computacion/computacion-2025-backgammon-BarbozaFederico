@@ -42,7 +42,6 @@ Cambia la documentacion docstring de la clase checker planteandolo en promt de d
         num_legs : int, optional
             The number of legs the animal (default is 4)
         """
-        "
 
 ### Respuesta
 
@@ -51,3 +50,23 @@ Incluye sección de Attributes y Methods, describiendo cada atributo y método r
 La salida fue usada sin cambios en `backgammon/core/checker.py`.
 
 **Referencia:** `backgammon/core/checker.py`
+
+# Prompt: Genera documentacion para el archivo de player.py, documentando clases, metodos, y decoradores. Singuiendo el formato planteado en "copilot-instructions.md" y este prompt plantealo en "prompts-documentacion.md"
+
+## Modelo / herramienta usada: GitHub Copilot
+
+### Instrucciones del sistema
+
+Siempre sigue los principios SOLID, incluye docstrings y comentarios claros, documenta el prompt y la respuesta en prompts/prompts-documentacion.md
+
+### Prompt exacto
+
+Genera documentacion para el archivo de player.py, documentando clases, metodos, y decoradores. Singuiendo el formato planteado en "copilot-instructions.md" y este prompt plantealo en "prompts-documentacion.md"
+
+### Respuesta
+
+Se agregaron docstrings tipo NumPy para la clase `Player`, sus métodos y decoradores en `backgammon/core/player.py`, siguiendo el formato de ejemplo de "copilot-instructions.md".  
+La documentación describe atributos, métodos y parámetros de forma clara y estructurada.
+
+**Salida usada sin cambios.**  
+**Referencia:** `backgammon/core/player.py`
