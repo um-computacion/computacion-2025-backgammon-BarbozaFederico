@@ -1,5 +1,7 @@
 from typing import Optional
 
+from backgammon.core.player import Player
+
 
 class Checker:
     """

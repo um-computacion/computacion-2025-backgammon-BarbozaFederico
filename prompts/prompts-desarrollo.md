@@ -216,3 +216,22 @@ Se respetó la separación de responsabilidades y se agregaron docstrings claros
 
 **Salida usada sin cambios.**
 **Referencia:** `backgammon/core/checker.py`
+
+---
+
+# Prompt: Completa la logica propuesta con codigo funcional para la clase player, teniendo en cuenta nombres de clases,atributos y metodos de la clase checker.py, plantea este prompt en promts-desarrollo
+
+## Modelo / herramienta usada: GitHub Copilot
+
+### Instrucciones del sistema
+
+Siempre sigue los principios SOLID, incluye docstrings y comentarios claros, documenta el prompt y la respuesta en prompts/prompts-desarrollo.md
+
+### Respuesta
+
+Se completó la clase `Player` en `backgammon/core/player.py` agregando métodos funcionales para manipular fichas (`Checker`): colocar en posición, mover, enviar a barra y sacar (bear off).  
+Se agregaron métodos para consultar fichas en tablero, barra y fuera.  
+Todos los métodos incluyen docstrings y comentarios claros, respetando la separación de responsabilidades y la interacción con la clase `Checker`.
+
+**Salida usada sin cambios.**  
+**Referencia:** `backgammon/core/player.py`
