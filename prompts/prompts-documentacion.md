@@ -108,3 +108,21 @@ Todos los tests usan pytest, incluyen docstrings y cubren la funcionalidad esenc
 
 **Salida usada sin cambios.**  
 **Referencia:** `tests/test_board.py`
+
+# Prompt: Plantea todo lo hecho en esta rama en CHANGELOG.md , siguiendo las reglas de "copilot-instructions", deja planteado este prompt en "prompts-documentacion"
+
+## Modelo / herramienta usada: GitHub Copilot
+
+### Instrucciones del sistema: Siempre sigue los principios SOLID, incluye docstrings y comentarios claros, documenta el prompt y la respuesta en prompts/prompts-documentacion.md
+
+### Prompt exacto
+
+Plantea todo lo hecho en esta rama en CHANGELOG.md , siguiendo las reglas de "copilot-instructions", deja planteado este prompt en "prompts-documentacion"
+
+### Respuesta
+
+Se agregó una entrada de versión detallada en `CHANGELOG.md` que resume todos los cambios realizados en esta rama, siguiendo el formato y reglas de "copilot-instructions".  
+Incluye detalles sobre la implementación del CLI, mejoras en la lógica de movimientos, visualización del tablero, documentación, tests y correcciones.
+
+**Salida usada sin cambios.**  
+**Referencia:** `CHANGELOG.md`
