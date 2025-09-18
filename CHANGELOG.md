@@ -5,6 +5,64 @@ Todas las modificaciones notables de este proyecto serán documentadas en este a
 El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/),
 y este proyecto sigue [Semantic Versioning](https://semver.org/lang/es/).
 
+# [1.0.0] 18/09/2025
+
+### Added
+
+- Implementación completa del CLI funcional para 2 jugadores en [console](./backgammon/cli/console.py) con selección de movimientos legales y visualización de opciones.
+- Visualización de los números de los picos (puntas) en el tablero para mejor orientación del jugador.
+- Integración para todas las clases principales, asegurando cobertura total y cumplimiento de reglas de Backgammon.
+- Lógica de movimientos legales en el CLI, incluyendo jugada forzada, dobles, barra, bear-off y restricciones de ocupación de puntos.
+- Actualización y registro de todos los prompts y respuestas generadas en los archivos de la carpeta `prompts`.
+- Creación de la carpeta [move](./backgammon/core/move.py) para solución de error en [console](./backgammon/cli/console.py).
+
+### Fixed
+
+- Corrección de importaciones circulares y anotaciones de tipo entre módulos core.
+- Corrección de visualización y orientación del tablero en CLI.
+- Ajuste de la lógica de movimientos para cumplir con las reglas oficiales de Backgammon.
+
+### Summary
+
+La implementación es funcional y estable. A continuación, un resumen de lo implementado:
+
+#### Métodos principales en `Board`
+
+1. `jugador_tiene_en_barra(player)` – Verifica si un jugador tiene fichas en la barra.  
+2. `jugador_todo_en_home(player)` – Verifica si todas las fichas de un jugador están en su home.  
+3. `jugador_pip_count(player)` – Calcula el pip count (distancia total para sacar las fichas).  
+4. `aplicar_movimiento(player, secuencia)` – Aplica una secuencia de movimientos al tablero.  
+5. `enumerar_opciones_legales(player, dados)` – Genera todas las opciones de movimientos legales.  
+
+#### Métodos auxiliares
+
+6. `_generar_secuencias_movimiento()` – Genera recursivamente todas las secuencias de movimientos posibles.  
+7. `_generar_movimientos_posibles()` – Genera movimientos posibles para un valor de dado.  
+8. `_es_movimiento_valido()` – Valida si un movimiento es legal según las reglas.  
+9. `_es_captura()` – Verifica si un movimiento captura una ficha del rival.  
+10. `_calcular_hash_secuencia()` – Calcula un hash único para cada secuencia de movimientos.  
+11. `_aplicar_paso_movimiento()` – Aplica un paso de movimiento al tablero.  
+
+#### Características clave
+
+- Cumplimiento de todas las reglas de Backgammon: movimientos regulares, capturas, entrada desde barra y bear-off.  
+- Manejo de dobles: genera automáticamente 4 movimientos en caso de dados iguales.  
+- Prioridad a la barra: se obliga a reingresar fichas antes de mover otras.  
+- Validación de bear-off: solo permitido si todas las fichas están en home.  
+- Generación completa de opciones: devuelve combinaciones de movimientos, no solo individuales.  
+- Eliminación de duplicados en las secuencias de movimientos.  
+- Sistema básico de puntuación que prioriza el uso de más dados.  
+
+#### Resultados de pruebas
+
+- ✅ Eliminado el `NotImplementedError`.  
+- ✅ CLI funcional y corriendo correctamente.  
+- ✅ Generación de movimientos funcionando para distintas combinaciones de dados.  
+- ✅ Reglas implementadas y verificadas.  
+- ✅ Correcto manejo de diferentes estados del tablero.  
+
+---
+
 ## [0.7.0] 17/09/2025
 
 ### Added

@@ -235,3 +235,25 @@ Todos los métodos incluyen docstrings y comentarios claros, respetando la separ
 
 **Salida usada sin cambios.**  
 **Referencia:** `backgammon/core/player.py`
+
+---
+
+# Prompt: Crea u CLI 100% funcional de 2 jugadores siguiendo la logica de core: "player.py", "dice.py","checker.py","board.py"
+
+Debes implementar "backgammon.py" en el CLI
+Debes seguir la estricta documentacion propuesta en "copilot-instructions"
+Debes plantear este promt, en "promts-desarrollo"con el formato propuesto
+
+## Modelo / herramienta usada: GitHub Copilot
+
+### Instrucciones del sistema: Siempre sigue los principios SOLID, incluye docstrings y comentarios claros, documenta el prompt y la respuesta en prompts/prompts-desarrollo.md
+
+### Respuesta
+
+Se creó el archivo `backgammon/cli/console.py` con un CLI funcional para 2 jugadores, integrando la lógica de `player.py`, `dice.py`, `checker.py`, `board.py` y `backgammon.py`.  
+Incluye docstring tipo NumPy, interacción por consola, turnos, lanzamiento de dados y selección básica de movimientos.  
+La salida fue usada sin cambios.
+
+**Referencia:** `backgammon/cli/console.py`
+
+---
