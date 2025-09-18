@@ -19,7 +19,7 @@ backgammon/pygame_ui/__init__.py       0      0   100%
 ----------------------------------------------------------------
 TOTAL                                236      1    99%
 Coverage XML written to file cobertura.xml
-39 passed in 0.28s
+39 passed in 0.29s
 
 ```
 ## Pylint Report
