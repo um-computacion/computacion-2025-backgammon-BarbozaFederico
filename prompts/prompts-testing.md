@@ -88,3 +88,21 @@ Todos los tests usan pytest, incluyen docstrings y cubren la funcionalidad esenc
 
 **Salida usada sin cambios.**  
 **Referencia:** `tests/test_dice.py`
+
+---
+
+# Prompt: genera test para cubrir el 100% de la clase "backgammon.py"
+
+Plantea este prompt en "prompts-testing"
+
+## Modelo / herramienta usada: GitHub Copilot
+
+### Instrucciones del sistema: Siempre sigue los principios SOLID, incluye docstrings y comentarios claros, documenta el prompt y la respuesta en prompts/prompts-testing.md
+
+### Respuesta
+
+Se generaron tests unitarios en `tests/test_backgammon.py` para cubrir el 100% de la clase `BackgammonGame`, incluyendo inicialización, configuración de jugadores, inicio de juego, turnos, lanzamiento de dados, display CLI y finalización de partida.  
+Todos los tests usan pytest, incluyen docstrings y cubren la funcionalidad esencial y avanzada de la clase.
+
+**Salida usada sin cambios.**  
+**Referencia:** `tests/test_backgammon.py`
