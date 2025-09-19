@@ -5,6 +5,49 @@ Todas las modificaciones notables de este proyecto serán documentadas en este a
 El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/),
 y este proyecto sigue [Semantic Versioning](https://semver.org/lang/es/).
 
+## [1.1.0] 19/09/2025
+
+### Added
+
+- Implementación completa y funcional del CLI para 2 jugadores en `backgammon/cli/console.py`, con selección y visualización de movimientos legales, orientación de picos (1-24), y lógica de juego completa.
+- Integración de todas las clases principales (`Player`, `Checker`, `Dice`, `Board`, `BackgammonGame`, `Move`) y solución de errores de importación y compatibilidad.
+- Visualización de los números de los picos en el tablero para mejor orientación del jugador.
+- Tests unitarios y de integración para todas las clases principales, asegurando cobertura total y cumplimiento de reglas de Backgammon.
+- Lógica de movimientos legales en el CLI, incluyendo jugada forzada, dobles, barra, bear-off y restricciones de ocupación de puntos.
+- Carpeta y clase `move.py` para representar movimientos y solucionar dependencias en el CLI.
+- Documentación tipo NumPy para todas las clases y métodos principales, siguiendo el formato de copilot-instructions.md.
+- Registro y actualización de todos los prompts y respuestas generadas en los archivos de la carpeta `prompts`.
+- Reporte de cobertura de código en `coverage_report.txt`.
+
+### Fixed
+
+- Corrección de importaciones circulares y anotaciones de tipo entre módulos core.
+- Corrección de visualización y orientación del tablero en CLI (puntas 1-24).
+- Ajuste de la lógica de movimientos para cumplir con las reglas oficiales de Backgammon.
+- Eliminación de errores en la generación y aplicación de movimientos, y en la visualización de opciones.
+
+---
+
+**Referencias:**  
+
+- `backgammon/core/backgammon.py`
+- `backgammon/core/player.py`
+- `backgammon/core/checker.py`
+- `backgammon/core/dice.py`
+- `backgammon/core/board.py`
+- `backgammon/core/move.py`
+- `backgammon/cli/console.py`
+- `tests/test_player.py`
+- `tests/test_checker.py`
+- `tests/test_dice.py`
+- `tests/test_board.py`
+- `tests/test_backgammon.py`
+- `tests/test_move.py`
+- `coverage_report.txt`
+- `prompts/prompts-desarrollo.md`
+- `prompts/prompts-documentacion.md`
+- `prompts/prompts-testing.md`
+
 # [1.0.0] 18/09/2025
 
 ### Added

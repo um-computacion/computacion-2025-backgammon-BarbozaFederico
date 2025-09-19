@@ -76,8 +76,8 @@ class BackgammonCLI:
                 print(f"{player.get_nombre()}, selecciona tu movimiento:")
                 for idx, opcion in enumerate(opciones):
                     pasos = [
-                        f"{'Barra' if paso.desde is None else paso.desde} -> "
-                        f"{'Fuera' if paso.hasta is None else paso.hasta} (Dado: {paso.dado})"
+                        f"{'Barra' if paso.desde is None else paso.desde+1} -> "
+                        f"{'Fuera' if paso.hasta is None else paso.hasta+1} (Dado: {paso.dado})"
                         + (" [Captura]" if paso.captura else "")
                         for paso in opcion.secuencia
                     ]
