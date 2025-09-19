@@ -1,21 +1,17 @@
-.......................................                                  [100%]
+........................................................................ [ 93%]
+.....                                                                    [100%]
 =============================== tests coverage ================================
 _______________ coverage: platform win32, python 3.13.6-final-0 _______________
 
-Name                               Stmts   Miss  Cover   Missing
-----------------------------------------------------------------
-backgammon\__init__.py                 0      0   100%
-backgammon\cli\__init__.py             0      0   100%
-backgammon\cli\console.py             45     45     0%   1-127
-backgammon\core\__init__.py            0      0   100%
-backgammon\core\backgammon.py         49      0   100%
-backgammon\core\board.py             229    166    28%   240-241, 258-273, 289-315, 330-333, 348-385, 405-445, 473-528, 550-620, 648-674, 694-706, 727-734
-backgammon\core\checker.py            44      0   100%
-backgammon\core\dice.py               11      0   100%
-backgammon\core\move.py               18     18     0%   1-28
-backgammon\core\player.py             80      1    99%   370
-backgammon\pygame_ui\__init__.py       0      0   100%
-----------------------------------------------------------------
-TOTAL                                476    230    52%
+Name                            Stmts   Miss Branch BrPart  Cover   Missing
+---------------------------------------------------------------------------
+backgammon\core\backgammon.py      49      0     18      0   100%
+backgammon\core\board.py          242     26    126     22    84%   272->271, 274, 275->271, 304, 308, 310-314, 315->306, 320, 361-362, 367->366, 379->387, 421, 429, 524, 531->529, 570-571, 600-618, 672, 679, 683, 711
+backgammon\core\checker.py         44      0      0      0   100%
+backgammon\core\dice.py            11      0      0      0   100%
+backgammon\core\move.py            18      0      4      0   100%
+backgammon\core\player.py          80      0      2      0   100%
+---------------------------------------------------------------------------
+TOTAL                             444     26    150     22    90%
 Coverage XML written to file cobertura.xml
-39 passed in 0.21s
+77 passed in 0.27s

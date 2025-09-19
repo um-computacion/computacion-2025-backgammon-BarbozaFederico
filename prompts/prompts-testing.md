@@ -106,3 +106,57 @@ Todos los tests usan pytest, incluyen docstrings y cubren la funcionalidad esenc
 
 **Salida usada sin cambios.**  
 **Referencia:** `tests/test_backgammon.py`
+
+---
+
+# Prompt: genera test para cubrir el 100% de la clase "board.py"
+
+Plantea este prompt en "prompts-testing"
+
+## Modelo / herramienta usada: GitHub Copilot
+
+### Instrucciones del sistema: Siempre sigue los principios SOLID, incluye docstrings y comentarios claros, documenta el prompt y la respuesta en prompts/prompts-testing.md
+
+### Respuesta
+
+Se generaron tests unitarios en `tests/test_board.py` para cubrir el 100% de la clase `Board`, incluyendo inicialización, gestión de jugadores y fichas, barra, borne off, display, reset, y todos los métodos de reglas y movimientos.  
+Todos los tests usan pytest, incluyen docstrings y cubren la funcionalidad esencial y avanzada de la clase.
+
+**Salida usada sin cambios.**  
+**Referencia:** `tests/test_board.py`
+
+---
+
+# Prompt: genera test para cubrir el 100% de la clase "move.py"
+
+Plantea este prompt en "prompts-testing"
+
+## Modelo / herramienta usada: GitHub Copilot
+
+### Instrucciones del sistema: Siempre sigue los principios SOLID, incluye docstrings y comentarios claros, documenta el prompt y la respuesta en prompts/prompts-testing.md
+
+### Respuesta
+
+Se generaron tests unitarios en `tests/test_move.py` para cubrir el 100% de la clase `Move`, incluyendo inicialización, representación, igualdad y hash.  
+Todos los tests usan pytest, incluyen docstrings y cubren la funcionalidad esencial y avanzada de la clase.
+
+**Salida usada sin cambios.**  
+**Referencia:** `tests/test_move.py`
+
+---
+
+# Prompt: genera test para cubrir el 100% de la clase "player.py"
+
+Plantea este prompt en "prompts-testing"
+
+## Modelo / herramienta usada: GitHub Copilot
+
+### Instrucciones del sistema: Siempre sigue los principios SOLID, incluye docstrings y comentarios claros, documenta el prompt y la respuesta en prompts/prompts-testing.md
+
+### Respuesta
+
+Se generaron tests unitarios en `tests/test_player.py` para cubrir el 100% de la clase `Player`, incluyendo inicialización, getters, setters, gestión de fichas, delegación, política, copia defensiva y representación.  
+Todos los tests usan pytest, incluyen docstrings y cubren la funcionalidad esencial y avanzada de la clase.
+
+**Salida usada sin cambios.**  
+**Referencia:** `tests/test_player.py`

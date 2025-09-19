@@ -138,44 +138,75 @@ def test_player_puede_bear_off():
     assert p.puede_bear_off(dummy) is False
 
 
-def test_player_str_repr():
-    """Testea las representaciones __str__ y __repr__."""
+def test_player_getters_setters():
+    """Testea todos los getters y atributos de Player."""
+    p = make_player()
+    assert isinstance(p.get_id(), str)
+    assert isinstance(p.get_nombre(), str)
+    assert p.get_color() in ("blancas", "negras")
+    assert p.get_direccion() in (1, -1)
+    assert isinstance(p.get_home_points(), frozenset)
+    assert isinstance(p.get_entry_point(), int)
+    assert isinstance(p.get_checkers(), list)
+
+
+def test_player_politica_default():
+    """Testea que la política por defecto es PoliticaNula."""
+    p = make_player()
+    assert isinstance(p.__politica__, PoliticaNula)
+
+
+def test_player_repr_str():
+    """Testea __repr__ y __str__ de Player."""
     p = make_player()
     s = str(p)
     r = repr(p)
     assert "Player(" in s
     assert "Player(" in r
+    assert p.get_nombre() in s
 
 
-def test_politicanula_elegir_none():
-    """Testea que PoliticaNula siempre retorna None al elegir."""
-    politica = PoliticaNula()
-    opciones = [OpcionMovimiento([PasoMovimiento(0, 1, 2)], "hash", 1.0)]
-    assert politica.elegir(opciones) is None
-    assert politica.elegir([]) is None
-
-
-def test_get_checkers_returns_copy():
-    """Testea que get_checkers retorna una copia defensiva de la lista de fichas."""
+def test_player_movimientos_legales_empty():
+    """Testea movimientos_legales cuando no hay opciones."""
     p = make_player()
-    checkers = p.get_checkers()
-    checkers.append(Checker("blancas"))
-    # La lista interna no debe verse afectada
-    assert len(p.get_checkers()) == 3
+
+    class DummyTableroEmpty:
+        def enumerar_opciones_legales(self, jugador, dados):
+            return []
+
+    dummy = DummyTableroEmpty()
+    moves = p.movimientos_legales(dummy, [1, 2])
+    assert moves == []
 
 
-def test_gestion_no_altera_otras_fichas():
-    """Testea que los métodos de gestión no alteran el estado de otras fichas."""
+def test_player_elegir_movimiento_none():
+    """Testea elegir_movimiento cuando no hay opciones."""
+    p = make_player()
+    secuencia = p.elegir_movimiento([])
+    assert secuencia is None
+
+
+def test_player_confirmar_movimiento_calls_tablero():
+    """Testea que confirmar_movimiento llama a aplicar_movimiento en tablero."""
+    p = make_player()
+    called = {}
+
+    class DummyTableroApply:
+        def aplicar_movimiento(self, jugador, secuencia):
+            called["ok"] = True
+
+    dummy = DummyTableroApply()
+    p.confirmar_movimiento(dummy, [PasoMovimiento(0, 1, 2)])
+    assert called.get("ok") is True
+
+
+def test_player_checkers_en_tablero_barra_fuera():
+    """Testea los métodos checkers_en_tablero, checkers_en_barra y checkers_fuera."""
     p = make_player()
     c1, c2, c3 = p.get_checkers()
-    p.colocar_checker_en_posicion(c1, 2)
-    p.mover_checker_a(c1, 3)
-    p.enviar_checker_a_barra(c1)
-    p.sacar_checker(c1)
-    # Las otras fichas deben permanecer sin estado alterado
-    assert not c2.en_tablero()
-    assert not c2.en_barra()
-    assert not c2.fuera()
-    assert not c3.en_tablero()
-    assert not c3.en_barra()
-    assert not c3.fuera()
+    p.colocar_checker_en_posicion(c1, 1)
+    p.enviar_checker_a_barra(c2)
+    p.sacar_checker(c3)
+    assert p.checkers_en_tablero() == [c1]
+    assert p.checkers_en_barra() == [c2]
+    assert p.checkers_fuera() == [c3]

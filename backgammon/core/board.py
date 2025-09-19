@@ -90,6 +90,8 @@ class Board:
         point : int
             The index of the point (0..23).
         """
+        if checker is None:
+            return
         if 0 <= point < 24:
             self.points[point].append(checker)
             checker.colocar_en_posicion(point)
@@ -122,6 +124,8 @@ class Board:
         checker : Checker
             The checker to send to the bar.
         """
+        if checker is None:
+            return
         color = checker.get_color()
         self.bar[color].append(checker)
         checker.enviar_a_barra()
@@ -135,6 +139,8 @@ class Board:
         checker : Checker
             The checker to bear off.
         """
+        if checker is None:
+            return
         color = checker.get_color()
         self.borne_off[color].append(checker)
         checker.sacar()
@@ -200,6 +206,7 @@ class Board:
         board.display()
         """
         print("Tablero:")
+        print("Picos:")
         for i, point in enumerate(self.points):
             print(f"Punta {i+1}: {[str(c) for c in point]}")
         print("Barra:")
@@ -651,6 +658,15 @@ class Board:
         if hasta is None:
             return player.puede_bear_off(tablero)
 
+        # Check if player has checkers at source point (unless moving from bar or bearing off)
+        if desde is not None:
+            checkers_at_source = tablero.get_checkers_on_point(desde)
+            player_checkers_at_source = [
+                c for c in checkers_at_source if c.get_color() == color
+            ]
+            if not player_checkers_at_source:
+                return False
+
         # If point is out of range, it's invalid
         if hasta < 0 or hasta >= 24:
             return False
@@ -731,7 +747,5 @@ class Board:
             capture_str = "C" if paso.captura else ""
             steps.append(f"{desde_str}->{hasta_str}({paso.dado}){capture_str}")
 
-        return f"{player.get_color()}:{'|'.join(steps)}"
-
-
-#
+        player_color = "None" if player is None else player.get_color()
+        return f"{player_color}:{'|'.join(steps)}"
