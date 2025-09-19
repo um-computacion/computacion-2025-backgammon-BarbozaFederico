@@ -9,23 +9,32 @@ Name                               Stmts   Miss  Cover   Missing
 ----------------------------------------------------------------
 backgammon/__init__.py                 0      0   100%
 backgammon/cli/__init__.py             0      0   100%
+backgammon/cli/console.py             45     45     0%   1-127
 backgammon/core/__init__.py            0      0   100%
 backgammon/core/backgammon.py         49      0   100%
-backgammon/core/board.py              52      0   100%
+backgammon/core/board.py             229    166    28%   240-241, 258-273, 289-315, 330-333, 348-385, 405-445, 473-528, 550-620, 648-674, 694-706, 727-734
 backgammon/core/checker.py            44      0   100%
 backgammon/core/dice.py               11      0   100%
+backgammon/core/move.py               18     18     0%   1-28
 backgammon/core/player.py             80      1    99%   370
 backgammon/pygame_ui/__init__.py       0      0   100%
 ----------------------------------------------------------------
-TOTAL                                236      1    99%
+TOTAL                                476    230    52%
 Coverage XML written to file cobertura.xml
-39 passed in 0.30s
+39 passed in 0.35s
 
 ```
 ## Pylint Report
 ```text
 ************* Module backgammon.__init__
 backgammon/__init__.py:4:0: C0304: Final newline missing (missing-final-newline)
+************* Module backgammon.cli.console
+backgammon/cli/console.py:127:0: C0304: Final newline missing (missing-final-newline)
+backgammon/cli/console.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+backgammon/cli/console.py:117:16: R1705: Unnecessary "else" after "return", remove the "else" and de-indent the code inside it (no-else-return)
+backgammon/cli/console.py:98:26: W0613: Unused argument 'player' (unused-argument)
+backgammon/cli/console.py:2:0: W0611: Unused OpcionMovimiento imported from backgammon.core.player (unused-import)
+backgammon/cli/console.py:2:0: W0611: Unused SecuenciaMovimiento imported from backgammon.core.player (unused-import)
 ************* Module backgammon.core.backgammon
 backgammon/core/backgammon.py:166:0: C0301: Line too long (107/100) (line-too-long)
 backgammon/core/backgammon.py:1:0: C0114: Missing module docstring (missing-module-docstring)
@@ -34,14 +43,37 @@ backgammon/core/backgammon.py:121:24: W0612: Unused variable 'i' (unused-variabl
 backgammon/core/backgammon.py:1:0: W0611: Unused Optional imported from typing (unused-import)
 ************* Module backgammon.core.board
 backgammon/core/board.py:1:0: C0114: Missing module docstring (missing-module-docstring)
-backgammon/core/board.py:61:8: C0104: Disallowed name "bar" (disallowed-name)
-backgammon/core/board.py:201:8: C0206: Consider iterating with .items() (consider-using-dict-items)
-backgammon/core/board.py:204:8: C0206: Consider iterating with .items() (consider-using-dict-items)
+backgammon/core/board.py:66:8: C0104: Disallowed name "bar" (disallowed-name)
+backgammon/core/board.py:206:8: C0206: Consider iterating with .items() (consider-using-dict-items)
+backgammon/core/board.py:209:8: C0206: Consider iterating with .items() (consider-using-dict-items)
+backgammon/core/board.py:266:16: R1705: Unnecessary "elif" after "return", remove the leading "el" from "elif" (no-else-return)
+backgammon/core/board.py:300:12: R1724: Unnecessary "elif" after "continue", remove the leading "el" from "elif" (no-else-continue)
+backgammon/core/board.py:330:8: C0415: Import outside toplevel (backgammon.core.player.SecuenciaMovimiento, backgammon.core.player.PasoMovimiento) (import-outside-toplevel)
+backgammon/core/board.py:330:8: W0611: Unused PasoMovimiento imported from backgammon.core.player (unused-import)
+backgammon/core/board.py:405:8: C0415: Import outside toplevel (backgammon.core.player.OpcionMovimiento, backgammon.core.player.PasoMovimiento, backgammon.core.player.SecuenciaMovimiento) (import-outside-toplevel)
+backgammon/core/board.py:410:8: C0415: Import outside toplevel (copy) (import-outside-toplevel)
+backgammon/core/board.py:447:4: R0914: Too many local variables (20/15) (too-many-locals)
+backgammon/core/board.py:473:8: C0415: Import outside toplevel (backgammon.core.player.PasoMovimiento) (import-outside-toplevel)
+backgammon/core/board.py:474:8: C0415: Import outside toplevel (copy) (import-outside-toplevel)
+backgammon/core/board.py:492:28: W0212: Access to a protected member _generar_secuencias_movimiento of a client class (protected-access)
+backgammon/core/board.py:502:16: W0212: Access to a protected member _aplicar_paso_movimiento of a client class (protected-access)
+backgammon/core/board.py:509:28: W0212: Access to a protected member _generar_secuencias_movimiento of a client class (protected-access)
+backgammon/core/board.py:550:8: C0415: Import outside toplevel (backgammon.core.player.PasoMovimiento) (import-outside-toplevel)
+backgammon/core/board.py:585:20: R1724: Unnecessary "elif" after "continue", remove the leading "el" from "elif" (no-else-continue)
+backgammon/core/board.py:625:8: W0613: Unused argument 'desde' (unused-argument)
 ************* Module backgammon.core.checker
 backgammon/core/checker.py:156:0: C0301: Line too long (155/100) (line-too-long)
 backgammon/core/checker.py:1:0: C0114: Missing module docstring (missing-module-docstring)
 ************* Module backgammon.core.dice
 backgammon/core/dice.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+************* Module backgammon.core.move
+backgammon/core/move.py:4:0: C0301: Line too long (129/100) (line-too-long)
+backgammon/core/move.py:28:0: C0301: Line too long (109/100) (line-too-long)
+backgammon/core/move.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+backgammon/core/move.py:3:0: C0115: Missing class docstring (missing-class-docstring)
+backgammon/core/move.py:4:4: R0913: Too many arguments (6/5) (too-many-arguments)
+backgammon/core/move.py:4:4: R0917: Too many positional arguments (6/5) (too-many-positional-arguments)
+backgammon/core/move.py:1:0: W0611: Unused Optional imported from typing (unused-import)
 ************* Module backgammon.core.player
 backgammon/core/player.py:1:0: C0114: Missing module docstring (missing-module-docstring)
 backgammon/core/player.py:56:4: C0116: Missing function or method docstring (missing-function-docstring)
@@ -101,9 +133,19 @@ tests/test_player.py:33:33: W0613: Unused argument 'jugador' (unused-argument)
 tests/test_player.py:33:42: W0613: Unused argument 'secuencia' (unused-argument)
 tests/test_player.py:37:0: C0116: Missing function or method docstring (missing-function-docstring)
 tests/test_player.py:1:0: W0611: Unused import pytest (unused-import)
+tests/test_player.py:1:0: R0801: Similar lines in 2 files
+==backgammon.cli.console:[47:54]
+==tests.test_backgammon:[9:16]
+                "color": "blancas",
+                "direccion": 1,
+                "home_points": [18, 19, 20, 21, 22, 23],
+                "entry_point": 0,
+            },
+            {
+                "id": "P2", (duplicate-code)
 
 -----------------------------------
-Your code has been rated at 8.95/10
+Your code has been rated at 8.90/10
 
 
 ```
