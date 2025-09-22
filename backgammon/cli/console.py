@@ -59,7 +59,7 @@ class BackgammonCLI:
                 "entry_point": 23,
             },
         ]
-        self.game.setup_players(player_configs)
+        self.game.setup_players(player_configs)  # <-- Inicializa fichas
         self.game.start_game()
 
         while not self.game.is_game_over():
