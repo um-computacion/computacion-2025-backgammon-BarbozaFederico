@@ -1,0 +1,17 @@
+........................................................................ [ 93%]
+.....                                                                    [100%]
+=============================== tests coverage ================================
+_______________ coverage: platform win32, python 3.13.6-final-0 _______________
+
+Name                            Stmts   Miss Branch BrPart  Cover   Missing
+---------------------------------------------------------------------------
+backgammon\core\backgammon.py      49      0     18      0   100%
+backgammon\core\board.py          242     26    126     22    84%   272->271, 274, 275->271, 304, 308, 310-314, 315->306, 320, 361-362, 367->366, 379->387, 421, 429, 524, 531->529, 570-571, 600-618, 672, 679, 683, 711
+backgammon\core\checker.py         44      0      0      0   100%
+backgammon\core\dice.py            11      0      0      0   100%
+backgammon\core\move.py            18      0      4      0   100%
+backgammon\core\player.py          80      0      2      0   100%
+---------------------------------------------------------------------------
+TOTAL                             444     26    150     22    90%
+Coverage XML written to file cobertura.xml
+77 passed in 0.27s
