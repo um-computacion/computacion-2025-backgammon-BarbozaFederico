@@ -143,7 +143,7 @@ class Checker:
                 "barra"
                 if self._en_barra
                 else (
-                    f"pos {self._posicion}"
+                    f"pos {self._posicion + 1}"
                     if self._posicion is not None
                     else "sin posición"
                 )
