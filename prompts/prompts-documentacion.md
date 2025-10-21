@@ -165,3 +165,29 @@ Se corrigió una prueba existente en `tests/test_checker.py` para asegurar la es
 - tests/test_checker.py  
 - CHANGELOG.md  
 - prompts/prompts-documentacion.md
+
+# Prompt: Genera un cambio en "CHANGELOG" siguiendo el versionado semantico, y  "keep a change log" agrega este prompt a "prompt prompts-documenacion"agregando lo siguiente
+
+Cambios clave:
+
+- Se ha ampliado la ventana del juego a 1400x800 para crear más espacio y mejorar la presentación.
+- Se han reposicionado las zonas de "bear-off" a la derecha del tablero, evitando la superposición con los puntos del juego.
+- Se ha corregido el orden de renderizado para que los indicadores de movimiento (círculos verdes) siempre se muestren por encima de las fichas.
+- Se han ajustado las constantes de diseño y los cálculos de la interfaz para adaptarse a la nueva resolución de la ventana.
+- Se ha actualizado la prueba unitaria de "bear-off" para reflejar la nueva ubicación de la zona de "bear-off".
+
+Instrucciones del sistema:
+Siempre sigue los principios SOLID
+Incluir docstrings y comentarios claros en el código generado
+Proporciona una explicación detallada para cada prompt y documenta tanto el prompt como la respuesta generada dentro de los archivos prompts/prompts-desarrollo.md, prompts/prompts-documentacion.md o prompts/prompts-testing.md. Usa únicamente estos archivos para la documentación de prompts.
+Por cada prompt debe quedar registrado:Modelo / herramienta usada (nombre y versión si corresponde),El texto exacto del prompt (sin reescrituras subjetivas),Instrucciones del sistema (si las hubo),Respuesta/resultado completo devuelto por la IA, Indicar si la salida fue usada sin cambios, usada con modificaciones (mostrar lasmodificaciones) o descartada,Referencia a los archivos finales que incorporaron contenido generado por IA (ej:core/board.py)
+
+## Respuesta/resultado completo devuelto por la IA
+
+Se agregó una nueva entrada de versión [1.2.0] en `CHANGELOG.md` siguiendo el formato "Keep a Changelog" y el versionado semántico, documentando los cambios clave solicitados.  
+La salida fue usada sin cambios.
+
+Referencia a los archivos finales que incorporaron contenido generado por IA:
+
+- CHANGELOG.md
+- prompts/prompts-documentacion.md

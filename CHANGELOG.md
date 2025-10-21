@@ -5,6 +5,26 @@ Todas las modificaciones notables de este proyecto serán documentadas en este a
 El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/),
 y este proyecto sigue [Semantic Versioning](https://semver.org/lang/es/).
 
+## [1.2.0] 22/10/2025
+
+### Added
+
+- Ampliación de la ventana del juego a 1400x800 para crear más espacio y mejorar la presentación.
+- Reposicionamiento de las zonas de "bear-off" a la derecha del tablero, evitando la superposición con los puntos del juego.
+- Ajuste de las constantes de diseño y cálculos de la interfaz para adaptarse a la nueva resolución de la ventana.
+
+### Fixed
+
+- Corrección del orden de renderizado para que los indicadores de movimiento (círculos verdes) siempre se muestren por encima de las fichas.
+- Actualización de la prueba unitaria de "bear-off" para reflejar la nueva ubicación de la zona de "bear-off".
+
+---
+
+**Referencias:**
+
+- backgammon/pygame_ui/ui.py
+- tests/test_ui.py
+
 ## [1.1.1] 21/10/2025
 
 ### Fixed
