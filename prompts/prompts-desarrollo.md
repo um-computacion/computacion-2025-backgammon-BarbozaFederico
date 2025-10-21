@@ -257,3 +257,66 @@ La salida fue usada sin cambios.
 **Referencia:** `backgammon/cli/console.py`
 
 ---
+
+## Prompt
+
+Modelo / herramienta usada: jules (Google, octubre 2025)
+
+Prompt exacto:
+Tarea: Modificar la interfaz Pygame UI del proyecto Backgammon para corregir el comportamiento de las fichas cuando son comidas (enviadas a la barra) y deben volver al tablero según las tiradas de los dados.
+
+Contexto del problema: Actualmente, cuando una ficha es “comida” por otra, se envía correctamente a la barra, y el juego muestra correctamente los movimientos posibles de salida según los dados. Sin embargo, las fichas en la barra no pueden volver al tablero, aunque el sistema marque los movimientos válidos. Es decir, el juego detecta que pueden salir, pero no ejecuta correctamente la acción de “reingreso” a su cuadrante correspondiente.
+
+Objetivo: Implementar en el Pygame UI la lógica necesaria para que las fichas en la barra:
+
+- Puedan ser seleccionadas correctamente cuando el jugador tiene fichas en la barra.
+- Puedan volver a su cuadrante específico del tablero según el resultado del dado, respetando las reglas del Backgammon.
+- No se permita mover otras fichas mientras haya fichas en la barra pendientes de reingresar.
+- Visualmente se muestre la animación de que la ficha sale de la barra y se coloca en el punto correcto.
+- Se actualice el estado del juego en consecuencia (remover de la lista de la barra, actualizar cuadrante destino y validar si hay fichas del oponente).
+
+Detalles técnicos:
+
+- El motor de juego ya maneja correctamente las reglas lógicas (detección de movimiento válido, puntos de destino, etc.).
+- El problema está en la capa Pygame UI, probablemente en la gestión de eventos de clic o en la actualización del estado visual del tablero.
+- Revisar los métodos relacionados con: handle_click(), draw_board(), draw_checkers(), update_checker_positions(), o equivalentes.
+- Las listas o estructuras que representen la barra y los puntos (por ejemplo, bar_white, bar_black, points[]).
+- Asegurarse de sincronizar la lógica visual con el estado interno del juego (por ejemplo, GameState o Board).
+
+Entrega esperada:
+
+- Código modificado o sugerido para la clase UI o controlador de eventos.
+- Explicación de los cambios realizados.
+
+## Respuesta/resultado completo devuelto por la IA
+
+Se documentó el prompt en el archivo `prompts/prompts-desarrollo.md` siguiendo el formato requerido.  
+La salida fue usada sin cambios.
+
+Referencia a los archivos finales que incorporaron contenido generado por IA:
+
+- prompts/prompts-desarrollo.md
+
+## Prompt
+
+herramienta usada: jules
+
+Tareas a realizar:
+
+1. Ajustar las hit-boxes del Bear-Off:
+   - Mover las zonas de clic del Bear-Off para que no se superpongan con las hit-boxes de los triángulos 1, 2, 23 y 24; es decir, mover los 2 bears-off hacia la derecha.
+   - Asegurarse que al apretar o hacer clic este Bear-off (rectángulos morados que tienen escrito “blancas” y “negras”) interactúe con la acción de sacar la ficha del tablero de forma permanente (siguiendo las reglas y movimientos legales).
+   - Asegurarse que haya 2 bear-off, uno en la parte superior derecha (a la derecha de los triángulos 23 y 24) y otro en la parte inferior derecha (a la derecha de los triángulos 2 y 1).
+
+2. Ampliar la ventana del juego:
+   - Aumentar las dimensiones de la ventana Pygame (por ejemplo, en altura o ancho) de modo que las fichas retiradas se vean claramente fuera del tablero.
+   - Ajustar la posición de renderizado de los elementos (tablero, barra, fichas, texto, etc.) para mantener la proporción visual.
+
+3. Corregir la superposición del indicador verde (círculo de predicción):
+   - Modificar el orden de dibujo (z-index o secuencia de render) para que el indicador verde siempre se renderice por encima de las fichas, incluso si hay 6 o más fichas apiladas en un mismo triángulo.
+   - El objetivo es que el jugador pueda ver siempre la opción disponible de movimiento, independientemente de la cantidad de fichas en el punto.
+
+4. Verificar compatibilidad visual y lógica:
+   - Comprobar que el cambio en hit-boxes no afecte otras interacciones del tablero.
+   - Probar la visibilidad del círculo verde en distintos escenarios y resoluciones.
+   - Asegurar que la ampliación de la ventana no distorsione las coordenadas del tablero ni las posiciones de las fichas.
