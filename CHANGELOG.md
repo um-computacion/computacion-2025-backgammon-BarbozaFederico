@@ -5,14 +5,16 @@ Todas las modificaciones notables de este proyecto serán documentadas en este a
 El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/),
 y este proyecto sigue [Semantic Versioning](https://semver.org/lang/es/).
 
-## [1.2.0] - 22/09/2025
+## [1.1.1] 21/10/2025
 
-### Added
+### Fixed
 
-- Interfaz gráfica completa en `backgammon/pygame_ui/ui.py` con numeración y orientación de puntas corregidas, siguiendo la estética clásica de Backgammon.
-copilot-instructions.md..
-
----
+- Corrige el reingreso de fichas desde la barra en la UI de Pygame.
+- Refactorización del método `_handle_click` en `backgammon/pygame_ui/ui.py` para gestionar correctamente la selección de la barra y el clic en un punto de destino válido.
+- Corrección en el método `_attempt_move` para permitir la correcta aplicación del movimiento desde la barra.
+- Añadida prueba unitaria en `tests/test_ui.py` para verificar la lógica de reingreso desde la barra, simulando clics y validando el estado del juego.
+- Añadido el método `set_values` a la clase `Dice` para facilitar escenarios de prueba con valores de dados predecibles.
+- Corrección de prueba existente en `tests/test_checker.py` para asegurar que todo el conjunto de pruebas pase.
 
 ## [1.1.0] 19/09/2025
 
