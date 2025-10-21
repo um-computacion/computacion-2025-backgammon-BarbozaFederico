@@ -126,3 +126,42 @@ Incluye detalles sobre la implementación del CLI, mejoras en la lógica de movi
 
 **Salida usada sin cambios.**  
 **Referencia:** `CHANGELOG.md`
+
+## Prompt
+
+**Modelo / herramienta usada:** jules
+**Texto exacto del prompt:**  
+Fix: Corrige el reingreso de fichas desde la barra en la UI de Pygame
+
+Este commit soluciona un error crítico en la interfaz de Pygame que impedía a los jugadores mover sus fichas desde la barra de vuelta al tablero.
+
+Cambios clave:
+
+- Se ha refactorizado el método `_handle_click` en `pygame_ui/ui.py` para gestionar correctamente la selección de la barra y el posterior clic en un punto de destino válido.
+- Se ha corregido un error en el método `_attempt_move` que impedía la correcta aplicación del movimiento desde la barra.
+- Se ha añadido una nueva prueba unitaria (`tests/test_ui.py`) para verificar la lógica de reingreso desde la barra, simulando los clics del usuario y validando la actualización del estado del juego.
+- Se ha añadido un método `set_values` a la clase `Dice` para facilitar la creación de escenarios de prueba con valores de dados predecibles.
+- Se ha corregido una prueba existente que fallaba en `tests/test_checker.py` para asegurar que todo el conjunto de pruebas pase.
+
+**Instrucciones del sistema:**  
+Siempre sigue los principios SOLID  
+Incluir docstrings y comentarios claros en el código generado  
+Proporciona una explicación detallada para cada prompt y documenta tanto el prompt como la respuesta generada dentro de los archivos prompts/prompts-desarrollo.md, prompts/prompts-documentacion.md o prompts/prompts-testing.md. Usa únicamente estos archivos para la documentación de prompts.  
+Por cada prompt debe quedar registrado:Modelo / herramienta usada (nombre y versión si corresponde),El texto exacto del prompt (sin reescrituras subjetivas),Instrucciones del sistema (si las hubo),Respuesta/resultado completo devuelto por la IA, Indicar si la salida fue usada sin cambios, usada con modificaciones (mostrar lasmodificaciones) o descartada,Referencia a los archivos finales que incorporaron contenido generado por IA (ej:core/board.py)
+
+## Respuesta/resultado completo devuelto por la IA
+
+Se corrigió el reingreso de fichas desde la barra en la UI de Pygame, permitiendo a los jugadores mover sus fichas desde la barra al tablero correctamente.  
+Se refactorizó el método `_handle_click` para gestionar la selección y el movimiento desde la barra, y se corrigió la lógica en `_attempt_move`.  
+Se añadieron pruebas unitarias para validar el comportamiento y se mejoró la clase `Dice` para facilitar los tests.  
+Se corrigió una prueba existente en `tests/test_checker.py` para asegurar la estabilidad del conjunto de pruebas.
+
+**Salida usada:** Usada sin cambios  
+**Referencia a los archivos finales:**  
+
+- backgammon/pygame_ui/ui.py  
+- tests/test_ui.py  
+- backgammon/core/dice.py  
+- tests/test_checker.py  
+- CHANGELOG.md  
+- prompts/prompts-documentacion.md
