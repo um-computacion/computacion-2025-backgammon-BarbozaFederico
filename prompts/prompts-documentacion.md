@@ -221,3 +221,29 @@ Referencia a los archivos finales que incorporaron contenido generado por IA:
 
 - CHANGELOG.md
 - prompts/prompts-documentacion.md
+
+## Prompt
+
+Modelo / herramienta usada: GitHub Copilot (octubre 2025)
+
+Prompt exacto:
+Plantea en CHANGELOG las siguientes acciones realizadas en este committ con su respectivo versionado semantico y coin las reglas de "keep a changelog": - Se ha añadido un método `oponente_en_cuadrante` a la clase `Board` para detectar la presencia de fichas oponentes.
+
+- Se ha actualizado el método `puede_bear_off` en la clase `Player` para usar esta nueva comprobación, bloqueando el bear-off si es necesario.
+- Se ha añadido una nueva prueba unitaria (`test_puede_bear_off_con_oponente_en_cuadrante`) para verificar la nueva lógica.
+
+Instrucciones del sistema:
+Siempre sigue los principios SOLID
+Incluir docstrings y comentarios claros en el código generado
+Proporciona una explicación detallada para cada prompt y documenta tanto el prompt como la respuesta generada dentro de los archivos prompts/prompts-desarrollo.md, prompts/prompts-documentacion.md o prompts/prompts-testing.md. Usa únicamente estos archivos para la documentación de prompts.
+Por cada prompt debe quedar registrado:Modelo / herramienta usada (nombre y versión si corresponde),El texto exacto del prompt (sin reescrituras subjetivas),Instrucciones del sistema (si las hubo),Respuesta/resultado completo devuelto por la IA, Indicar si la salida fue usada sin cambios, usada con modificaciones (mostrar lasmodificaciones) o descartada,Referencia a los archivos finales que incorporaron contenido generado por IA (ej:core/board.py)
+
+## Respuesta/resultado completo devuelto por la IA
+
+Se agregó una nueva entrada de versión [1.3.1] en `CHANGELOG.md` siguiendo el formato "Keep a Changelog" y el versionado semántico, documentando los cambios clave solicitados.  
+La salida fue usada sin cambios.
+
+Referencia a los archivos finales que incorporaron contenido generado por IA:
+
+- CHANGELOG.md
+- prompts/prompts-documentacion.md

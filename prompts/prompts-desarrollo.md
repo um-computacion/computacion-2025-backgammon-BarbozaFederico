@@ -281,7 +281,7 @@ Detalles técnicos:
 - El problema está en la capa Pygame UI, probablemente en la gestión de eventos de clic o en la actualización del estado visual del tablero.
 - Revisar los métodos relacionados con: handle_click(), draw_board(), draw_checkers(), update_checker_positions(), o equivalentes.
 - Las listas o estructuras que representen la barra y los puntos (por ejemplo, bar_white, bar_black, points[]).
-- Asegurarse de sincronizar la lógica visual con el estado interno del juego (por ejemplo, GameState o Board).
+- Asegurarse de sincronizar la lógica visual con el estado interno del juego (por ejemplo, GameState or Board).
 
 Entrega esperada:
 
@@ -346,3 +346,54 @@ Tareas a realizar:
    - Usar una fuente más grande o colorida para el mensaje (por ejemplo, pygame.font.SysFont con tamaño 48+).
    - Centrar el texto en la pantalla.
    - Añadir un pequeño fondo semitransparente o animación si se desea, para destacar el mensaje final.
+
+## Prompt
+
+Objetivo:
+
+Corregir un error crítico en la lógica del Pygame UI del juego Backgammon, donde el jugador puede intentar sacar fichas del tablero (bear-off) incluso si hay fichas del color contrario ocupando el cuadrante de salida.
+La corrección debe aplicarse para ambos colores (blancas y negras).
+
+- Actualmente, cuando un jugador tiene todas sus fichas dentro del cuadrante final, el juego permite iniciar la fase de bear-off (salida).
+- Sin embargo, existe un error lógico:
+  👉 El juego permite intentar sacar fichas incluso si en el cuadrante final hay una o más fichas del oponente presentes, lo cual no está permitido según las reglas del Backgammon. Mientras haya fichas del oponente dentro de su cuadrante de salida.
+
+### Tareas a realizar
+
+1. Agregar una verificación de bloqueo:
+   - Antes de permitir la acción de “bear-off”, verificar que no haya fichas del color contrario dentro del cuadrante final del jugador actual.
+   - Si se detecta al menos una ficha enemiga en ese cuadrante, bloquear la posibilidad de sacar fichas hasta que desaparezca (por ejemplo, si es comida y va a la barra).
+
+2. Aplicar la lógica para ambos jugadores:
+   - Para las fichas blancas: revisar los puntos 19–24 (cuadrante final blanco).
+   - Para las fichas negras: revisar los puntos 1–6 (cuadrante final negro).
+
+3. Mantener compatibilidad con el motor del juego:
+   - Asegurarse de que esta validación no interfiera con la detección normal de movimientos válidos.
+   - La lógica debe integrarse antes del cálculo de movimientos de salida o dentro del método que valida la fase de bear-off.
+
+4. Mantener UI exactamente igual, no cambiar nada de la ui de pygame.
+   - Solo corregir error de lógica para el correcto funcionamiento del juego.
+
+### Detalles técnicos
+
+- Revisar el flujo de validación de movimientos, posiblemente en funciones como:
+  - can_bear_off(), is_valid_move(), handle_click(), o su equivalente.
+- Utilizar las estructuras del tablero (points[], checkers[], GameState) para comprobar la presencia de fichas contrarias en el cuadrante.
+- Asegurar que el cambio afecte tanto al motor lógico como al renderizado de UI (para evitar mostrar jugadas no válidas).
+
+### Entrega esperada
+
+- Código corregido que impida el bear-off cuando hay fichas enemigas en el cuadrante de salida.
+- Prueba de funcionamiento para ambos colores.
+- UI igual a la que tenía.
+- Que los movimientos usuales de las fichas no se vean afectados, solo corrección del error.
+
+## Respuesta/resultado completo devuelto por la IA
+
+Prompt registrado en `prompts/prompts-desarrollo.md` siguiendo el formato requerido.  
+La salida fue usada sin cambios.
+
+Referencia a los archivos finales que incorporaron contenido generado por IA:
+
+- prompts/prompts-desarrollo.md
