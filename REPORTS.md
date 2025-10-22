@@ -1,23 +1,23 @@
 # Automated Reports
 ## Coverage Report
 ```text
-........................................................................ [ 90%]
-........                                                                 [100%]
+........................................................................ [ 88%]
+.........                                                                [100%]
 ================================ tests coverage ================================
 _______________ coverage: platform linux, python 3.10.18-final-0 _______________
 
 Name                            Stmts   Miss Branch BrPart  Cover   Missing
 ---------------------------------------------------------------------------
 backgammon/core/backgammon.py      49      0     18      0   100%
-backgammon/core/board.py          242     13    126     17    91%   275->271, 304, 308, 310-314, 315->306, 320, 361->372, 367->366, 379->387, 421, 429, 531->529, 600->614, 603-611, 614->580, 672, 711
+backgammon/core/board.py          250     14    130     18    91%   275->271, 304, 308, 310-314, 315->306, 320, 361->372, 367->366, 379->387, 421, 429, 531->529, 600->614, 603-611, 614->580, 672, 711, 763
 backgammon/core/checker.py         44      0      0      0   100%
 backgammon/core/dice.py            13      0      0      0   100%
 backgammon/core/move.py            18      0      4      0   100%
 backgammon/core/player.py          80      0      2      0   100%
 ---------------------------------------------------------------------------
-TOTAL                             446     13    150     17    95%
+TOTAL                             454     14    154     18    94%
 Coverage XML written to file cobertura.xml
-80 passed in 1.52s
+81 passed in 1.70s
 
 ```
 ## Pylint Report
@@ -81,16 +81,17 @@ backgammon/core/player.py:56:4: C0116: Missing function or method docstring (mis
 backgammon/core/player.py:57:4: C0116: Missing function or method docstring (missing-function-docstring)
 backgammon/core/player.py:58:4: C0116: Missing function or method docstring (missing-function-docstring)
 backgammon/core/player.py:59:4: C0116: Missing function or method docstring (missing-function-docstring)
-backgammon/core/player.py:63:4: C0116: Missing function or method docstring (missing-function-docstring)
-backgammon/core/player.py:74:4: C0116: Missing function or method docstring (missing-function-docstring)
-backgammon/core/player.py:68:0: R0903: Too few public methods (1/2) (too-few-public-methods)
-backgammon/core/player.py:87:4: C0116: Missing function or method docstring (missing-function-docstring)
-backgammon/core/player.py:87:21: W0613: Unused argument 'opciones' (unused-argument)
-backgammon/core/player.py:79:0: R0903: Too few public methods (1/2) (too-few-public-methods)
-backgammon/core/player.py:91:0: R0902: Too many instance attributes (8/7) (too-many-instance-attributes)
-backgammon/core/player.py:177:4: R0913: Too many arguments (9/5) (too-many-arguments)
-backgammon/core/player.py:177:4: R0917: Too many positional arguments (9/5) (too-many-positional-arguments)
-backgammon/core/player.py:91:0: R0904: Too many public methods (21/20) (too-many-public-methods)
+backgammon/core/player.py:60:4: C0116: Missing function or method docstring (missing-function-docstring)
+backgammon/core/player.py:64:4: C0116: Missing function or method docstring (missing-function-docstring)
+backgammon/core/player.py:75:4: C0116: Missing function or method docstring (missing-function-docstring)
+backgammon/core/player.py:69:0: R0903: Too few public methods (1/2) (too-few-public-methods)
+backgammon/core/player.py:88:4: C0116: Missing function or method docstring (missing-function-docstring)
+backgammon/core/player.py:88:21: W0613: Unused argument 'opciones' (unused-argument)
+backgammon/core/player.py:80:0: R0903: Too few public methods (1/2) (too-few-public-methods)
+backgammon/core/player.py:92:0: R0902: Too many instance attributes (8/7) (too-many-instance-attributes)
+backgammon/core/player.py:178:4: R0913: Too many arguments (9/5) (too-many-arguments)
+backgammon/core/player.py:178:4: R0917: Too many positional arguments (9/5) (too-many-positional-arguments)
+backgammon/core/player.py:92:0: R0904: Too many public methods (21/20) (too-many-public-methods)
 ************* Module pygame_ui.ui
 backgammon/pygame_ui/ui.py:76:0: C0301: Line too long (116/100) (line-too-long)
 backgammon/pygame_ui/ui.py:79:0: C0301: Line too long (144/100) (line-too-long)
@@ -300,24 +301,27 @@ tests/test_player.py:21:37: W0613: Unused argument 'jugador' (unused-argument)
 tests/test_player.py:24:4: C0116: Missing function or method docstring (missing-function-docstring)
 tests/test_player.py:24:35: W0613: Unused argument 'jugador' (unused-argument)
 tests/test_player.py:27:4: C0116: Missing function or method docstring (missing-function-docstring)
-tests/test_player.py:27:32: W0613: Unused argument 'jugador' (unused-argument)
+tests/test_player.py:27:36: W0613: Unused argument 'jugador' (unused-argument)
 tests/test_player.py:30:4: C0116: Missing function or method docstring (missing-function-docstring)
-tests/test_player.py:30:40: W0613: Unused argument 'jugador' (unused-argument)
-tests/test_player.py:30:49: W0613: Unused argument 'dados' (unused-argument)
+tests/test_player.py:30:32: W0613: Unused argument 'jugador' (unused-argument)
 tests/test_player.py:33:4: C0116: Missing function or method docstring (missing-function-docstring)
-tests/test_player.py:33:33: W0613: Unused argument 'jugador' (unused-argument)
-tests/test_player.py:33:42: W0613: Unused argument 'secuencia' (unused-argument)
-tests/test_player.py:37:0: C0116: Missing function or method docstring (missing-function-docstring)
-tests/test_player.py:173:4: C0115: Missing class docstring (missing-class-docstring)
-tests/test_player.py:174:8: C0116: Missing function or method docstring (missing-function-docstring)
-tests/test_player.py:174:44: W0613: Unused argument 'jugador' (unused-argument)
-tests/test_player.py:174:53: W0613: Unused argument 'dados' (unused-argument)
-tests/test_player.py:173:4: R0903: Too few public methods (1/2) (too-few-public-methods)
-tests/test_player.py:194:4: C0115: Missing class docstring (missing-class-docstring)
-tests/test_player.py:195:8: C0116: Missing function or method docstring (missing-function-docstring)
-tests/test_player.py:195:37: W0613: Unused argument 'jugador' (unused-argument)
-tests/test_player.py:195:46: W0613: Unused argument 'secuencia' (unused-argument)
-tests/test_player.py:194:4: R0903: Too few public methods (1/2) (too-few-public-methods)
+tests/test_player.py:33:40: W0613: Unused argument 'jugador' (unused-argument)
+tests/test_player.py:33:49: W0613: Unused argument 'dados' (unused-argument)
+tests/test_player.py:36:4: C0116: Missing function or method docstring (missing-function-docstring)
+tests/test_player.py:36:33: W0613: Unused argument 'jugador' (unused-argument)
+tests/test_player.py:36:42: W0613: Unused argument 'secuencia' (unused-argument)
+tests/test_player.py:40:0: C0116: Missing function or method docstring (missing-function-docstring)
+tests/test_player.py:147:4: C0115: Missing class docstring (missing-class-docstring)
+tests/test_player.py:200:4: C0115: Missing class docstring (missing-class-docstring)
+tests/test_player.py:201:8: C0116: Missing function or method docstring (missing-function-docstring)
+tests/test_player.py:201:44: W0613: Unused argument 'jugador' (unused-argument)
+tests/test_player.py:201:53: W0613: Unused argument 'dados' (unused-argument)
+tests/test_player.py:200:4: R0903: Too few public methods (1/2) (too-few-public-methods)
+tests/test_player.py:221:4: C0115: Missing class docstring (missing-class-docstring)
+tests/test_player.py:222:8: C0116: Missing function or method docstring (missing-function-docstring)
+tests/test_player.py:222:37: W0613: Unused argument 'jugador' (unused-argument)
+tests/test_player.py:222:46: W0613: Unused argument 'secuencia' (unused-argument)
+tests/test_player.py:221:4: R0903: Too few public methods (1/2) (too-few-public-methods)
 tests/test_player.py:1:0: W0611: Unused import pytest (unused-import)
 ************* Module test_ui
 tests/test_ui.py:31:0: C0301: Line too long (105/100) (line-too-long)
@@ -348,7 +352,7 @@ tests/test_ui.py:1:0: R0801: Similar lines in 2 files
                 "id": "P2", (duplicate-code)
 
 -----------------------------------
-Your code has been rated at 7.34/10
+Your code has been rated at 7.36/10
 
 
 ```
