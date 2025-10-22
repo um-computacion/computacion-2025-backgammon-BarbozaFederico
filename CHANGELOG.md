@@ -5,6 +5,22 @@ Todas las modificaciones notables de este proyecto serán documentadas en este a
 El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/),
 y este proyecto sigue [Semantic Versioning](https://semver.org/lang/es/).
 
+## [1.3.0] 23/10/2025
+
+### Added
+
+- Se ha añadido un estado de fin de juego en la clase `PygameUI` para detectar y gestionar la condición de victoria.
+- Se ha creado un nuevo método, `_draw_game_over_screen`, que muestra un mensaje de victoria centrado sobre un fondo semitransparente.
+- Se ha modificado el bucle principal del juego para mostrar la pantalla de victoria durante 5 segundos antes de cerrar la aplicación.
+- Se ha añadido una nueva prueba unitaria (`test_game_over_detection`) para verificar que la lógica de detección de fin de juego funciona correctamente.
+
+---
+
+**Referencias:**
+
+- backgammon/pygame_ui/ui.py
+- tests/test_ui.py
+
 ## [1.2.0] 22/10/2025
 
 ### Added

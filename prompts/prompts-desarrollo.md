@@ -320,3 +320,29 @@ Tareas a realizar:
    - Comprobar que el cambio en hit-boxes no afecte otras interacciones del tablero.
    - Probar la visibilidad del círculo verde en distintos escenarios y resoluciones.
    - Asegurar que la ampliación de la ventana no distorsione las coordenadas del tablero ni las posiciones de las fichas.
+
+## Prompt
+
+Herramienta usada: jules
+
+Tareas a realizar:
+
+1. Detectar la condición de victoria:
+   - Verificar en cada turno si el jugador actual ya no tiene fichas en el tablero ni en la barra.
+   - Si es así, registrar el evento de “ganador”.
+
+2. Mostrar un mensaje en pantalla:
+   - Mostrar un mensaje grande, centrado y con estilo divertido que indique qué jugador ganó.
+   - Ejemplos:
+     - 🎉 ¡Las fichas blancas se fueron de vacaciones! ¡Ganaron!
+     - 🏆 ¡Las fichas negras se llevaron la copa! ¡Victoria aplastante!
+   - El mensaje debe ser fácilmente visible y durar unos segundos (por ejemplo, 3–5 segundos).
+
+3. Finalizar el juego:
+   - Después de mostrar el mensaje, el juego debe cerrarse automáticamente usando pygame.quit() o equivalente.
+   - Asegurarse de que el cierre sea limpio (sin errores ni loops pendientes).
+
+4. Requisitos visuales opcionales:
+   - Usar una fuente más grande o colorida para el mensaje (por ejemplo, pygame.font.SysFont con tamaño 48+).
+   - Centrar el texto en la pantalla.
+   - Añadir un pequeño fondo semitransparente o animación si se desea, para destacar el mensaje final.
