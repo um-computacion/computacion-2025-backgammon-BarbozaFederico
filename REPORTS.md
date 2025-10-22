@@ -1,8 +1,8 @@
 # Automated Reports
 ## Coverage Report
 ```text
-........................................................................ [ 91%]
-.......                                                                  [100%]
+........................................................................ [ 90%]
+........                                                                 [100%]
 ================================ tests coverage ================================
 _______________ coverage: platform linux, python 3.10.18-final-0 _______________
 
@@ -17,7 +17,7 @@ backgammon/core/player.py          80      0      2      0   100%
 ---------------------------------------------------------------------------
 TOTAL                             446     13    150     17    95%
 Coverage XML written to file cobertura.xml
-79 passed in 1.19s
+80 passed in 1.48s
 
 ```
 ## Pylint Report
@@ -92,43 +92,45 @@ backgammon/core/player.py:177:4: R0913: Too many arguments (9/5) (too-many-argum
 backgammon/core/player.py:177:4: R0917: Too many positional arguments (9/5) (too-many-positional-arguments)
 backgammon/core/player.py:91:0: R0904: Too many public methods (21/20) (too-many-public-methods)
 ************* Module pygame_ui.ui
-backgammon/pygame_ui/ui.py:71:0: C0301: Line too long (116/100) (line-too-long)
-backgammon/pygame_ui/ui.py:74:0: C0301: Line too long (144/100) (line-too-long)
-backgammon/pygame_ui/ui.py:102:0: C0301: Line too long (158/100) (line-too-long)
-backgammon/pygame_ui/ui.py:110:0: C0301: Line too long (123/100) (line-too-long)
-backgammon/pygame_ui/ui.py:134:0: C0301: Line too long (104/100) (line-too-long)
-backgammon/pygame_ui/ui.py:140:0: C0301: Line too long (101/100) (line-too-long)
-backgammon/pygame_ui/ui.py:151:0: C0301: Line too long (117/100) (line-too-long)
-backgammon/pygame_ui/ui.py:163:0: C0301: Line too long (141/100) (line-too-long)
-backgammon/pygame_ui/ui.py:169:0: C0301: Line too long (141/100) (line-too-long)
-backgammon/pygame_ui/ui.py:231:0: C0301: Line too long (108/100) (line-too-long)
-backgammon/pygame_ui/ui.py:233:0: C0301: Line too long (111/100) (line-too-long)
-backgammon/pygame_ui/ui.py:282:0: C0301: Line too long (114/100) (line-too-long)
-backgammon/pygame_ui/ui.py:331:0: C0301: Line too long (129/100) (line-too-long)
-backgammon/pygame_ui/ui.py:381:0: C0301: Line too long (134/100) (line-too-long)
-backgammon/pygame_ui/ui.py:391:0: C0301: Line too long (132/100) (line-too-long)
+backgammon/pygame_ui/ui.py:76:0: C0301: Line too long (116/100) (line-too-long)
+backgammon/pygame_ui/ui.py:79:0: C0301: Line too long (144/100) (line-too-long)
+backgammon/pygame_ui/ui.py:107:0: C0301: Line too long (158/100) (line-too-long)
+backgammon/pygame_ui/ui.py:115:0: C0301: Line too long (123/100) (line-too-long)
+backgammon/pygame_ui/ui.py:139:0: C0301: Line too long (104/100) (line-too-long)
+backgammon/pygame_ui/ui.py:145:0: C0301: Line too long (101/100) (line-too-long)
+backgammon/pygame_ui/ui.py:156:0: C0301: Line too long (117/100) (line-too-long)
+backgammon/pygame_ui/ui.py:168:0: C0301: Line too long (141/100) (line-too-long)
+backgammon/pygame_ui/ui.py:174:0: C0301: Line too long (141/100) (line-too-long)
+backgammon/pygame_ui/ui.py:249:0: C0301: Line too long (108/100) (line-too-long)
+backgammon/pygame_ui/ui.py:251:0: C0301: Line too long (111/100) (line-too-long)
+backgammon/pygame_ui/ui.py:300:0: C0301: Line too long (114/100) (line-too-long)
+backgammon/pygame_ui/ui.py:357:0: C0301: Line too long (129/100) (line-too-long)
+backgammon/pygame_ui/ui.py:407:0: C0301: Line too long (134/100) (line-too-long)
+backgammon/pygame_ui/ui.py:417:0: C0301: Line too long (132/100) (line-too-long)
 backgammon/pygame_ui/ui.py:1:0: C0114: Missing module docstring (missing-module-docstring)
-backgammon/pygame_ui/ui.py:3:0: E0401: Unable to import 'backgammon.core.backgammon' (import-error)
-backgammon/pygame_ui/ui.py:4:0: E0401: Unable to import 'backgammon.core.player' (import-error)
-backgammon/pygame_ui/ui.py:14:0: R0902: Too many instance attributes (17/7) (too-many-instance-attributes)
-backgammon/pygame_ui/ui.py:22:8: E1101: Module 'pygame' has no 'init' member (no-member)
-backgammon/pygame_ui/ui.py:98:23: C0321: More than one statement on a single line (multiple-statements)
-backgammon/pygame_ui/ui.py:106:23: C0321: More than one statement on a single line (multiple-statements)
-backgammon/pygame_ui/ui.py:112:4: R0914: Too many local variables (26/15) (too-many-locals)
-backgammon/pygame_ui/ui.py:112:4: R0912: Too many branches (14/12) (too-many-branches)
-backgammon/pygame_ui/ui.py:136:19: W0612: Unused variable 'checker' (unused-variable)
-backgammon/pygame_ui/ui.py:222:29: C0321: More than one statement on a single line (multiple-statements)
-backgammon/pygame_ui/ui.py:225:24: C0321: More than one statement on a single line (multiple-statements)
-backgammon/pygame_ui/ui.py:212:12: W0612: Unused variable 'color' (unused-variable)
-backgammon/pygame_ui/ui.py:349:12: R1705: Unnecessary "elif" after "return", remove the leading "el" from "elif" (no-else-return)
-backgammon/pygame_ui/ui.py:333:4: R0912: Too many branches (14/12) (too-many-branches)
-backgammon/pygame_ui/ui.py:405:33: E1101: Module 'pygame' has no 'QUIT' member (no-member)
-backgammon/pygame_ui/ui.py:407:33: E1101: Module 'pygame' has no 'MOUSEBUTTONDOWN' member (no-member)
-backgammon/pygame_ui/ui.py:417:8: E1101: Module 'pygame' has no 'quit' member (no-member)
-backgammon/pygame_ui/ui.py:14:0: R0903: Too few public methods (1/2) (too-few-public-methods)
+backgammon/pygame_ui/ui.py:4:0: E0401: Unable to import 'backgammon.core.backgammon' (import-error)
+backgammon/pygame_ui/ui.py:5:0: E0401: Unable to import 'backgammon.core.player' (import-error)
+backgammon/pygame_ui/ui.py:15:0: R0902: Too many instance attributes (21/7) (too-many-instance-attributes)
+backgammon/pygame_ui/ui.py:23:8: E1101: Module 'pygame' has no 'init' member (no-member)
+backgammon/pygame_ui/ui.py:103:23: C0321: More than one statement on a single line (multiple-statements)
+backgammon/pygame_ui/ui.py:111:23: C0321: More than one statement on a single line (multiple-statements)
+backgammon/pygame_ui/ui.py:117:4: R0914: Too many local variables (26/15) (too-many-locals)
+backgammon/pygame_ui/ui.py:117:4: R0912: Too many branches (14/12) (too-many-branches)
+backgammon/pygame_ui/ui.py:141:19: W0612: Unused variable 'checker' (unused-variable)
+backgammon/pygame_ui/ui.py:189:50: E1101: Module 'pygame' has no 'SRCALPHA' member (no-member)
+backgammon/pygame_ui/ui.py:240:29: C0321: More than one statement on a single line (multiple-statements)
+backgammon/pygame_ui/ui.py:243:24: C0321: More than one statement on a single line (multiple-statements)
+backgammon/pygame_ui/ui.py:230:12: W0612: Unused variable 'color' (unused-variable)
+backgammon/pygame_ui/ui.py:375:12: R1705: Unnecessary "elif" after "return", remove the leading "el" from "elif" (no-else-return)
+backgammon/pygame_ui/ui.py:359:4: R0912: Too many branches (14/12) (too-many-branches)
+backgammon/pygame_ui/ui.py:439:33: E1101: Module 'pygame' has no 'QUIT' member (no-member)
+backgammon/pygame_ui/ui.py:441:33: E1101: Module 'pygame' has no 'MOUSEBUTTONDOWN' member (no-member)
+backgammon/pygame_ui/ui.py:451:8: E1101: Module 'pygame' has no 'quit' member (no-member)
+backgammon/pygame_ui/ui.py:15:0: R0903: Too few public methods (1/2) (too-few-public-methods)
 backgammon/pygame_ui/ui.py:2:0: C0411: standard import "sys" should be placed before third party import "pygame" (wrong-import-order)
-backgammon/pygame_ui/ui.py:4:0: W0611: Unused PasoMovimiento imported from backgammon.core.player (unused-import)
-backgammon/pygame_ui/ui.py:4:0: W0611: Unused SecuenciaMovimiento imported from backgammon.core.player (unused-import)
+backgammon/pygame_ui/ui.py:3:0: C0411: standard import "time" should be placed before third party import "pygame" (wrong-import-order)
+backgammon/pygame_ui/ui.py:5:0: W0611: Unused PasoMovimiento imported from backgammon.core.player (unused-import)
+backgammon/pygame_ui/ui.py:5:0: W0611: Unused SecuenciaMovimiento imported from backgammon.core.player (unused-import)
 ************* Module test_backgammon
 tests/test_backgammon.py:1:0: C0114: Missing module docstring (missing-module-docstring)
 tests/test_backgammon.py:2:0: E0401: Unable to import 'backgammon.core.backgammon' (import-error)
@@ -330,6 +332,8 @@ tests/test_ui.py:67:36: W0621: Redefining name 'mock_pygame' from outer scope (l
 tests/test_ui.py:86:69: W0212: Access to a protected member _get_current_dice of a client class (protected-access)
 tests/test_ui.py:91:4: W0212: Access to a protected member _handle_click of a client class (protected-access)
 tests/test_ui.py:105:4: W0212: Access to a protected member _handle_click of a client class (protected-access)
+tests/test_ui.py:117:42: W0621: Redefining name 'mock_pygame' from outer scope (line 7) (redefined-outer-name)
+tests/test_ui.py:135:4: W0212: Access to a protected member _end_turn of a client class (protected-access)
 tests/test_ui.py:2:0: C0411: standard import "unittest.mock.Mock" should be placed before third party import "pytest" (wrong-import-order)
 tests/test_ui.py:4:0: W0611: Unused BackgammonGame imported from backgammon.core.backgammon (unused-import)
 tests/test_ui.py:1:0: R0801: Similar lines in 2 files
@@ -344,7 +348,7 @@ tests/test_ui.py:1:0: R0801: Similar lines in 2 files
                 "id": "P2", (duplicate-code)
 
 -----------------------------------
-Your code has been rated at 7.33/10
+Your code has been rated at 7.34/10
 
 
 ```
