@@ -1,0 +1,249 @@
+# Prompt: Cambia la documentación docstring de la clase checker planteandolo en prompt de documentación, debe seguir el formato de docstring tipo "A class used to represent an Animal..." con sección de Attributes y Methods
+
+## Modelo / herramienta usada: GitHub Copilot
+
+### Instrucciones del sistema: Siempre sigue los principios SOLID, incluye docstrings y comentarios claros, documenta el prompt y la respuesta en prompts/prompts-documentacion.md
+
+### Prompt exacto
+
+Cambia la documentacion docstring de la clase checker planteandolo en promt de documentacion, deber seguir
+""""
+    A class used to represent an Animal
+
+    ...
+
+    Attributes
+    ----------
+    says_str : str
+        a formatted string to print out what the animal says
+    name : str
+        the name of the animal
+    sound : str
+        the sound that the animal makes
+    num_legs : int
+        the number of legs the animal has (default 4)
+
+    Methods
+    -------
+    says(sound=None)
+        Prints the animals name and what sound it makes
+    """
+
+    says_str = "A {name} says {sound}"
+
+    def __init__(self, name, sound, num_legs=4):
+        """
+        Parameters
+        ----------
+        name : str
+            The name of the animal
+        sound : str
+            The sound the animal makes
+        num_legs : int, optional
+            The number of legs the animal (default is 4)
+        """
+
+### Respuesta
+
+Se reemplazó el docstring de la clase `Checker` por uno estructurado tipo NumPy, siguiendo el ejemplo dado.  
+Incluye sección de Attributes y Methods, describiendo cada atributo y método relevante de la clase.  
+La salida fue usada sin cambios en `backgammon/core/checker.py`.
+
+**Referencia:** `backgammon/core/checker.py`
+
+# Prompt: Genera documentacion para el archivo de player.py, documentando clases, metodos, y decoradores. Singuiendo el formato planteado en "copilot-instructions.md" y este prompt plantealo en "prompts-documentacion.md"
+
+## Modelo / herramienta usada: GitHub Copilot
+
+### Instrucciones del sistema
+
+Siempre sigue los principios SOLID, incluye docstrings y comentarios claros, documenta el prompt y la respuesta en prompts/prompts-documentacion.md
+
+### Prompt exacto
+
+Genera documentacion para el archivo de player.py, documentando clases, metodos, y decoradores. Singuiendo el formato planteado en "copilot-instructions.md" y este prompt plantealo en "prompts-documentacion.md"
+
+### Respuesta
+
+Se agregaron docstrings tipo NumPy para la clase `Player`, sus métodos y decoradores en `backgammon/core/player.py`, siguiendo el formato de ejemplo de "copilot-instructions.md".  
+La documentación describe atributos, métodos y parámetros de forma clara y estructurada.
+
+**Salida usada sin cambios.**  
+**Referencia:** `backgammon/core/player.py`
+
+# Prompt: Plantea los cambios realizados en CHANGELOG.md siguiendo lo escrito en copilot-instructions.md de los siguientes archivos "test_player.py", "player.py","checker.py", este promt plantealo en "promts-documentacion"
+
+## Modelo / herramienta usada: GitHub Copilot
+
+### Instrucciones del sistema
+
+Siempre sigue los principios SOLID, incluye docstrings y comentarios claros, documenta el prompt y la respuesta en prompts/prompts-documentacion.md
+
+### Prompt exacto
+
+Plantea los cambios realizados en CHANGELOG.md siguiendo lo escrito en copilot-instructions.md de los siguientes archivos "test_player.py", "player.py","checker.py", este promt plantealo en "promts-documentacion"
+
+### Respuesta
+
+Se agregó una nueva entrada de versión en `CHANGELOG.md` documentando los cambios realizados en los archivos `test_player.py`, `player.py` y `checker.py`, siguiendo el formato de copilot-instructions.md.  
+Incluye detalles sobre la documentación agregada, los tests implementados y la resolución de problemas de importación.
+
+**Salida usada sin cambios.**  
+**Referencia:** `CHANGELOG.md`
+
+---
+
+# Prompt: Genera tests con pytest para la clase "board.py" haciendo que este totalmente cubierta por los tests
+
+este prompt añadelo a "prompts-desarrollo" siguiendo regla y formato pertinente
+
+## Modelo / herramienta usada: GitHub Copilot
+
+### Instrucciones del sistema: Siempre sigue los principios SOLID, incluye docstrings y comentarios claros, documenta el prompt y la respuesta en prompts/prompts-desarrollo.md
+
+### Respuesta
+
+Se generaron tests completos en `tests/test_board.py` para la clase `Board`, cubriendo inicialización, gestión de jugadores, colocación y movimiento de fichas, barra, borne off, consultas, display y reset.  
+Todos los tests usan pytest, incluyen docstrings y cubren la funcionalidad esencial y avanzada de la clase.
+
+**Salida usada sin cambios.**  
+**Referencia:** `tests/test_board.py`
+
+# Prompt: Plantea todo lo hecho en esta rama en CHANGELOG.md , siguiendo las reglas de "copilot-instructions", deja planteado este prompt en "prompts-documentacion"
+
+## Modelo / herramienta usada: GitHub Copilot
+
+### Instrucciones del sistema: Siempre sigue los principios SOLID, incluye docstrings y comentarios claros, documenta el prompt y la respuesta en prompts/prompts-documentacion.md
+
+### Prompt exacto
+
+Plantea todo lo hecho en esta rama en CHANGELOG.md , siguiendo las reglas de "copilot-instructions", deja planteado este prompt en "prompts-documentacion"
+
+### Respuesta
+
+Se agregó una entrada de versión detallada en `CHANGELOG.md` que resume todos los cambios realizados en esta rama, siguiendo el formato y reglas de "copilot-instructions".  
+Incluye detalles sobre la implementación del CLI, mejoras en la lógica de movimientos, visualización del tablero, documentación, tests y correcciones.
+
+**Salida usada sin cambios.**  
+**Referencia:** `CHANGELOG.md`
+
+## Prompt
+
+**Modelo / herramienta usada:** jules
+**Texto exacto del prompt:**  
+Fix: Corrige el reingreso de fichas desde la barra en la UI de Pygame
+
+Este commit soluciona un error crítico en la interfaz de Pygame que impedía a los jugadores mover sus fichas desde la barra de vuelta al tablero.
+
+Cambios clave:
+
+- Se ha refactorizado el método `_handle_click` en `pygame_ui/ui.py` para gestionar correctamente la selección de la barra y el posterior clic en un punto de destino válido.
+- Se ha corregido un error en el método `_attempt_move` que impedía la correcta aplicación del movimiento desde la barra.
+- Se ha añadido una nueva prueba unitaria (`tests/test_ui.py`) para verificar la lógica de reingreso desde la barra, simulando los clics del usuario y validando la actualización del estado del juego.
+- Se ha añadido un método `set_values` a la clase `Dice` para facilitar la creación de escenarios de prueba con valores de dados predecibles.
+- Se ha corregido una prueba existente que fallaba en `tests/test_checker.py` para asegurar que todo el conjunto de pruebas pase.
+
+**Instrucciones del sistema:**  
+Siempre sigue los principios SOLID  
+Incluir docstrings y comentarios claros en el código generado  
+Proporciona una explicación detallada para cada prompt y documenta tanto el prompt como la respuesta generada dentro de los archivos prompts/prompts-desarrollo.md, prompts/prompts-documentacion.md o prompts/prompts-testing.md. Usa únicamente estos archivos para la documentación de prompts.  
+Por cada prompt debe quedar registrado:Modelo / herramienta usada (nombre y versión si corresponde),El texto exacto del prompt (sin reescrituras subjetivas),Instrucciones del sistema (si las hubo),Respuesta/resultado completo devuelto por la IA, Indicar si la salida fue usada sin cambios, usada con modificaciones (mostrar lasmodificaciones) o descartada,Referencia a los archivos finales que incorporaron contenido generado por IA (ej:core/board.py)
+
+## Respuesta/resultado completo devuelto por la IA
+
+Se corrigió el reingreso de fichas desde la barra en la UI de Pygame, permitiendo a los jugadores mover sus fichas desde la barra al tablero correctamente.  
+Se refactorizó el método `_handle_click` para gestionar la selección y el movimiento desde la barra, y se corrigió la lógica en `_attempt_move`.  
+Se añadieron pruebas unitarias para validar el comportamiento y se mejoró la clase `Dice` para facilitar los tests.  
+Se corrigió una prueba existente en `tests/test_checker.py` para asegurar la estabilidad del conjunto de pruebas.
+
+**Salida usada:** Usada sin cambios  
+**Referencia a los archivos finales:**  
+
+- backgammon/pygame_ui/ui.py  
+- tests/test_ui.py  
+- backgammon/core/dice.py  
+- tests/test_checker.py  
+- CHANGELOG.md  
+- prompts/prompts-documentacion.md
+
+# Prompt: Genera un cambio en "CHANGELOG" siguiendo el versionado semantico, y  "keep a change log" agrega este prompt a "prompt prompts-documenacion"agregando lo siguiente
+
+Cambios clave:
+
+- Se ha ampliado la ventana del juego a 1400x800 para crear más espacio y mejorar la presentación.
+- Se han reposicionado las zonas de "bear-off" a la derecha del tablero, evitando la superposición con los puntos del juego.
+- Se ha corregido el orden de renderizado para que los indicadores de movimiento (círculos verdes) siempre se muestren por encima de las fichas.
+- Se han ajustado las constantes de diseño y los cálculos de la interfaz para adaptarse a la nueva resolución de la ventana.
+- Se ha actualizado la prueba unitaria de "bear-off" para reflejar la nueva ubicación de la zona de "bear-off".
+
+Instrucciones del sistema:
+Siempre sigue los principios SOLID
+Incluir docstrings y comentarios claros en el código generado
+Proporciona una explicación detallada para cada prompt y documenta tanto el prompt como la respuesta generada dentro de los archivos prompts/prompts-desarrollo.md, prompts/prompts-documentacion.md o prompts/prompts-testing.md. Usa únicamente estos archivos para la documentación de prompts.
+Por cada prompt debe quedar registrado:Modelo / herramienta usada (nombre y versión si corresponde),El texto exacto del prompt (sin reescrituras subjetivas),Instrucciones del sistema (si las hubo),Respuesta/resultado completo devuelto por la IA, Indicar si la salida fue usada sin cambios, usada con modificaciones (mostrar lasmodificaciones) o descartada,Referencia a los archivos finales que incorporaron contenido generado por IA (ej:core/board.py)
+
+## Respuesta/resultado completo devuelto por la IA
+
+Se agregó una nueva entrada de versión [1.2.0] en `CHANGELOG.md` siguiendo el formato "Keep a Changelog" y el versionado semántico, documentando los cambios clave solicitados.  
+La salida fue usada sin cambios.
+
+Referencia a los archivos finales que incorporaron contenido generado por IA:
+
+- CHANGELOG.md
+- prompts/prompts-documentacion.md
+
+## Prompt
+
+Modelo / herramienta usada: GitHub Copilot (octubre 2025)
+
+Prompt exacto:
+Agrega "changelog" los siguientes cambios con su  respectivo versionado semantico y con las reglas de "keep a changelog"
+Plantea este prompt en "prompt de documentacion"
+En el changelog escribe: "Cambios clave:
+
+- Se ha añadido un estado de fin de juego en la clase `PygameUI` para detectar y gestionar la condición de victoria.
+- Se ha creado un nuevo método, `_draw_game_over_screen`, que muestra un mensaje de victoria centrado sobre un fondo semitransparente.
+- Se ha modificado el bucle principal del juego para mostrar la pantalla de victoria durante 5 segundos antes de cerrar la aplicación.
+- Se ha añadido una nueva prueba unitaria (`test_game_over_detection`) para verificar que la lógica de detección de fin de juego funciona correctamente."
+
+Instrucciones del sistema:
+Siempre sigue los principios SOLID
+Incluir docstrings y comentarios claros en el código generado
+Proporciona una explicación detallada para cada prompt y documenta tanto el prompt como la respuesta generada dentro de los archivos prompts/prompts-desarrollo.md, prompts/prompts-documentacion.md o prompts/prompts-testing.md. Usa únicamente estos archivos para la documentación de prompts.
+Por cada prompt debe quedar registrado:Modelo / herramienta usada (nombre y versión si corresponde),El texto exacto del prompt (sin reescrituras subjetivas),Instrucciones del sistema (si las hubo),Respuesta/resultado completo devuelto por la IA, Indicar si la salida fue usada sin cambios, usada con modificaciones (mostrar lasmodificaciones) o descartada,Referencia a los archivos finales que incorporaron contenido generado por IA (ej:core/board.py)
+
+## Respuesta/resultado completo devuelto por la IA
+
+Se agregó una nueva entrada de versión [1.3.0] en `CHANGELOG.md` siguiendo el formato "Keep a Changelog" y el versionado semántico, documentando los cambios clave solicitados.  
+La salida fue usada sin cambios.
+
+Referencia a los archivos finales que incorporaron contenido generado por IA:
+
+- CHANGELOG.md
+- prompts/prompts-documentacion.md
+
+## Prompt
+
+Modelo / herramienta usada: GitHub Copilot (octubre 2025)
+
+Prompt exacto:
+Plantea en CHANGELOG las siguientes acciones realizadas en este committ con su respectivo versionado semantico y coin las reglas de "keep a changelog": - Se ha añadido un método `oponente_en_cuadrante` a la clase `Board` para detectar la presencia de fichas oponentes.
+
+- Se ha actualizado el método `puede_bear_off` en la clase `Player` para usar esta nueva comprobación, bloqueando el bear-off si es necesario.
+- Se ha añadido una nueva prueba unitaria (`test_puede_bear_off_con_oponente_en_cuadrante`) para verificar la nueva lógica.
+
+Instrucciones del sistema:
+Siempre sigue los principios SOLID
+Incluir docstrings y comentarios claros en el código generado
+Proporciona una explicación detallada para cada prompt y documenta tanto el prompt como la respuesta generada dentro de los archivos prompts/prompts-desarrollo.md, prompts/prompts-documentacion.md o prompts/prompts-testing.md. Usa únicamente estos archivos para la documentación de prompts.
+Por cada prompt debe quedar registrado:Modelo / herramienta usada (nombre y versión si corresponde),El texto exacto del prompt (sin reescrituras subjetivas),Instrucciones del sistema (si las hubo),Respuesta/resultado completo devuelto por la IA, Indicar si la salida fue usada sin cambios, usada con modificaciones (mostrar lasmodificaciones) o descartada,Referencia a los archivos finales que incorporaron contenido generado por IA (ej:core/board.py)
+
+## Respuesta/resultado completo devuelto por la IA
+
+Se agregó una nueva entrada de versión [1.3.1] en `CHANGELOG.md` siguiendo el formato "Keep a Changelog" y el versionado semántico, documentando los cambios clave solicitados.  
+La salida fue usada sin cambios.
+
+Referencia a los archivos finales que incorporaron contenido generado por IA:
+
+- CHANGELOG.md
+- prompts/prompts-documentacion.md
