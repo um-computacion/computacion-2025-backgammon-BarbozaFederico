@@ -17,7 +17,7 @@ backgammon/core/player.py          80      0      2      0   100%
 ---------------------------------------------------------------------------
 TOTAL                             446     13    150     17    95%
 Coverage XML written to file cobertura.xml
-79 passed in 1.52s
+79 passed in 1.19s
 
 ```
 ## Pylint Report
@@ -335,13 +335,13 @@ tests/test_ui.py:4:0: W0611: Unused BackgammonGame imported from backgammon.core
 tests/test_ui.py:1:0: R0801: Similar lines in 2 files
 ==cli.console:[47:54]
 ==test_backgammon:[9:16]
-            "color": "blancas",
-            "direccion": 1,
-            "home_points": [18, 19, 20, 21, 22, 23],
-            "entry_point": 0,
-        },
-        {
-            "id": "P2", (duplicate-code)
+                "color": "blancas",
+                "direccion": 1,
+                "home_points": [18, 19, 20, 21, 22, 23],
+                "entry_point": 0,
+            },
+            {
+                "id": "P2", (duplicate-code)
 
 -----------------------------------
 Your code has been rated at 7.33/10
