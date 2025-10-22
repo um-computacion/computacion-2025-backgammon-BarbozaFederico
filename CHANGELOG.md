@@ -5,6 +5,24 @@ Todas las modificaciones notables de este proyecto serán documentadas en este a
 El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/),
 y este proyecto sigue [Semantic Versioning](https://semver.org/lang/es/).
 
+## [1.3.1] 23/10/2025
+
+### Added
+
+- Se ha añadido un método `oponente_en_cuadrante` a la clase `Board` para detectar la presencia de fichas oponentes.
+- Se ha actualizado el método `puede_bear_off` en la clase `Player` para usar esta nueva comprobación, bloqueando el bear-off si es necesario.
+- Se ha añadido una nueva prueba unitaria (`test_puede_bear_off_con_oponente_en_cuadrante`) para verificar la nueva lógica.
+
+---
+
+**Referencias:**
+
+- [board](./backgammon/core/board.py)
+
+- [player](./backgammon/core/player.py)
+
+- [test_board](./tests/test_board.py)
+
 ## [1.3.0] 23/10/2025
 
 ### Added
@@ -18,8 +36,9 @@ y este proyecto sigue [Semantic Versioning](https://semver.org/lang/es/).
 
 **Referencias:**
 
-- backgammon/pygame_ui/ui.py
-- tests/test_ui.py
+- [pygame_ui](./backgammon/pygame_ui/ui.py)
+
+- [test_ui](./tests/test_ui.py)
 
 ## [1.2.0] 22/10/2025
 
@@ -38,8 +57,9 @@ y este proyecto sigue [Semantic Versioning](https://semver.org/lang/es/).
 
 **Referencias:**
 
-- backgammon/pygame_ui/ui.py
-- tests/test_ui.py
+- [pygame_ui](./backgammon/pygame_ui/ui.py)
+
+- [test_ui](./tests/test_ui.py)
 
 ## [1.1.1] 21/10/2025
 
@@ -77,23 +97,37 @@ y este proyecto sigue [Semantic Versioning](https://semver.org/lang/es/).
 
 **Referencias:**  
 
-- `backgammon/core/backgammon.py`
-- `backgammon/core/player.py`
-- `backgammon/core/checker.py`
-- `backgammon/core/dice.py`
-- `backgammon/core/board.py`
-- `backgammon/core/move.py`
-- `backgammon/cli/console.py`
-- `tests/test_player.py`
-- `tests/test_checker.py`
-- `tests/test_dice.py`
-- `tests/test_board.py`
-- `tests/test_backgammon.py`
-- `tests/test_move.py`
-- `coverage_report.txt`
-- `prompts/prompts-desarrollo.md`
-- `prompts/prompts-documentacion.md`
-- `prompts/prompts-testing.md`
+- [backgammon](./backgammon/core/backgammon.py)
+
+- [player](./backgammon/core/player.py)
+
+- [dice](./backgammon/core/dice.py)
+
+- [board](./backgammon/core/board.py)
+
+- [move.py](./backgammon/core/move.py)
+
+- [console](./backgammon/cli/console.py)
+
+- [test_player](./tests/test_player.py)
+
+- [test_checker](./tests/test_checker.py)
+
+- [test_dice](./tests/test_dice.py)
+
+- [test_board](./tests/test_board.py)
+
+- [test_backgammon](./tests/test_backgammon.py)
+
+- [test_move](./tests/test_move.py)
+
+- [coverage](./coverage_report.txt)
+
+- [prompts_desarrollo](./prompts/prompts-desarrollo.md)
+
+- [prompts_documentacion](./prompts/prompts-documentacion.md)
+
+- [prompts_testing](./prompts/prompts-testing.md)
 
 # [1.0.0] 18/09/2025
 
@@ -166,19 +200,31 @@ La implementación es funcional y estable. A continuación, un resumen de lo imp
 
 **Referencias:**  
 
-- `backgammon/core/backgammon.py`
-- `backgammon/core/player.py`  
-- `backgammon/core/checker.py`  
-- `backgammon/core/dice.py`  
-- `backgammon/core/board.py`  
-- `tests/test_player.py`  
-- `tests/test_checker.py`  
-- `tests/test_dice.py`  
-- `tests/test_board.py`  
-- `tests/test_backgammon.py`
-- `prompts/prompts-desarrollo.md`  
-- `prompts/prompts-documentacion.md`  
-- `prompts/prompts-testing.md`
+- [backgammon](./backgammon/core/backgammon.py)
+
+- [player](./backgammon/core/player.py)
+
+- [player](./backgammon/core/player.py)  
+
+- [dice](./backgammon/core/dice.py)
+
+- [board](./backgammon/core/board.py)
+
+- [test_player](./tests/test_player.py)
+
+- [test_checker](./tests/test_checker.py)
+
+- [test_dice](./tests/test_dice.py)
+
+- [test_board](./tests/test_board.py)
+
+- [test_backgammon](./tests/test_backgammon.py)
+
+- [prompts_desarrollo](./prompts/prompts-desarrollo.md)  
+
+- [prompts_documentacion](./prompts/prompts-documentacion.md)
+
+- [prompts_testing](./prompts/prompts-testing.md)
 
 ## [0.6.0] 17/09/2025
 
@@ -199,9 +245,11 @@ La implementación es funcional y estable. A continuación, un resumen de lo imp
 
 **Referencias:**  
 
-- `backgammon/core/player.py`  
-- `backgammon/core/checker.py`  
-- `tests/test_player.py`
+- [player](./backgammon/core/player.py)
+
+- [checker](./backgammon/core/checker.py)
+
+- [test_player](./tests/test_player.py)
 
 ## [0.5.0] 16/09/2025
 
