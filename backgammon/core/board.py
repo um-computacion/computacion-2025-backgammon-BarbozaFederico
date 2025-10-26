@@ -762,3 +762,7 @@ class Board:
             if checkers and checkers[0].get_color() == opponent_color:
                 return True
         return False
+
+
+class prueba1:
+    pass
