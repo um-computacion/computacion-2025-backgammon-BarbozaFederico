@@ -155,6 +155,8 @@ class BackgammonGame:
         -------
         Player
         """
+        if not self.players:
+            raise ValueError("No players have been set up. Call setup_players() first.")
         return self.players[self.current_player_idx]
 
     def roll_dice(self) -> tuple[int, int]:
