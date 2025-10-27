@@ -1,23 +1,30 @@
 # Automated Reports
 ## Coverage Report
 ```text
-........................................................................ [ 88%]
-.........                                                                [100%]
-================================ tests coverage ================================
-_______________ coverage: platform linux, python 3.10.18-final-0 _______________
+.................F
+=================================== FAILURES ===================================
+____________ test_aplicar_movimiento_and_enumerar_opciones_legales _____________
 
-Name                            Stmts   Miss Branch BrPart  Cover   Missing
----------------------------------------------------------------------------
-backgammon/core/backgammon.py      49      0     18      0   100%
-backgammon/core/board.py          250     14    130     18    91%   275->271, 304, 308, 310-314, 315->306, 320, 361->372, 367->366, 379->387, 421, 429, 531->529, 600->614, 603-611, 614->580, 672, 711, 763
-backgammon/core/checker.py         44      0      0      0   100%
-backgammon/core/dice.py            13      0      0      0   100%
-backgammon/core/move.py            18      0      4      0   100%
-backgammon/core/player.py          80      0      2      0   100%
----------------------------------------------------------------------------
-TOTAL                             454     14    154     18    94%
-Coverage XML written to file cobertura.xml
-81 passed in 1.58s
+    def test_aplicar_movimiento_and_enumerar_opciones_legales():
+        board = Board()
+        p = DummyPlayer("blancas")
+        board.add_player(p)
+        # Coloca todas las fichas en el home area para permitir bear-off
+        # Coloca una ficha en 18 y el resto en otras posiciones home
+        checkers = p.get_checkers()
+        board.place_checker(checkers[0], 18)  # Esta es la que vamos a mover
+        # Coloca las otras fichas en posiciones home para permitir bear-off
+        for i, c in enumerate(checkers[1:]):
+            board.place_checker(c, 19 + (i % 5))  # Distribuye en posiciones 19-23
+    
+>       opciones = board.enumerar_opciones_legales(p, [6])
+E       AttributeError: 'Board' object has no attribute 'enumerar_opciones_legales'
+
+tests/test_board.py:212: AttributeError
+=========================== short test summary info ============================
+FAILED tests/test_board.py::test_aplicar_movimiento_and_enumerar_opciones_legales - AttributeError: 'Board' object has no attribute 'enumerar_opciones_legales'
+!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!
+1 failed, 17 passed in 1.63s
 
 ```
 ## Pylint Report
@@ -50,20 +57,16 @@ backgammon/core/board.py:307:12: R1724: Unnecessary "elif" after "continue", rem
 backgammon/core/board.py:337:8: E0401: Unable to import 'backgammon.core.player' (import-error)
 backgammon/core/board.py:337:8: C0415: Import outside toplevel (backgammon.core.player.SecuenciaMovimiento, backgammon.core.player.PasoMovimiento) (import-outside-toplevel)
 backgammon/core/board.py:337:8: W0611: Unused PasoMovimiento imported from backgammon.core.player (unused-import)
-backgammon/core/board.py:412:8: E0401: Unable to import 'backgammon.core.player' (import-error)
-backgammon/core/board.py:412:8: C0415: Import outside toplevel (backgammon.core.player.OpcionMovimiento, backgammon.core.player.PasoMovimiento, backgammon.core.player.SecuenciaMovimiento) (import-outside-toplevel)
-backgammon/core/board.py:417:8: C0415: Import outside toplevel (copy) (import-outside-toplevel)
-backgammon/core/board.py:454:4: R0914: Too many local variables (20/15) (too-many-locals)
-backgammon/core/board.py:480:8: E0401: Unable to import 'backgammon.core.player' (import-error)
-backgammon/core/board.py:480:8: C0415: Import outside toplevel (backgammon.core.player.PasoMovimiento) (import-outside-toplevel)
-backgammon/core/board.py:481:8: C0415: Import outside toplevel (copy) (import-outside-toplevel)
-backgammon/core/board.py:499:28: W0212: Access to a protected member _generar_secuencias_movimiento of a client class (protected-access)
-backgammon/core/board.py:509:16: W0212: Access to a protected member _aplicar_paso_movimiento of a client class (protected-access)
-backgammon/core/board.py:516:28: W0212: Access to a protected member _generar_secuencias_movimiento of a client class (protected-access)
-backgammon/core/board.py:557:8: E0401: Unable to import 'backgammon.core.player' (import-error)
-backgammon/core/board.py:557:8: C0415: Import outside toplevel (backgammon.core.player.PasoMovimiento) (import-outside-toplevel)
-backgammon/core/board.py:592:20: R1724: Unnecessary "elif" after "continue", remove the leading "el" from "elif" (no-else-continue)
-backgammon/core/board.py:629:4: R0911: Too many return statements (7/6) (too-many-return-statements)
+backgammon/core/board.py:395:4: R0914: Too many local variables (23/15) (too-many-locals)
+backgammon/core/board.py:402:8: E0401: Unable to import 'backgammon.core.player' (import-error)
+backgammon/core/board.py:402:8: C0415: Import outside toplevel (backgammon.core.player.PasoMovimiento) (import-outside-toplevel)
+backgammon/core/board.py:469:8: R1705: Unnecessary "else" after "return", remove the "else" and de-indent the code inside it (no-else-return)
+backgammon/core/board.py:395:4: R0912: Too many branches (25/12) (too-many-branches)
+backgammon/core/board.py:395:4: R0915: Too many statements (54/50) (too-many-statements)
+backgammon/core/board.py:532:4: R0911: Too many return statements (7/6) (too-many-return-statements)
+backgammon/core/board.py:670:0: C0115: Missing class docstring (missing-class-docstring)
+backgammon/core/board.py:670:0: C0103: Class name "prueba1" doesn't conform to PascalCase naming style (invalid-name)
+backgammon/core/board.py:670:0: R0903: Too few public methods (0/2) (too-few-public-methods)
 ************* Module core.checker
 backgammon/core/checker.py:156:0: C0301: Line too long (155/100) (line-too-long)
 backgammon/core/checker.py:1:0: C0114: Missing module docstring (missing-module-docstring)
@@ -93,41 +96,29 @@ backgammon/core/player.py:178:4: R0913: Too many arguments (9/5) (too-many-argum
 backgammon/core/player.py:178:4: R0917: Too many positional arguments (9/5) (too-many-positional-arguments)
 backgammon/core/player.py:92:0: R0904: Too many public methods (21/20) (too-many-public-methods)
 ************* Module pygame_ui.ui
-backgammon/pygame_ui/ui.py:76:0: C0301: Line too long (116/100) (line-too-long)
-backgammon/pygame_ui/ui.py:79:0: C0301: Line too long (144/100) (line-too-long)
-backgammon/pygame_ui/ui.py:107:0: C0301: Line too long (158/100) (line-too-long)
-backgammon/pygame_ui/ui.py:115:0: C0301: Line too long (123/100) (line-too-long)
-backgammon/pygame_ui/ui.py:139:0: C0301: Line too long (104/100) (line-too-long)
-backgammon/pygame_ui/ui.py:145:0: C0301: Line too long (101/100) (line-too-long)
-backgammon/pygame_ui/ui.py:156:0: C0301: Line too long (117/100) (line-too-long)
-backgammon/pygame_ui/ui.py:168:0: C0301: Line too long (141/100) (line-too-long)
-backgammon/pygame_ui/ui.py:174:0: C0301: Line too long (141/100) (line-too-long)
-backgammon/pygame_ui/ui.py:249:0: C0301: Line too long (108/100) (line-too-long)
-backgammon/pygame_ui/ui.py:251:0: C0301: Line too long (111/100) (line-too-long)
-backgammon/pygame_ui/ui.py:300:0: C0301: Line too long (114/100) (line-too-long)
-backgammon/pygame_ui/ui.py:357:0: C0301: Line too long (129/100) (line-too-long)
-backgammon/pygame_ui/ui.py:407:0: C0301: Line too long (134/100) (line-too-long)
-backgammon/pygame_ui/ui.py:417:0: C0301: Line too long (132/100) (line-too-long)
+backgammon/pygame_ui/ui.py:416:0: C0301: Line too long (109/100) (line-too-long)
+backgammon/pygame_ui/ui.py:480:0: C0301: Line too long (117/100) (line-too-long)
+backgammon/pygame_ui/ui.py:556:0: C0301: Line too long (121/100) (line-too-long)
 backgammon/pygame_ui/ui.py:1:0: C0114: Missing module docstring (missing-module-docstring)
 backgammon/pygame_ui/ui.py:4:0: E0401: Unable to import 'backgammon.core.backgammon' (import-error)
 backgammon/pygame_ui/ui.py:5:0: E0401: Unable to import 'backgammon.core.player' (import-error)
-backgammon/pygame_ui/ui.py:15:0: R0902: Too many instance attributes (21/7) (too-many-instance-attributes)
-backgammon/pygame_ui/ui.py:23:8: E1101: Module 'pygame' has no 'init' member (no-member)
-backgammon/pygame_ui/ui.py:103:23: C0321: More than one statement on a single line (multiple-statements)
-backgammon/pygame_ui/ui.py:111:23: C0321: More than one statement on a single line (multiple-statements)
-backgammon/pygame_ui/ui.py:117:4: R0914: Too many local variables (26/15) (too-many-locals)
-backgammon/pygame_ui/ui.py:117:4: R0912: Too many branches (14/12) (too-many-branches)
-backgammon/pygame_ui/ui.py:141:19: W0612: Unused variable 'checker' (unused-variable)
-backgammon/pygame_ui/ui.py:189:50: E1101: Module 'pygame' has no 'SRCALPHA' member (no-member)
-backgammon/pygame_ui/ui.py:240:29: C0321: More than one statement on a single line (multiple-statements)
-backgammon/pygame_ui/ui.py:243:24: C0321: More than one statement on a single line (multiple-statements)
-backgammon/pygame_ui/ui.py:230:12: W0612: Unused variable 'color' (unused-variable)
-backgammon/pygame_ui/ui.py:375:12: R1705: Unnecessary "elif" after "return", remove the leading "el" from "elif" (no-else-return)
-backgammon/pygame_ui/ui.py:359:4: R0912: Too many branches (14/12) (too-many-branches)
-backgammon/pygame_ui/ui.py:439:33: E1101: Module 'pygame' has no 'QUIT' member (no-member)
-backgammon/pygame_ui/ui.py:441:33: E1101: Module 'pygame' has no 'MOUSEBUTTONDOWN' member (no-member)
-backgammon/pygame_ui/ui.py:451:8: E1101: Module 'pygame' has no 'quit' member (no-member)
-backgammon/pygame_ui/ui.py:15:0: R0903: Too few public methods (1/2) (too-few-public-methods)
+backgammon/pygame_ui/ui.py:16:0: R0902: Too many instance attributes (21/7) (too-many-instance-attributes)
+backgammon/pygame_ui/ui.py:25:8: E1101: Module 'pygame' has no 'init' member (no-member)
+backgammon/pygame_ui/ui.py:147:4: R0914: Too many local variables (26/15) (too-many-locals)
+backgammon/pygame_ui/ui.py:147:4: R0912: Too many branches (14/12) (too-many-branches)
+backgammon/pygame_ui/ui.py:175:19: W0612: Unused variable 'checker' (unused-variable)
+backgammon/pygame_ui/ui.py:251:50: E1101: Module 'pygame' has no 'SRCALPHA' member (no-member)
+backgammon/pygame_ui/ui.py:298:12: W0612: Unused variable 'color' (unused-variable)
+backgammon/pygame_ui/ui.py:375:29: W0212: Access to a protected member _generar_movimientos_posibles of a client class (protected-access)
+backgammon/pygame_ui/ui.py:403:29: W0212: Access to a protected member _generar_movimientos_posibles of a client class (protected-access)
+backgammon/pygame_ui/ui.py:458:15: W0212: Access to a protected member _generar_movimientos_posibles of a client class (protected-access)
+backgammon/pygame_ui/ui.py:507:12: R1705: Unnecessary "elif" after "return", remove the leading "el" from "elif" (no-else-return)
+backgammon/pygame_ui/ui.py:564:33: E1101: Module 'pygame' has no 'QUIT' member (no-member)
+backgammon/pygame_ui/ui.py:570:37: E1101: Module 'pygame' has no 'MOUSEBUTTONDOWN' member (no-member)
+backgammon/pygame_ui/ui.py:584:8: E1101: Module 'pygame' has no 'quit' member (no-member)
+backgammon/pygame_ui/ui.py:587:8: W0101: Unreachable code (unreachable)
+backgammon/pygame_ui/ui.py:587:8: E1101: Module 'pygame' has no 'quit' member (no-member)
+backgammon/pygame_ui/ui.py:16:0: R0903: Too few public methods (1/2) (too-few-public-methods)
 backgammon/pygame_ui/ui.py:2:0: C0411: standard import "sys" should be placed before third party import "pygame" (wrong-import-order)
 backgammon/pygame_ui/ui.py:3:0: C0411: standard import "time" should be placed before third party import "pygame" (wrong-import-order)
 backgammon/pygame_ui/ui.py:5:0: W0611: Unused PasoMovimiento imported from backgammon.core.player (unused-import)
@@ -273,6 +264,10 @@ tests/test_board.py:631:11: W0212: Access to a protected member _es_captura of a
 tests/test_board.py:637:4: E0401: Unable to import 'backgammon.core.player' (import-error)
 tests/test_board.py:637:4: C0415: Import outside toplevel (backgammon.core.player.PasoMovimiento) (import-outside-toplevel)
 tests/test_board.py:640:8: W0212: Access to a protected member _calcular_hash_secuencia of a client class (protected-access)
+tests/test_board.py:668:24: W0212: Access to a protected member _generar_movimientos_posibles of a client class (protected-access)
+tests/test_board.py:665:4: W0612: Unused variable 'dados' (unused-variable)
+tests/test_board.py:698:24: W0212: Access to a protected member _generar_movimientos_posibles of a client class (protected-access)
+tests/test_board.py:729:12: W0212: Access to a protected member _generar_movimientos_posibles of a client class (protected-access)
 ************* Module test_checker
 tests/test_checker.py:1:0: C0114: Missing module docstring (missing-module-docstring)
 tests/test_checker.py:1:0: E0401: Unable to import 'backgammon.core.checker' (import-error)
@@ -352,7 +347,7 @@ tests/test_ui.py:1:0: R0801: Similar lines in 2 files
             "id": "P2", (duplicate-code)
 
 -----------------------------------
-Your code has been rated at 7.36/10
+Your code has been rated at 7.53/10
 
 
 ```
