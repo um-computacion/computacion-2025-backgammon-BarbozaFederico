@@ -271,3 +271,33 @@ Referencia a los archivos finales:
 - CHANGELOG.md
 - backgammon/core/board.py
 - backgammon/pygame_ui/ui.py
+
+## Prompt
+
+Modelo / herramienta usada: jules
+
+Prompt exacto:
+feat: Añade tirada de dados inicial para decidir el primer jugador
+
+Se ha implementado una tirada de dados al inicio de la partida para determinar qué jugador comienza.
+
+- Ambos jugadores lanzan dos dados.
+- El jugador con la suma más alta empieza.
+- En caso de empate, se vuelve a lanzar.
+- Se muestra un mensaje en la barra central indicando quién empieza.
+- El mensaje desaparece con el primer movimiento del jugador.
+
+Instrucciones del sistema:
+
+- No modificar la UI visual (hitboxes, posiciones, resolución).
+- La funcionalidad es lógica + mensaje temporal en pantalla.
+- Documentar prompt y resultado en este archivo.
+
+Respuesta/resultado completo devuelto por la IA:
+La funcionalidad fue implementada en el módulo pygame_ui: al iniciar la partida se realizan tiradas internas para ambos jugadores, se determina el ganador por suma de dados (re-lanzando en caso de empate), se muestra un mensaje temporal en la barra central indicando quién empieza y el mensaje desaparece con el primer movimiento del jugador. La salida fue usada sin cambios.
+
+Referencias a los archivos finales que incorporaron contenido generado por IA:
+
+- backgammon/pygame_ui/ui.py
+- CHANGELOG.md
+- prompts/prompts-desarrollo.md

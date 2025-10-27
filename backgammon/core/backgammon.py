@@ -55,6 +55,25 @@ class BackgammonGame:
         self.dice = Dice()
         self.current_player_idx: int = 0
         self.started: bool = False
+        self.initial_dice_roll: Optional[tuple[int, int]] = None
+
+    def decide_first_player(self) -> None:
+        """
+        Rolls dice for each player to decide who goes first.
+        The player with the higher roll starts. In case of a tie, they roll again.
+        The dice from the winning roll are used for the first turn.
+        """
+        while True:
+            rolls = [self.dice.roll() for _ in self.players]
+            roll_sums = [sum(roll) for roll in rolls]
+
+            if roll_sums[0] != roll_sums[1]:
+                winner_idx = roll_sums.index(max(roll_sums))
+                self.current_player_idx = winner_idx
+                self.initial_dice_roll = rolls[winner_idx]
+                # The winner uses the dice values they rolled to start
+                self.dice.set_values(rolls[winner_idx])
+                break
 
     def setup_players(self, player_configs: List[dict]) -> None:
         """
