@@ -1,16 +1,23 @@
 import pygame
 import sys
 import time
+import random
 from backgammon.core.backgammon import BackgammonGame
 from backgammon.core.player import PasoMovimiento, SecuenciaMovimiento
 
 # Constants
 WIDTH, HEIGHT = 1400, 800
 BOARD_COLOR = (244, 226, 198)  # A beige-like color
+BROWN = (139, 69, 19)
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 RED = (255, 0, 0)
 GREEN = (0, 255, 0)
+
+# Game States
+SELECCION_COLOR = "SELECCION_COLOR"
+TIRADA_INICIAL = "TIRADA_INICIAL"
+JUEGO = "JUEGO"
 
 
 class PygameUI:
@@ -28,6 +35,17 @@ class PygameUI:
         self.font = pygame.font.Font(None, 24)
         self.large_font = pygame.font.Font(None, 74)
         self.clock = pygame.time.Clock()
+
+        # Game state
+        self.estado_juego = SELECCION_COLOR
+        self.color_elegido = None
+        self.dados_iniciales = {"blancas": 0, "negras": 0}
+        self.ganador_tirada_inicial = None
+        self.tiempo_inicio_tirada = None
+        self.boton_blancas_rect = None
+        self.boton_negras_rect = None
+        self.juego_iniciado = False
+
         self.game_over = False
         self.winner = None
         self.game_over_time = None
@@ -60,7 +78,7 @@ class PygameUI:
         self.selected_source = None  # Can be point index or 'bar'
 
         self.game = BackgammonGame()
-        self._setup_game()
+        # self._setup_game() will be called after the initial screens
 
     def _calculate_bar_rects(self):
         """Calculates the clickable rects for each player's bar."""
@@ -93,26 +111,35 @@ class PygameUI:
 
     def _setup_game(self):
         """Sets up the players and starts the game."""
-        player_configs = [
-            {
-                "id": "P1",
-                "nombre": "Blanco",
-                "color": "blancas",
-                "direccion": 1,
-                "home_points": range(18, 24),
-                "entry_point": -1,
-            },
-            {
-                "id": "P2",
-                "nombre": "Negro",
-                "color": "negras",
-                "direccion": -1,
-                "home_points": range(0, 6),
-                "entry_point": 24,
-            },
-        ]
+        # El jugador humano siempre será P1, el color se basa en la selección
+        color_humano = self.color_elegido
+        color_ia = "negras" if color_humano == "blancas" else "blancas"
+
+        # Las configuraciones se mantienen, solo cambiamos qué configuración pertenece a P1
+        config_blancas = {
+            "id": "P1" if color_humano == "blancas" else "P2",
+            "nombre": "Blanco",
+            "color": "blancas",
+            "direccion": 1,
+            "home_points": range(18, 24),
+            "entry_point": -1,
+        }
+        config_negras = {
+            "id": "P2" if color_humano == "blancas" else "P1",
+            "nombre": "Negro",
+            "color": "negras",
+            "direccion": -1,
+            "home_points": range(0, 6),
+            "entry_point": 24,
+        }
+
+        player_configs = [config_blancas, config_negras]
+
         self.game.setup_players(player_configs)
-        self.game.start_game()
+        self.game.start_game(
+            primer_jugador_color=self.ganador_tirada_inicial
+        )
+        # La tirada de dados y la configuración del turno se harán en el bucle principal del juego
         self.game.roll_dice()
 
     def _calculate_point_rects(self):
@@ -548,41 +575,134 @@ class PygameUI:
             return False
         return True
 
+    def _draw_pantalla_seleccion_color(self):
+        self.screen.fill(BROWN)
+        titulo_surface = self.large_font.render(
+            "Elige tu color", True, WHITE
+        )
+        titulo_rect = titulo_surface.get_rect(center=(WIDTH / 2, HEIGHT / 4))
+        self.screen.blit(titulo_surface, titulo_rect)
+
+        # Botón Blancas
+        blancas_surface = self.large_font.render("Blancas", True, WHITE)
+        self.boton_blancas_rect = blancas_surface.get_rect(
+            center=(WIDTH / 2, HEIGHT / 2 - 50)
+        )
+        pygame.draw.rect(self.screen, BLACK, self.boton_blancas_rect.inflate(20, 20))
+        self.screen.blit(blancas_surface, self.boton_blancas_rect)
+
+        # Botón Negras
+        negras_surface = self.large_font.render("Negras", True, BLACK)
+        self.boton_negras_rect = negras_surface.get_rect(
+            center=(WIDTH / 2, HEIGHT / 2 + 50)
+        )
+        pygame.draw.rect(self.screen, WHITE, self.boton_negras_rect.inflate(20, 20))
+        self.screen.blit(negras_surface, self.boton_negras_rect)
+
+    def _handle_eventos_seleccion_color(self, event):
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            if self.boton_blancas_rect and self.boton_blancas_rect.collidepoint(
+                event.pos
+            ):
+                self.color_elegido = "blancas"
+                self.estado_juego = TIRADA_INICIAL
+            elif self.boton_negras_rect and self.boton_negras_rect.collidepoint(
+                event.pos
+            ):
+                self.color_elegido = "negras"
+                self.estado_juego = TIRADA_INICIAL
+
+    def _draw_pantalla_tirada_inicial(self):
+        self.screen.fill(BROWN)
+        if not self.ganador_tirada_inicial:
+            msg = "Tirando dados..."
+        else:
+            msg = f"Blancas: {self.dados_iniciales['blancas']} | Negras: {self.dados_iniciales['negras']}"
+
+        texto_surface = self.large_font.render(msg, True, WHITE)
+        texto_rect = texto_surface.get_rect(center=(WIDTH / 2, HEIGHT / 3))
+        self.screen.blit(texto_surface, texto_rect)
+
+        if self.ganador_tirada_inicial:
+            ganador_msg = f"Comienzan las {self.ganador_tirada_inicial}"
+            ganador_surface = self.large_font.render(ganador_msg, True, WHITE)
+            ganador_rect = ganador_surface.get_rect(
+                center=(WIDTH / 2, HEIGHT / 2)
+            )
+            self.screen.blit(ganador_surface, ganador_rect)
+
+    def _manejar_logica_tirada_inicial(self):
+        ahora = time.time()
+        # Si no hay una tirada en curso, empezamos una
+        if self.tiempo_inicio_tirada is None:
+            self.tiempo_inicio_tirada = ahora
+            self.dados_iniciales["blancas"] = random.randint(1, 6)
+            self.dados_iniciales["negras"] = random.randint(1, 6)
+
+            if self.dados_iniciales["blancas"] > self.dados_iniciales["negras"]:
+                self.ganador_tirada_inicial = "blancas"
+            elif self.dados_iniciales["negras"] > self.dados_iniciales["blancas"]:
+                self.ganador_tirada_inicial = "negras"
+            else:
+                # Empate, preparamos para re-tirar después de una pausa
+                self.ganador_tirada_inicial = "empate"
+
+        # Lógica de transición
+        if self.ganador_tirada_inicial:
+            # Si hay un ganador, esperamos para mostrar el resultado y luego cambiamos de estado
+            if self.ganador_tirada_inicial != "empate":
+                if ahora - self.tiempo_inicio_tirada > 2.5:
+                    self.estado_juego = JUEGO
+                    self._setup_game()
+            # Si es un empate, esperamos un segundo y luego reiniciamos la tirada
+            elif self.ganador_tirada_inicial == "empate":
+                if ahora - self.tiempo_inicio_tirada > 1.0:
+                    self.tiempo_inicio_tirada = None # Esto provocará una nueva tirada en el siguiente frame
+                    self.ganador_tirada_inicial = None
+
+
     def run(self):
         """The main loop of the game."""
-        # Initial turn setup
-        self.game.roll_dice()
-        print(
-            f"Inicia el turno para {self.game.get_current_player().get_nombre()} con dados {self.game.dice.get_values()}"
-        )
-        if not self._has_any_legal_moves():
-            self._end_turn()
-
         running = True
         while running:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     running = False
+
+                if self.estado_juego == SELECCION_COLOR:
+                    self._handle_eventos_seleccion_color(event)
+                elif self.estado_juego == JUEGO:
+                    if self.game_over:
+                        if event.type in [pygame.MOUSEBUTTONDOWN, pygame.KEYDOWN]:
+                            running = False
+                    else:
+                        if event.type == pygame.MOUSEBUTTONDOWN:
+                            self._handle_click(event.pos)
+
+            # --- State-based Drawing and Logic ---
+            if self.estado_juego == SELECCION_COLOR:
+                self._draw_pantalla_seleccion_color()
+            elif self.estado_juego == TIRADA_INICIAL:
+                self._manejar_logica_tirada_inicial()
+                self._draw_pantalla_tirada_inicial()
+            elif self.estado_juego == JUEGO:
+                if not self.juego_iniciado:
+                    print(
+                        f"Inicia el turno para {self.game.get_current_player().get_nombre()} con dados {self.game.dice.get_values()}"
+                    )
+                    if not self._has_any_legal_moves():
+                        self._end_turn()
+                    self.juego_iniciado = True
+
+                self.screen.fill(BOARD_COLOR)
+                self._draw_board()
+                self._draw_checkers()
+                self._draw_game_info()
                 if self.game_over:
-                    if event.type in [pygame.MOUSEBUTTONDOWN, pygame.KEYDOWN]:
-                        running = False  # Exit on click/key after game over
-                else:  # Only handle clicks if the game is not over
-                    if event.type == pygame.MOUSEBUTTONDOWN:
-                        self._handle_click(event.pos)
+                    self._draw_game_over_screen()
 
-            # Drawing logic
-            self.screen.fill(BOARD_COLOR)
-            self._draw_board()
-            self._draw_checkers()
-            self._draw_game_info()
-            if self.game_over:
-                self._draw_game_over_screen()
             pygame.display.flip()
-
             self.clock.tick(60)
-
-        pygame.quit()
-        sys.exit()
 
         pygame.quit()
         sys.exit()

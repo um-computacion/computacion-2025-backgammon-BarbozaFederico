@@ -92,14 +92,28 @@ class BackgammonGame:
             for checker in player.get_checkers():
                 checker._player = player  # direct assignment for owner reference
 
-    def start_game(self) -> None:
+    def start_game(self, primer_jugador_color: Optional[str] = None) -> None:
         """
         Starts the game and sets up initial positions for all checkers.
+
+        Parameters
+        ----------
+        primer_jugador_color : Optional[str]
+            If provided, sets the starting player to the one with the matching color.
+            Otherwise, the first player in the list starts.
 
         Returns
         -------
         None
         """
+        if primer_jugador_color:
+            for i, player in enumerate(self.players):
+                if player.get_color() == primer_jugador_color:
+                    self.current_player_idx = i
+                    break
+        else:
+            self.current_player_idx = 0
+
         self.started = True
         # Example initial positions (standard Backgammon setup)
         # This can be customized per rules
