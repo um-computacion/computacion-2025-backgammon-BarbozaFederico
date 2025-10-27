@@ -734,3 +734,31 @@ def test_bear_off_no_exacto_con_multiples_fichas():
     assert bear_off_move.desde == 20
     assert bear_off_move.hasta is None
     assert bear_off_move.dado == 5
+
+
+def test_bear_off_excepcion_ficha_mas_lejana_con_dado_mayor():
+    """
+    Testea la regla de excepción del bear-off: si no hay una ficha que
+    coincida exactamente con el valor del dado, se debe poder sacar la
+    ficha del punto más lejano ocupado, incluso si el dado es mayor que la
+    distancia necesaria.
+    """
+    board = Board()
+    player = DummyPlayer(color="blancas", direccion=1, home_points=range(18, 24))
+
+    # Fichas en 20 (distancia 4), 22 (distancia 2), 23 (distancia 1)
+    board.place_checker(Checker(player.get_color()), 20)
+    board.place_checker(Checker(player.get_color()), 22)
+    board.place_checker(Checker(player.get_color()), 23)
+
+    player.puede_bear_off = lambda b: True
+
+    # Dado: 5. No hay ficha en 19 (distancia 5).
+    # La ficha más lejana está en 20. Se debe poder sacar.
+    moves = board._generar_movimientos_posibles(player, 5, board)
+
+    # Verificación
+    assert len(moves) == 1
+    bear_off_move = next((m for m in moves if m.hasta is None), None)
+    assert bear_off_move is not None, "No se generó ningún movimiento de bear-off"
+    assert bear_off_move.desde == 20, "No se está sacando la ficha más lejana"

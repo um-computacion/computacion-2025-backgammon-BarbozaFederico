@@ -479,9 +479,11 @@ class Board:
             # No hay movimiento exacto. Se permite un bear-off "por exceso" solo
             # desde la ficha más alejada, si el dado es mayor que la distancia.
             farthest_point_with_checker = -1
+            home_points = player.get_home_points()
+
             # Para las blancas (dirección 1), la ficha más lejana está en el índice más bajo.
             # Para las negras (dirección -1), está en el índice más alto.
-            search_range = range(24) if direccion == 1 else range(23, -1, -1)
+            search_range = sorted(list(home_points), reverse=(direccion == -1))
 
             for p in search_range:
                 if any(
@@ -491,44 +493,30 @@ class Board:
                     break
 
             if farthest_point_with_checker != -1:
-                # No hay movimientos exactos. Se puede usar un dado mayor
-                # para sacar la ficha más lejana, siempre que no haya otra
-                # ficha en un punto más lejano que el valor del dado.
+                point_for_exact_move = (24 - die_value) if direccion == 1 else (die_value - 1)
 
-                # Para las blancas (dir=1), un punto más lejano es un índice más bajo.
-                # Para las negras (dir=-1), un punto más lejano es un índice más alto.
-                limit = (24 - die_value) if direccion == 1 else (die_value - 1)
+                can_bear_off_inexact = False
+                if direccion == 1: # Blancas
+                    if farthest_point_with_checker < point_for_exact_move:
+                        can_bear_off_inexact = True
+                else: # Negras
+                    if farthest_point_with_checker > point_for_exact_move:
+                        can_bear_off_inexact = True
 
-                can_bear_off_inexact = True
+                # Además, no debe haber ninguna ficha entre el punto exacto y el final.
+                has_checkers_beyond_exact = False
                 if direccion == 1:
-                    if farthest_point_with_checker < limit:
-                        can_bear_off_inexact = False
-                else:  # direccion == -1
-                    if farthest_point_with_checker > limit:
-                        can_bear_off_inexact = False
-
-                # Adicionalmente, el punto más lejano debe ser el que se retira
-                is_farthest = True
-                if direccion == 1:
-                    # No debe haber fichas en puntos menores al más lejano.
-                    for p in range(farthest_point_with_checker):
-                        if any(
-                            c.get_color() == color
-                            for c in tablero.get_checkers_on_point(p)
-                        ):
-                            is_farthest = False
+                    for p in range(point_for_exact_move):
+                        if any(c.get_color() == color for c in tablero.get_checkers_on_point(p)):
+                            has_checkers_beyond_exact = True
                             break
-                else:  # direccion == -1
-                    # No debe haber fichas en puntos mayores al más lejano.
-                    for p in range(farthest_point_with_checker + 1, 24):
-                        if any(
-                            c.get_color() == color
-                            for c in tablero.get_checkers_on_point(p)
-                        ):
-                            is_farthest = False
+                else:
+                     for p in range(point_for_exact_move + 1, 24):
+                        if any(c.get_color() == color for c in tablero.get_checkers_on_point(p)):
+                            has_checkers_beyond_exact = True
                             break
 
-                if can_bear_off_inexact and is_farthest:
+                if not has_checkers_beyond_exact:
                     inexact_bear_off_move = PasoMovimiento(
                         desde=farthest_point_with_checker,
                         hasta=None,

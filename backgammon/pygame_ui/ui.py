@@ -31,7 +31,6 @@ class PygameUI:
         self.game_over = False
         self.winner = None
         self.game_over_time = None
-        self.game_state = "initial_roll"
 
         # Dynamic board layout constants
         self.board_edge = int(WIDTH * 0.02)
@@ -114,7 +113,7 @@ class PygameUI:
         ]
         self.game.setup_players(player_configs)
         self.game.start_game()
-        self.game.decide_first_player()
+        self.game.roll_dice()
 
     def _calculate_point_rects(self):
         """Calculates the clickable rects for each point and stores them."""
@@ -257,17 +256,6 @@ class PygameUI:
         winner_text = f"¡Gana el jugador {self.winner.get_nombre()}!"
         text_surface = self.large_font.render(winner_text, True, WHITE)
         text_rect = text_surface.get_rect(center=(WIDTH / 2, HEIGHT / 2))
-        self.screen.blit(text_surface, text_rect)
-
-    def _draw_start_message(self):
-        """Draws the message indicating which player starts."""
-        player = self.game.get_current_player()
-        start_text = f"{player.get_nombre()} comienzan"
-        text_surface = self.large_font.render(start_text, True, BLACK)
-
-        info_x = self.board_edge + 6 * self.point_width + self.bar_width / 2
-        text_rect = text_surface.get_rect(center=(info_x, HEIGHT / 2))
-
         self.screen.blit(text_surface, text_rect)
 
     def _draw_game_info(self):
@@ -506,9 +494,6 @@ class PygameUI:
 
     def _handle_click(self, pos):
         """Handles a mouse click, re-evaluating moves dynamically."""
-        if self.game_state == "initial_roll":
-            self.game_state = "playing"
-
         player = self.game.get_current_player()
         clicked_point = self._get_point_from_pos(pos)
         clicked_bear_off = self._get_bear_off_from_pos(pos)
@@ -565,7 +550,8 @@ class PygameUI:
 
     def run(self):
         """The main loop of the game."""
-        # Initial turn setup is now handled in _setup_game
+        # Initial turn setup
+        self.game.roll_dice()
         print(
             f"Inicia el turno para {self.game.get_current_player().get_nombre()} con dados {self.game.dice.get_values()}"
         )
@@ -579,8 +565,8 @@ class PygameUI:
                     running = False
                 if self.game_over:
                     if event.type in [pygame.MOUSEBUTTONDOWN, pygame.KEYDOWN]:
-                        running = False
-                else:
+                        running = False  # Exit on click/key after game over
+                else:  # Only handle clicks if the game is not over
                     if event.type == pygame.MOUSEBUTTONDOWN:
                         self._handle_click(event.pos)
 
@@ -589,13 +575,8 @@ class PygameUI:
             self._draw_board()
             self._draw_checkers()
             self._draw_game_info()
-
-            if self.game_state == "initial_roll":
-                self._draw_start_message()
-
             if self.game_over:
                 self._draw_game_over_screen()
-
             pygame.display.flip()
 
             self.clock.tick(60)
