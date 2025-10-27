@@ -7,12 +7,35 @@ from backgammon.core.player import PasoMovimiento, SecuenciaMovimiento
 
 # Constants
 WIDTH, HEIGHT = 1400, 800
-BOARD_COLOR = (244, 226, 198)  # A beige-like color
-BROWN = (139, 69, 19)
+
+# --- Nueva Paleta de Colores ---
+# --- Nueva Paleta de Colores (Dark Edition) ---
+
+COLOR_FONDO_TABLERO   = (40, 40, 45)      # Gris grafito oscuro (fondo principal)
+COLOR_TRIANGULO_CLARO = (175, 155, 135)   # Beige apagado
+COLOR_TRIANGULO_OSCURO= (92, 64, 51)      # Marrón chocolate profundo
+
+COLOR_FONDO_MESA      = (32, 32, 35)      # Gris muy oscuro (background interno)
+COLOR_BEAR_OFF_BAR    = (110, 85, 60)     # Madera tostada (zona de borneado)
+
+COLOR_PIEZA_NEGRA     = (15, 15, 15)      # Negro mate
+COLOR_PIEZA_BLANCA    = (245, 240, 230)   # Marfil cálido (evita blanco chillón)
+
+COLOR_BORDE_FICHA     = (153, 45, 45)     # Vino oscuro suave (en vez de rojo puro)
+COLOR_TEXTO_NEGRO     = (230, 230, 230)   # Gris claro para texto sobre fondo oscuro
+COLOR_TEXTO_BLANCO    = (250, 244, 227)   # Blanco cálido para contraste
+
+COLOR_HIGHLIGHT       = (0, 155, 130)     # Verde azulado profundo (destaca sin molestar)
+COLOR_BOTON_HOVER     = (119, 97, 82)     # Marrón suave (hover amigable)
+
+
+# --- Colores Antiguos (se mantendrán si son necesarios para elementos no temáticos) ---
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 RED = (255, 0, 0)
+BOARD_COLOR = COLOR_FONDO_TABLERO
 GREEN = (0, 255, 0)
+
 
 # Game States
 SELECCION_COLOR = "SELECCION_COLOR"
@@ -38,12 +61,10 @@ class PygameUI:
 
         # Game state
         self.estado_juego = SELECCION_COLOR
-        self.color_elegido = None
         self.dados_iniciales = {"blancas": 0, "negras": 0}
         self.ganador_tirada_inicial = None
         self.tiempo_inicio_tirada = None
-        self.boton_blancas_rect = None
-        self.boton_negras_rect = None
+        self.boton_empezar_rect = None
         self.juego_iniciado = False
 
         self.game_over = False
@@ -111,30 +132,24 @@ class PygameUI:
 
     def _setup_game(self):
         """Sets up the players and starts the game."""
-        # El jugador humano siempre será P1, el color se basa en la selección
-        color_humano = self.color_elegido
-        color_ia = "negras" if color_humano == "blancas" else "blancas"
-
-        # Las configuraciones se mantienen, solo cambiamos qué configuración pertenece a P1
-        config_blancas = {
-            "id": "P1" if color_humano == "blancas" else "P2",
-            "nombre": "Blanco",
-            "color": "blancas",
-            "direccion": 1,
-            "home_points": range(18, 24),
-            "entry_point": -1,
-        }
-        config_negras = {
-            "id": "P2" if color_humano == "blancas" else "P1",
-            "nombre": "Negro",
-            "color": "negras",
-            "direccion": -1,
-            "home_points": range(0, 6),
-            "entry_point": 24,
-        }
-
-        player_configs = [config_blancas, config_negras]
-
+        player_configs = [
+            {
+                "id": "P1",
+                "nombre": "Blanco",
+                "color": "blancas",
+                "direccion": 1,
+                "home_points": range(18, 24),
+                "entry_point": -1,
+            },
+            {
+                "id": "P2",
+                "nombre": "Negro",
+                "color": "negras",
+                "direccion": -1,
+                "home_points": range(0, 6),
+                "entry_point": 24,
+            },
+        ]
         self.game.setup_players(player_configs)
         self.game.start_game(
             primer_jugador_color=self.ganador_tirada_inicial
@@ -173,7 +188,7 @@ class PygameUI:
 
     def _draw_checkers(self):
         """Draws the checkers on the board based on the game state."""
-        checker_colors = {"blancas": WHITE, "negras": BLACK}
+        checker_colors = {"blancas": COLOR_PIEZA_BLANCA, "negras": COLOR_PIEZA_NEGRA}
 
         # Highlight selected source
         if self.selected_source is not None:
@@ -182,7 +197,7 @@ class PygameUI:
                 rect = self.bar_rects[player_color]
             else:
                 rect = self.point_rects[self.selected_source]
-            pygame.draw.rect(self.screen, GREEN, rect, 4)
+            pygame.draw.rect(self.screen, COLOR_HIGHLIGHT, rect, 4)
 
         # Draw checkers on points first
         for point_idx, checkers in enumerate(self.game.board.points):
@@ -213,7 +228,7 @@ class PygameUI:
                     self.screen, color, (center_x, center_y), self.checker_radius
                 )
                 pygame.draw.circle(
-                    self.screen, RED, (center_x, center_y), self.checker_radius, 2
+                    self.screen, COLOR_BORDE_FICHA, (center_x, center_y), self.checker_radius, 2
                 )
 
         # Draw checkers on the bar
@@ -232,14 +247,14 @@ class PygameUI:
                     self.screen, color, (bar_x, center_y), self.checker_radius
                 )
                 pygame.draw.circle(
-                    self.screen, RED, (bar_x, center_y), self.checker_radius, 2
+                    self.screen, COLOR_BORDE_FICHA, (bar_x, center_y), self.checker_radius, 2
                 )
 
         # Draw borne-off checkers count inside the bear-off areas
         white_borne_off = len(self.game.board.get_borne_off("blancas"))
         if white_borne_off > 0:
             white_rect = self.bear_off_rects["blancas"]
-            white_text = self.font.render(f"Off: {white_borne_off}", True, BLACK)
+            white_text = self.font.render(f"Off: {white_borne_off}", True, COLOR_TEXTO_NEGRO)
             self.screen.blit(
                 white_text,
                 (
@@ -251,7 +266,7 @@ class PygameUI:
         black_borne_off = len(self.game.board.get_borne_off("negras"))
         if black_borne_off > 0:
             black_rect = self.bear_off_rects["negras"]
-            black_text = self.font.render(f"Off: {black_borne_off}", True, WHITE)
+            black_text = self.font.render(f"Off: {black_borne_off}", True, COLOR_TEXTO_BLANCO)
             self.screen.blit(
                 black_text,
                 (
@@ -265,11 +280,11 @@ class PygameUI:
             if dest == "bear_off":
                 player_color = self.game.get_current_player().get_color()
                 rect = self.bear_off_rects[player_color]
-                pygame.draw.rect(self.screen, GREEN, rect, 4)
+                pygame.draw.rect(self.screen, COLOR_HIGHLIGHT, rect, 4)
             else:
                 rect = self.point_rects[dest]
                 pygame.draw.circle(
-                    self.screen, GREEN, rect.center, self.checker_radius * 0.3
+                    self.screen, COLOR_HIGHLIGHT, rect.center, self.checker_radius * 0.3
                 )
 
     def _draw_game_over_screen(self):
@@ -281,7 +296,7 @@ class PygameUI:
 
         # Display winner message
         winner_text = f"¡Gana el jugador {self.winner.get_nombre()}!"
-        text_surface = self.large_font.render(winner_text, True, WHITE)
+        text_surface = self.large_font.render(winner_text, True, COLOR_TEXTO_BLANCO)
         text_rect = text_surface.get_rect(center=(WIDTH / 2, HEIGHT / 2))
         self.screen.blit(text_surface, text_rect)
 
@@ -293,8 +308,8 @@ class PygameUI:
         player_text = f"Turn: {player.get_nombre()} ({player.get_color()})"
         dice_text = f"Dice: {dice[0]}, {dice[1]}" if dice else "Dice: Not rolled"
 
-        player_surface = self.font.render(player_text, True, BLACK)
-        dice_surface = self.font.render(dice_text, True, BLACK)
+        player_surface = self.font.render(player_text, True, COLOR_TEXTO_NEGRO)
+        dice_surface = self.font.render(dice_text, True, COLOR_TEXTO_NEGRO)
 
         info_x = self.board_edge + 6 * self.point_width + self.bar_width / 2
 
@@ -309,28 +324,25 @@ class PygameUI:
         """
         Draws the static elements of the backgammon board using pre-calculated rects.
         """
-        # Draw the main board background and frame
-        frame_color = (139, 69, 19)  # SaddleBrown
-        self.screen.fill(BOARD_COLOR)
+        # Dibuja el fondo de la mesa y el marco del tablero
+        self.screen.fill(COLOR_FONDO_MESA)
         pygame.draw.rect(
-            self.screen, frame_color, (0, 0, WIDTH, HEIGHT), self.board_edge * 2
+            self.screen, COLOR_FONDO_TABLERO, (0, 0, WIDTH, HEIGHT), self.board_edge * 2
         )
 
-        # Draw the bar
+        # Dibuja la barra central
         bar_x = self.board_edge + 6 * self.point_width
-        pygame.draw.rect(self.screen, frame_color, (bar_x, 0, self.bar_width, HEIGHT))
+        pygame.draw.rect(self.screen, COLOR_FONDO_TABLERO, (bar_x, 0, self.bar_width, HEIGHT))
 
-        # Draw bear-off areas
-        bear_off_color = (100, 100, 220, 128)  # A semi-transparent blue
+        # Dibuja las áreas de bear-off
         for color, rect in self.bear_off_rects.items():
-            pygame.draw.rect(self.screen, bear_off_color, rect)
-            # The count of borne-off checkers is now drawn in _draw_checkers
+            pygame.draw.rect(self.screen, COLOR_BEAR_OFF_BAR, rect)
 
-        # Points colors
-        color1 = (210, 180, 140)  # Tan
-        color2 = (139, 115, 85)  # Tan4
+        # Colores de los triángulos
+        color1 = COLOR_TRIANGULO_CLARO
+        color2 = COLOR_TRIANGULO_OSCURO
 
-        # Draw the points (triangles) and numbers
+        # Dibuja los triángulos y los números
         for i, rect in enumerate(self.point_rects):
             if rect is None:
                 continue
@@ -360,7 +372,7 @@ class PygameUI:
 
             # Draw number
             ui_number = i + 1
-            num_text = self.font.render(str(ui_number), True, BLACK)
+            num_text = self.font.render(str(ui_number), True, COLOR_TEXTO_NEGRO)
             if i >= 12:  # Top row
                 self.screen.blit(
                     num_text, (rect.centerx - num_text.get_width() / 2, rect.bottom + 5)
@@ -575,57 +587,63 @@ class PygameUI:
             return False
         return True
 
+    def _draw_boton_redondeado(self, text, rect, text_color, bg_color, hover_color, radius=20):
+        mouse_pos = pygame.mouse.get_pos()
+        is_hovered = rect.collidepoint(mouse_pos)
+
+        color_actual = hover_color if is_hovered else bg_color
+
+        # Dibuja el rectángulo redondeado
+        pygame.draw.rect(self.screen, color_actual, rect, border_radius=radius)
+
+        # Dibuja el texto
+        text_surface = self.large_font.render(text, True, text_color)
+        text_rect = text_surface.get_rect(center=rect.center)
+        self.screen.blit(text_surface, text_rect)
+
     def _draw_pantalla_seleccion_color(self):
-        self.screen.fill(BROWN)
+        self.screen.fill(COLOR_FONDO_MESA)
         titulo_surface = self.large_font.render(
-            "Elige tu color", True, WHITE
+            "Bienvenido/a a Backgammon", True, COLOR_TEXTO_NEGRO
         )
-        titulo_rect = titulo_surface.get_rect(center=(WIDTH / 2, HEIGHT / 4))
+        titulo_rect = titulo_surface.get_rect(center=(WIDTH / 2, HEIGHT / 3))
         self.screen.blit(titulo_surface, titulo_rect)
 
-        # Botón Blancas
-        blancas_surface = self.large_font.render("Blancas", True, WHITE)
-        self.boton_blancas_rect = blancas_surface.get_rect(
-            center=(WIDTH / 2, HEIGHT / 2 - 50)
-        )
-        pygame.draw.rect(self.screen, BLACK, self.boton_blancas_rect.inflate(20, 20))
-        self.screen.blit(blancas_surface, self.boton_blancas_rect)
+        # Botón Empezar
+        empezar_text = "Empezar"
+        empezar_surface = self.large_font.render(empezar_text, True, COLOR_TEXTO_BLANCO)
+        empezar_rect_inflated = empezar_surface.get_rect(center=(WIDTH / 2, HEIGHT / 2)).inflate(40, 20)
+        self.boton_empezar_rect = empezar_rect_inflated
 
-        # Botón Negras
-        negras_surface = self.large_font.render("Negras", True, BLACK)
-        self.boton_negras_rect = negras_surface.get_rect(
-            center=(WIDTH / 2, HEIGHT / 2 + 50)
+        self._draw_boton_redondeado(
+            empezar_text,
+            self.boton_empezar_rect,
+            COLOR_TEXTO_BLANCO,
+            COLOR_FONDO_TABLERO,
+            COLOR_BOTON_HOVER,
         )
-        pygame.draw.rect(self.screen, WHITE, self.boton_negras_rect.inflate(20, 20))
-        self.screen.blit(negras_surface, self.boton_negras_rect)
 
     def _handle_eventos_seleccion_color(self, event):
         if event.type == pygame.MOUSEBUTTONDOWN:
-            if self.boton_blancas_rect and self.boton_blancas_rect.collidepoint(
+            if self.boton_empezar_rect and self.boton_empezar_rect.collidepoint(
                 event.pos
             ):
-                self.color_elegido = "blancas"
-                self.estado_juego = TIRADA_INICIAL
-            elif self.boton_negras_rect and self.boton_negras_rect.collidepoint(
-                event.pos
-            ):
-                self.color_elegido = "negras"
                 self.estado_juego = TIRADA_INICIAL
 
     def _draw_pantalla_tirada_inicial(self):
-        self.screen.fill(BROWN)
+        self.screen.fill(COLOR_FONDO_MESA)
         if not self.ganador_tirada_inicial:
             msg = "Tirando dados..."
         else:
             msg = f"Blancas: {self.dados_iniciales['blancas']} | Negras: {self.dados_iniciales['negras']}"
 
-        texto_surface = self.large_font.render(msg, True, WHITE)
+        texto_surface = self.large_font.render(msg, True, COLOR_TEXTO_NEGRO)
         texto_rect = texto_surface.get_rect(center=(WIDTH / 2, HEIGHT / 3))
         self.screen.blit(texto_surface, texto_rect)
 
-        if self.ganador_tirada_inicial:
+        if self.ganador_tirada_inicial and self.ganador_tirada_inicial != "empate":
             ganador_msg = f"Comienzan las {self.ganador_tirada_inicial}"
-            ganador_surface = self.large_font.render(ganador_msg, True, WHITE)
+            ganador_surface = self.large_font.render(ganador_msg, True, COLOR_TEXTO_NEGRO)
             ganador_rect = ganador_surface.get_rect(
                 center=(WIDTH / 2, HEIGHT / 2)
             )
