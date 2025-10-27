@@ -5,6 +5,29 @@ Todas las modificaciones notables de este proyecto serán documentadas en este a
 El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/),
 y este proyecto sigue [Semantic Versioning](https://semver.org/lang/es/).
 
+## [1.6.0] - 2025-10-27
+
+### Added
+
+- UI: Nueva paleta de colores oscuros y suaves aplicada globalmente.
+
+  Se ha implementado una nueva paleta de colores cálidos y suaves en todos los elementos del juego: tablero, triángulos, fichas, fondos y texto. El objetivo es conseguir una apariencia más acogedora y homogénea en todas las pantallas.
+
+- UI: Rediseño del botón de bienvenida.
+
+  Se ha rediseñado el botón de la pantalla de bienvenida con bordes redondeados y un sutil efecto de `hover` para una apariencia más moderna y accesible.
+
+- UI: Aplicación consistente del nuevo estilo.
+
+  El nuevo estilo se ha aplicado de manera consistente en la pantalla de bienvenida, la pantalla de tirada de dados y el tablero de juego principal.
+
+---
+
+**Referencias:**
+
+- backgammon/pygame_ui/ui.py
+- assets/styles.md (documentación de paleta y tokens de estilo)
+
 ## [1.5.0] 27/10/2025
 
 ### Added
