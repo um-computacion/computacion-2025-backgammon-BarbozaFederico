@@ -5,6 +5,29 @@ Todas las modificaciones notables de este proyecto serán documentadas en este a
 El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/),
 y este proyecto sigue [Semantic Versioning](https://semver.org/lang/es/).
 
+## [1.4.0] 23/10/2025
+
+### Refactor
+
+- refactor(core, ui): Reevaluar dinámicamente los movimientos de bear-off
+
+  Se ha refactorizado la lógica de gestión de turnos para que los movimientos legales se recalculen después de cada acción del jugador. Esto resuelve un problema en el que la lógica de bear-off, especialmente con dobles y movimientos de excepción, no se actualizaba correctamente.
+
+  Cambios principales:
+  - La UI ahora calcula los movimientos posibles para cada dado individualmente y sobre el estado actual del tablero.
+  - Se ha eliminado el sistema de pre-cálculo de secuencias de movimientos (`enumerar_opciones_legales`), simplificando el código en `core/board.py`.
+  - Se ha implementado la cesión automática del turno cuando no hay movimientos legales disponibles.
+
+---
+
+**Referencias:**
+
+- [board](./backgammon/core/board.py)
+
+- [player](./backgammon/core/player.py)
+
+- [test_board](./tests/test_board.py)
+
 ## [1.3.1] 23/10/2025
 
 ### Added
