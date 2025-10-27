@@ -247,3 +247,27 @@ Referencia a los archivos finales que incorporaron contenido generado por IA:
 
 - CHANGELOG.md
 - prompts/prompts-documentacion.md
+
+## Prompt
+
+Modelo / herramienta usada: GitHub Copilot
+
+Prompt exacto:
+refactor(core, ui): Reevaluar dinámicamente los movimientos de bear-off
+
+Se ha refactorizado la lógica de gestión de turnos para que los movimientos legales se recalculen después de cada acción del jugador. Esto resuelve un problema en el que la lógica de bear-off, especialmente con dobles y movimientos de excepción, no se actualizaba correctamente.
+
+Cambios principales:
+
+- La UI ahora calcula los movimientos posibles para cada dado individualmente y sobre el estado actual del tablero.
+- Se ha eliminado el sistema de pre-cálculo de secuencias de movimientos (`enumerar_opciones_legales`), simplificando el código en 'core/board.py'.
+- Se ha implementado la cesión automática del turno cuando no hay movimientos legales disponibles.
+
+Respuesta/resultado:
+Se añadió la entrada [1.4.0] en CHANGELOG.md describiendo el refactor y sus cambios principales. La salida fue usada sin cambios.
+
+Referencia a los archivos finales:
+
+- CHANGELOG.md
+- backgammon/core/board.py
+- backgammon/pygame_ui/ui.py

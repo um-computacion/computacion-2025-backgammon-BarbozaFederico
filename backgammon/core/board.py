@@ -391,181 +391,24 @@ class Board:
             self.points[paso.hasta].append(checker)
             checker.mover_a(paso.hasta)
 
-    def enumerar_opciones_legales(
-        self, player: "Player", dados
-    ) -> List["OpcionMovimiento"]:
-        """
-        Enumerates all legal move options for a player given the dice.
-
-        Parameters
-        ----------
-        player : Player
-            The player to generate moves for
-        dados : tuple or Dice or Sequence
-            Dice values - can be tuple of (die1, die2), Dice object, or sequence of values
-
-        Returns
-        -------
-        List[OpcionMovimiento]
-            List of all legal move options
-        """
-        from backgammon.core.player import (
-            OpcionMovimiento,
-            PasoMovimiento,
-            SecuenciaMovimiento,
-        )
-        import copy
-
-        # Convert dice to list of values
-        if hasattr(dados, "get_values"):  # Dice object
-            dice_values = list(dados.get_values())
-        elif isinstance(dados, (tuple, list)):  # Tuple or list of values
-            dice_values = list(dados)
-        else:
-            raise ValueError(f"Invalid dice format: {dados}")
-
-        # Handle doubles - if both dice are the same, player gets 4 moves of that value
-        if len(dice_values) == 2 and dice_values[0] == dice_values[1]:
-            dice_values = [dice_values[0]] * 4
-
-        # Generate all possible move sequences
-        opciones = self._generar_secuencias_movimiento(
-            player, dice_values, [], copy.deepcopy(self)
-        )
-
-        # Convert to OpcionMovimiento objects with hash and score
-        opciones_movimiento = []
-        for secuencia in opciones:
-            # Create a hash of the resulting board state (simplified)
-            hash_tablero = self._calcular_hash_secuencia(player, secuencia)
-            # Calculate a simple score (could be improved with heuristics)
-            puntaje = len(secuencia)  # Prefer moves that use more dice
-            opciones_movimiento.append(
-                OpcionMovimiento(
-                    secuencia=secuencia, hash_tablero=hash_tablero, puntaje=puntaje
-                )
-            )
-
-        # Sort by score (descending) to put better moves first
-        opciones_movimiento.sort(key=lambda x: x.puntaje, reverse=True)
-
-        return opciones_movimiento
-
-    def _generar_secuencias_movimiento(
-        self,
-        player: "Player",
-        dice_restantes: List[int],
-        secuencia_actual: List["PasoMovimiento"],
-        tablero_actual: "Board",
-    ) -> List[List["PasoMovimiento"]]:
-        """
-        Recursively generates all possible move sequences.
-
-        Parameters
-        ----------
-        player : Player
-            The player making moves
-        dice_restantes : List[int]
-            Remaining dice values to use
-        secuencia_actual : List[PasoMovimiento]
-            Current move sequence being built
-        tablero_actual : Board
-            Current board state
-
-        Returns
-        -------
-        List[List[PasoMovimiento]]
-            List of all possible move sequences
-        """
-        from backgammon.core.player import PasoMovimiento
-        import copy
-
-        if not dice_restantes:
-            # No more dice to use, return the current sequence
-            return [secuencia_actual] if secuencia_actual else []
-
-        all_sequences = []
-
-        # Try using each remaining die value
-        for i, die_value in enumerate(dice_restantes):
-            # Get all possible moves with this die value
-            possible_moves = self._generar_movimientos_posibles(
-                player, die_value, tablero_actual
-            )
-
-            if not possible_moves:
-                # If no moves possible with this die, try other dice
-                remaining_dice = dice_restantes[:i] + dice_restantes[i + 1 :]
-                sequences = tablero_actual._generar_secuencias_movimiento(
-                    player, remaining_dice, secuencia_actual, tablero_actual
-                )
-                all_sequences.extend(sequences)
-                continue
-
-            # Try each possible move
-            for move in possible_moves:
-                # Create new board state and apply the move
-                new_board = copy.deepcopy(tablero_actual)
-                new_board._aplicar_paso_movimiento(player, move)
-
-                # Create new sequence with this move added
-                new_sequence = secuencia_actual + [move]
-
-                # Recursively generate sequences with remaining dice
-                remaining_dice = dice_restantes[:i] + dice_restantes[i + 1 :]
-                sequences = new_board._generar_secuencias_movimiento(
-                    player, remaining_dice, new_sequence, new_board
-                )
-
-                all_sequences.extend(sequences)
-
-        # Also consider the current sequence as valid if we can't use more dice
-        if secuencia_actual:
-            all_sequences.append(secuencia_actual)
-
-        # Remove duplicates while preserving order
-        unique_sequences = []
-        seen = set()
-        for seq in all_sequences:
-            seq_key = tuple((s.desde, s.hasta, s.dado, s.captura) for s in seq)
-            if seq_key not in seen:
-                seen.add(seq_key)
-                unique_sequences.append(seq)
-
-        return unique_sequences
 
     def _generar_movimientos_posibles(
         self, player: "Player", die_value: int, tablero: "Board"
     ) -> List["PasoMovimiento"]:
         """
-        Generates all possible moves for a player with a specific die value.
-
-        Parameters
-        ----------
-        player : Player
-            The player making moves
-        die_value : int
-            The die value to use for moves
-        tablero : Board
-            Current board state
-
-        Returns
-        -------
-        List[PasoMovimiento]
-            List of possible moves with this die value
+        Genera todos los movimientos posibles para un jugador con un valor de dado específico,
+        aplicando la regla de prioridad de bear-off.
         """
         from backgammon.core.player import PasoMovimiento
 
-        moves = []
+        moves: List["PasoMovimiento"] = []
         color = player.get_color()
         direccion = player.get_direccion()
-        home_points = player.get_home_points()
 
-        # Priority 1: If player has checkers on the bar, they must enter first
+        # Prioridad 1: Si el jugador tiene fichas en la barra, debe meterlas primero
         if tablero.jugador_tiene_en_barra(player):
             entry_point = player.get_entry_point()
             target_point = entry_point + (die_value * direccion)
-
             if self._es_movimiento_valido(player, None, target_point, tablero):
                 captura = self._es_captura(player, target_point, tablero)
                 moves.append(
@@ -573,49 +416,47 @@ class Board:
                         desde=None, hasta=target_point, dado=die_value, captura=captura
                     )
                 )
-            return moves  # Must enter from bar first
+            return moves
 
-        # Priority 2: Regular moves and bear-off
-        # Check all points on the board for player's checkers
-        for point in range(24):
-            checkers_at_point = tablero.get_checkers_on_point(point)
-            # Check if player has checkers at this point
-            player_checkers_here = [
-                c for c in checkers_at_point if c.get_color() == color
-            ]
-
-            if player_checkers_here:
-                target_point = point + (die_value * direccion)
-
-                # Check for bear-off
-                if player.puede_bear_off(tablero):
-                    if target_point < 0 or target_point >= 24:
-                        # Bear off move
+        # Si no puede hacer bear-off, solo se generan movimientos regulares
+        if not player.puede_bear_off(tablero):
+            for point in range(24):
+                if any(c.get_color() == color for c in tablero.get_checkers_on_point(point)):
+                    target_point = point + (die_value * direccion)
+                    if 0 <= target_point < 24 and self._es_movimiento_valido(
+                        player, point, target_point, tablero
+                    ):
+                        captura = self._es_captura(player, target_point, tablero)
                         moves.append(
                             PasoMovimiento(
-                                desde=point, hasta=None, dado=die_value, captura=False
+                                desde=point,
+                                hasta=target_point,
+                                dado=die_value,
+                                captura=captura,
                             )
                         )
-                        continue
-                    elif point in home_points:
-                        # Can still move within home or bear off with exact roll
-                        if target_point < 0 or target_point >= 24:
-                            moves.append(
-                                PasoMovimiento(
-                                    desde=point,
-                                    hasta=None,
-                                    dado=die_value,
-                                    captura=False,
-                                )
-                            )
-                            continue
+            return moves
 
-                # Regular move
+        # Lógica de Bear-off:
+        # 1. Buscar si existe un movimiento exacto para sacar una ficha.
+        exact_move_point = -1
+        point_needed = (24 - die_value) if direccion == 1 else (die_value - 1)
+
+        if 0 <= point_needed < 24 and any(
+            c.get_color() == color for c in tablero.get_checkers_on_point(point_needed)
+        ):
+            exact_move_point = point_needed
+
+        # 2. Generar todos los movimientos regulares posibles dentro del tablero.
+        regular_moves = []
+        for point in range(24):
+            if any(c.get_color() == color for c in tablero.get_checkers_on_point(point)):
+                target_point = point + (die_value * direccion)
                 if 0 <= target_point < 24 and self._es_movimiento_valido(
                     player, point, target_point, tablero
                 ):
                     captura = self._es_captura(player, target_point, tablero)
-                    moves.append(
+                    regular_moves.append(
                         PasoMovimiento(
                             desde=point,
                             hasta=target_point,
@@ -624,7 +465,69 @@ class Board:
                         )
                     )
 
-        return moves
+        # 3. Determinar qué movimientos de bear-off son válidos.
+        if exact_move_point != -1:
+            # Si existe un movimiento exacto, solo ese bear-off es válido.
+            exact_bear_off_move = PasoMovimiento(
+                desde=exact_move_point, hasta=None, dado=die_value, captura=False
+            )
+            return regular_moves + [exact_bear_off_move]
+        else:
+            # No hay movimiento exacto. Se permite un bear-off "por exceso" solo
+            # desde la ficha más alejada, si el dado es mayor que la distancia.
+            farthest_point_with_checker = -1
+            # Para las blancas (dirección 1), la ficha más lejana está en el índice más bajo.
+            # Para las negras (dirección -1), está en el índice más alto.
+            search_range = range(24) if direccion == 1 else range(23, -1, -1)
+
+            for p in search_range:
+                if any(c.get_color() == color for c in tablero.get_checkers_on_point(p)):
+                    farthest_point_with_checker = p
+                    break
+
+            if farthest_point_with_checker != -1:
+                # No hay movimientos exactos. Se puede usar un dado mayor
+                # para sacar la ficha más lejana, siempre que no haya otra
+                # ficha en un punto más lejano que el valor del dado.
+
+                # Para las blancas (dir=1), un punto más lejano es un índice más bajo.
+                # Para las negras (dir=-1), un punto más lejano es un índice más alto.
+                limit = (24 - die_value) if direccion == 1 else (die_value - 1)
+
+                can_bear_off_inexact = True
+                if direccion == 1:
+                    if farthest_point_with_checker < limit:
+                        can_bear_off_inexact = False
+                else: # direccion == -1
+                    if farthest_point_with_checker > limit:
+                        can_bear_off_inexact = False
+
+                # Adicionalmente, el punto más lejano debe ser el que se retira
+                is_farthest = True
+                if direccion == 1:
+                    # No debe haber fichas en puntos menores al más lejano.
+                    for p in range(farthest_point_with_checker):
+                        if any(c.get_color() == color for c in tablero.get_checkers_on_point(p)):
+                            is_farthest = False
+                            break
+                else: # direccion == -1
+                    # No debe haber fichas en puntos mayores al más lejano.
+                    for p in range(farthest_point_with_checker + 1, 24):
+                        if any(c.get_color() == color for c in tablero.get_checkers_on_point(p)):
+                            is_farthest = False
+                            break
+
+                if can_bear_off_inexact and is_farthest:
+                    inexact_bear_off_move = PasoMovimiento(
+                        desde=farthest_point_with_checker,
+                        hasta=None,
+                        dado=die_value,
+                        captura=False,
+                    )
+                    return regular_moves + [inexact_bear_off_move]
+
+        # Si no hay movimientos de bear-off válidos, devolver solo los regulares.
+        return regular_moves
 
     def _es_movimiento_valido(
         self,

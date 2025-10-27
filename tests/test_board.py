@@ -640,3 +640,97 @@ def test__calcular_hash_secuencia_none_player():
     h = board._calcular_hash_secuencia(None, secuencia)
     assert isinstance(h, str)
     assert h.startswith("None:")
+
+
+def test_bear_off_prioridad_movimiento_exacto():
+    """
+    Testea que si existe una ficha cuya distancia a la salida coincide
+    exactamente con el número del dado, solo esa ficha puede ser retirada.
+    """
+    board = Board()
+    player = DummyPlayer(color="blancas", direccion=1, home_points=range(18, 24))
+
+    # Configuración del tablero:
+    # Ficha en la columna 20 (distancia 5 a la salida, si se cuenta desde 1)
+    # Ficha en la columna 22 (distancia 3 a la salida, si se cuenta desde 1)
+    checker1 = Checker(player.get_color())
+    checker2 = Checker(player.get_color())
+    board.place_checker(checker1, 19)  # Distancia 5 para salir (24-19)
+    board.place_checker(checker2, 21)  # Distancia 3 para salir (24-21)
+
+    # Simular que el jugador puede hacer bear-off
+    player.puede_bear_off = lambda b: True
+
+    # Dados: 5 y 2. El 5 coincide exactamente con la ficha en 19.
+    dados = [5, 2]
+
+    # Generar movimientos posibles con el dado 5
+    movimientos_con_5 = board._generar_movimientos_posibles(player, 5, board)
+
+    # Verificación:
+    # Solo debe haber un movimiento de bear-off posible: desde la posición 19.
+    assert len(movimientos_con_5) == 1
+    movimiento_bear_off = movimientos_con_5[0]
+
+    assert movimiento_bear_off.desde == 19
+    assert movimiento_bear_off.hasta is None  # Es un bear-off
+    assert movimiento_bear_off.dado == 5
+
+
+def test_bear_off_inexacto_saca_la_ficha_mas_lejana():
+    """
+    Testea que si no hay un movimiento de bear-off exacto, se debe usar un dado
+    más grande para sacar la ficha más lejana (la que está en el punto más bajo para las blancas).
+    """
+    board = Board()
+    player = DummyPlayer(color="blancas", direccion=1, home_points=range(18, 24))
+
+    # Configuración del tablero:
+    # Fichas en 20 (distancia 4), 21 (distancia 3), 22 (distancia 2)
+    board.place_checker(Checker(player.get_color()), 20)
+    board.place_checker(Checker(player.get_color()), 21)
+    board.place_checker(Checker(player.get_color()), 22)
+
+    player.puede_bear_off = lambda b: True
+
+    # Dado: 5. No hay ficha en el punto 19 (distancia 5).
+    # Se debe sacar la ficha más lejana, que es la del punto 20.
+    movimientos_con_5 = board._generar_movimientos_posibles(player, 5, board)
+
+    # Verificación:
+    # Solo hay un movimiento de bear-off posible desde la posición 20.
+    assert len(movimientos_con_5) == 1
+    movimiento_bear_off = movimientos_con_5[0]
+
+    assert movimiento_bear_off.desde == 20
+    assert movimiento_bear_off.hasta is None
+    assert movimiento_bear_off.dado == 5
+
+
+def test_bear_off_no_exacto_con_multiples_fichas():
+    """
+    Testea el caso específico reportado por el usuario:
+    - Fichas en 20, 22, 23.
+    - Dado de 5.
+    - Debe poder sacar la ficha del 20.
+    """
+    board = Board()
+    player = DummyPlayer(color="blancas", direccion=1, home_points=range(18, 24))
+
+    # Configuración del tablero
+    board.place_checker(Checker(player.get_color()), 20)
+    board.place_checker(Checker(player.get_color()), 22)
+    board.place_checker(Checker(player.get_color()), 23)
+
+    player.puede_bear_off = lambda b: True
+
+    # Dado de 5. No hay ficha en 19 (distancia 5).
+    # Debe sacar la ficha más lejana: la del punto 20.
+    moves = board._generar_movimientos_posibles(player, 5, board)
+
+    # Verificación
+    assert len(moves) == 1
+    bear_off_move = moves[0]
+    assert bear_off_move.desde == 20
+    assert bear_off_move.hasta is None
+    assert bear_off_move.dado == 5
