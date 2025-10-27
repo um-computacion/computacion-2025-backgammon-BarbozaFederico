@@ -24,7 +24,7 @@ tests/test_board.py:212: AttributeError
 =========================== short test summary info ============================
 FAILED tests/test_board.py::test_aplicar_movimiento_and_enumerar_opciones_legales - AttributeError: 'Board' object has no attribute 'enumerar_opciones_legales'
 !!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!
-1 failed, 17 passed in 2.23s
+1 failed, 17 passed in 1.09s
 
 ```
 ## Pylint Report
@@ -38,15 +38,13 @@ backgammon/cli/console.py:98:26: W0613: Unused argument 'player' (unused-argumen
 backgammon/cli/console.py:2:0: W0611: Unused OpcionMovimiento imported from backgammon.core.player (unused-import)
 backgammon/cli/console.py:2:0: W0611: Unused SecuenciaMovimiento imported from backgammon.core.player (unused-import)
 ************* Module core.backgammon
-backgammon/core/backgammon.py:166:0: C0301: Line too long (107/100) (line-too-long)
+backgammon/core/backgammon.py:180:0: C0301: Line too long (107/100) (line-too-long)
 backgammon/core/backgammon.py:1:0: C0114: Missing module docstring (missing-module-docstring)
 backgammon/core/backgammon.py:2:0: E0401: Unable to import 'backgammon.core.player' (import-error)
 backgammon/core/backgammon.py:3:0: E0401: Unable to import 'backgammon.core.checker' (import-error)
 backgammon/core/backgammon.py:4:0: E0401: Unable to import 'backgammon.core.dice' (import-error)
 backgammon/core/backgammon.py:5:0: E0401: Unable to import 'backgammon.core.board' (import-error)
 backgammon/core/backgammon.py:93:16: W0212: Access to a protected member _player of a client class (protected-access)
-backgammon/core/backgammon.py:121:24: W0612: Unused variable 'i' (unused-variable)
-backgammon/core/backgammon.py:1:0: W0611: Unused Optional imported from typing (unused-import)
 ************* Module core.board
 backgammon/core/board.py:486:0: C0325: Unnecessary parens after '=' keyword (superfluous-parens)
 backgammon/core/board.py:514:0: W0311: Bad indentation. Found 21 spaces, expected 20 (bad-indentation)
@@ -99,33 +97,37 @@ backgammon/core/player.py:178:4: R0913: Too many arguments (9/5) (too-many-argum
 backgammon/core/player.py:178:4: R0917: Too many positional arguments (9/5) (too-many-positional-arguments)
 backgammon/core/player.py:92:0: R0904: Too many public methods (21/20) (too-many-public-methods)
 ************* Module pygame_ui.ui
-backgammon/pygame_ui/ui.py:416:0: C0301: Line too long (109/100) (line-too-long)
-backgammon/pygame_ui/ui.py:480:0: C0301: Line too long (117/100) (line-too-long)
-backgammon/pygame_ui/ui.py:556:0: C0301: Line too long (121/100) (line-too-long)
+backgammon/pygame_ui/ui.py:443:0: C0301: Line too long (109/100) (line-too-long)
+backgammon/pygame_ui/ui.py:507:0: C0301: Line too long (117/100) (line-too-long)
+backgammon/pygame_ui/ui.py:620:0: C0301: Line too long (106/100) (line-too-long)
+backgammon/pygame_ui/ui.py:660:0: C0301: Line too long (108/100) (line-too-long)
+backgammon/pygame_ui/ui.py:691:0: C0301: Line too long (133/100) (line-too-long)
 backgammon/pygame_ui/ui.py:1:0: C0114: Missing module docstring (missing-module-docstring)
-backgammon/pygame_ui/ui.py:4:0: E0401: Unable to import 'backgammon.core.backgammon' (import-error)
-backgammon/pygame_ui/ui.py:5:0: E0401: Unable to import 'backgammon.core.player' (import-error)
-backgammon/pygame_ui/ui.py:16:0: R0902: Too many instance attributes (21/7) (too-many-instance-attributes)
-backgammon/pygame_ui/ui.py:25:8: E1101: Module 'pygame' has no 'init' member (no-member)
-backgammon/pygame_ui/ui.py:147:4: R0914: Too many local variables (26/15) (too-many-locals)
-backgammon/pygame_ui/ui.py:147:4: R0912: Too many branches (14/12) (too-many-branches)
-backgammon/pygame_ui/ui.py:175:19: W0612: Unused variable 'checker' (unused-variable)
-backgammon/pygame_ui/ui.py:251:50: E1101: Module 'pygame' has no 'SRCALPHA' member (no-member)
-backgammon/pygame_ui/ui.py:298:12: W0612: Unused variable 'color' (unused-variable)
-backgammon/pygame_ui/ui.py:375:29: W0212: Access to a protected member _generar_movimientos_posibles of a client class (protected-access)
-backgammon/pygame_ui/ui.py:403:29: W0212: Access to a protected member _generar_movimientos_posibles of a client class (protected-access)
-backgammon/pygame_ui/ui.py:458:15: W0212: Access to a protected member _generar_movimientos_posibles of a client class (protected-access)
-backgammon/pygame_ui/ui.py:507:12: R1705: Unnecessary "elif" after "return", remove the leading "el" from "elif" (no-else-return)
-backgammon/pygame_ui/ui.py:564:33: E1101: Module 'pygame' has no 'QUIT' member (no-member)
-backgammon/pygame_ui/ui.py:570:37: E1101: Module 'pygame' has no 'MOUSEBUTTONDOWN' member (no-member)
-backgammon/pygame_ui/ui.py:584:8: E1101: Module 'pygame' has no 'quit' member (no-member)
-backgammon/pygame_ui/ui.py:587:8: W0101: Unreachable code (unreachable)
-backgammon/pygame_ui/ui.py:587:8: E1101: Module 'pygame' has no 'quit' member (no-member)
-backgammon/pygame_ui/ui.py:16:0: R0903: Too few public methods (1/2) (too-few-public-methods)
+backgammon/pygame_ui/ui.py:5:0: E0401: Unable to import 'backgammon.core.backgammon' (import-error)
+backgammon/pygame_ui/ui.py:6:0: E0401: Unable to import 'backgammon.core.player' (import-error)
+backgammon/pygame_ui/ui.py:23:0: R0902: Too many instance attributes (29/7) (too-many-instance-attributes)
+backgammon/pygame_ui/ui.py:32:8: E1101: Module 'pygame' has no 'init' member (no-member)
+backgammon/pygame_ui/ui.py:116:8: W0612: Unused variable 'color_ia' (unused-variable)
+backgammon/pygame_ui/ui.py:174:4: R0914: Too many local variables (26/15) (too-many-locals)
+backgammon/pygame_ui/ui.py:174:4: R0912: Too many branches (14/12) (too-many-branches)
+backgammon/pygame_ui/ui.py:202:19: W0612: Unused variable 'checker' (unused-variable)
+backgammon/pygame_ui/ui.py:278:50: E1101: Module 'pygame' has no 'SRCALPHA' member (no-member)
+backgammon/pygame_ui/ui.py:325:12: W0612: Unused variable 'color' (unused-variable)
+backgammon/pygame_ui/ui.py:402:29: W0212: Access to a protected member _generar_movimientos_posibles of a client class (protected-access)
+backgammon/pygame_ui/ui.py:430:29: W0212: Access to a protected member _generar_movimientos_posibles of a client class (protected-access)
+backgammon/pygame_ui/ui.py:485:15: W0212: Access to a protected member _generar_movimientos_posibles of a client class (protected-access)
+backgammon/pygame_ui/ui.py:534:12: R1705: Unnecessary "elif" after "return", remove the leading "el" from "elif" (no-else-return)
+backgammon/pygame_ui/ui.py:603:25: E1101: Module 'pygame' has no 'MOUSEBUTTONDOWN' member (no-member)
+backgammon/pygame_ui/ui.py:669:33: E1101: Module 'pygame' has no 'QUIT' member (no-member)
+backgammon/pygame_ui/ui.py:679:41: E1101: Module 'pygame' has no 'MOUSEBUTTONDOWN' member (no-member)
+backgammon/pygame_ui/ui.py:707:8: E1101: Module 'pygame' has no 'quit' member (no-member)
+backgammon/pygame_ui/ui.py:664:4: R0912: Too many branches (14/12) (too-many-branches)
+backgammon/pygame_ui/ui.py:23:0: R0903: Too few public methods (1/2) (too-few-public-methods)
 backgammon/pygame_ui/ui.py:2:0: C0411: standard import "sys" should be placed before third party import "pygame" (wrong-import-order)
 backgammon/pygame_ui/ui.py:3:0: C0411: standard import "time" should be placed before third party import "pygame" (wrong-import-order)
-backgammon/pygame_ui/ui.py:5:0: W0611: Unused PasoMovimiento imported from backgammon.core.player (unused-import)
-backgammon/pygame_ui/ui.py:5:0: W0611: Unused SecuenciaMovimiento imported from backgammon.core.player (unused-import)
+backgammon/pygame_ui/ui.py:4:0: C0411: standard import "random" should be placed before third party import "pygame" (wrong-import-order)
+backgammon/pygame_ui/ui.py:6:0: W0611: Unused PasoMovimiento imported from backgammon.core.player (unused-import)
+backgammon/pygame_ui/ui.py:6:0: W0611: Unused SecuenciaMovimiento imported from backgammon.core.player (unused-import)
 ************* Module test_backgammon
 tests/test_backgammon.py:1:0: C0114: Missing module docstring (missing-module-docstring)
 tests/test_backgammon.py:2:0: E0401: Unable to import 'backgammon.core.backgammon' (import-error)
@@ -351,7 +353,7 @@ tests/test_ui.py:1:0: R0801: Similar lines in 2 files
                 "id": "P2", (duplicate-code)
 
 -----------------------------------
-Your code has been rated at 7.52/10
+Your code has been rated at 7.63/10
 
 
 ```
