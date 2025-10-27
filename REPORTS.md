@@ -1,5 +1,7 @@
 # Automated Reports
+
 ## Coverage Report
+
 ```text
 .................F
 =================================== FAILURES ===================================
@@ -27,7 +29,9 @@ FAILED tests/test_board.py::test_aplicar_movimiento_and_enumerar_opciones_legale
 1 failed, 17 passed in 1.33s
 
 ```
+
 ## Pylint Report
+
 ```text
 ************* Module cli.console
 backgammon/cli/console.py:1:0: C0114: Missing module docstring (missing-module-docstring)

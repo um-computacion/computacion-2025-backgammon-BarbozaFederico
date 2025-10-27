@@ -391,7 +391,6 @@ class Board:
             self.points[paso.hasta].append(checker)
             checker.mover_a(paso.hasta)
 
-
     def _generar_movimientos_posibles(
         self, player: "Player", die_value: int, tablero: "Board"
     ) -> List["PasoMovimiento"]:
@@ -421,7 +420,9 @@ class Board:
         # Si no puede hacer bear-off, solo se generan movimientos regulares
         if not player.puede_bear_off(tablero):
             for point in range(24):
-                if any(c.get_color() == color for c in tablero.get_checkers_on_point(point)):
+                if any(
+                    c.get_color() == color for c in tablero.get_checkers_on_point(point)
+                ):
                     target_point = point + (die_value * direccion)
                     if 0 <= target_point < 24 and self._es_movimiento_valido(
                         player, point, target_point, tablero
@@ -450,7 +451,9 @@ class Board:
         # 2. Generar todos los movimientos regulares posibles dentro del tablero.
         regular_moves = []
         for point in range(24):
-            if any(c.get_color() == color for c in tablero.get_checkers_on_point(point)):
+            if any(
+                c.get_color() == color for c in tablero.get_checkers_on_point(point)
+            ):
                 target_point = point + (die_value * direccion)
                 if 0 <= target_point < 24 and self._es_movimiento_valido(
                     player, point, target_point, tablero
@@ -481,7 +484,9 @@ class Board:
             search_range = range(24) if direccion == 1 else range(23, -1, -1)
 
             for p in search_range:
-                if any(c.get_color() == color for c in tablero.get_checkers_on_point(p)):
+                if any(
+                    c.get_color() == color for c in tablero.get_checkers_on_point(p)
+                ):
                     farthest_point_with_checker = p
                     break
 
@@ -498,7 +503,7 @@ class Board:
                 if direccion == 1:
                     if farthest_point_with_checker < limit:
                         can_bear_off_inexact = False
-                else: # direccion == -1
+                else:  # direccion == -1
                     if farthest_point_with_checker > limit:
                         can_bear_off_inexact = False
 
@@ -507,13 +512,19 @@ class Board:
                 if direccion == 1:
                     # No debe haber fichas en puntos menores al más lejano.
                     for p in range(farthest_point_with_checker):
-                        if any(c.get_color() == color for c in tablero.get_checkers_on_point(p)):
+                        if any(
+                            c.get_color() == color
+                            for c in tablero.get_checkers_on_point(p)
+                        ):
                             is_farthest = False
                             break
-                else: # direccion == -1
+                else:  # direccion == -1
                     # No debe haber fichas en puntos mayores al más lejano.
                     for p in range(farthest_point_with_checker + 1, 24):
-                        if any(c.get_color() == color for c in tablero.get_checkers_on_point(p)):
+                        if any(
+                            c.get_color() == color
+                            for c in tablero.get_checkers_on_point(p)
+                        ):
                             is_farthest = False
                             break
 

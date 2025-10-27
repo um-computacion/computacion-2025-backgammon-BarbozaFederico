@@ -397,3 +397,51 @@ La salida fue usada sin cambios.
 Referencia a los archivos finales que incorporaron contenido generado por IA:
 
 - prompts/prompts-desarrollo.md
+
+## Prompt
+
+Modelo / herramienta usada: jules (Google)
+
+### Instrucciones del sistema
+
+- No cambiar la distribución visual de la interfaz.
+- No modificar la resolución de la ventana.
+- No mover ni modificar hitboxes o posiciones de elementos.
+- La funcionalidad es lógica + un pequeño texto temporal en pantalla.
+- Documentar prompt y respuesta en este archivo.
+
+### Prompt exacto
+
+Objetivo: Agregar una funcionalidad al módulo pygame_ui del juego Backgammon, donde al inicio de la partida, antes de cualquier movimiento, cada jugador (fichas blancas y fichas negras) lance un dado, y el jugador con el puntaje más alto obtenga el primer turno.
+
+Condiciones importantes (NO modificar):
+
+- No cambiar la distribución visual de la interfaz.
+- No modificar la resolución de la ventana.
+- No mover ni modificar hitboxes o posiciones de elementos.
+- Esta funcionalidad debe ser solo lógica + un pequeño texto temporal en pantalla.
+
+Tareas a implementar:
+
+1. Al iniciar el juego, lanzar dos dados para blancas y dos dados para negras, de forma interna (sin botones y sin interacción del jugador).
+2. Sumar el resultado de cada jugador y determinar quién comienza.
+3. Mostrar un mensaje solo una vez, centrado en la zona de la barra central, indicando quién empieza (ej. "Blancas empiezan" / "Negras empiezan").
+4. El mensaje debe mostrarse durante 2–3 segundos y luego desaparecer.
+5. A partir de ese momento, iniciar el turno normalmente según el ganador de la tirada.
+
+Resultado esperado:
+
+- Código añadido en pygame_ui que ejecuta la tirada inicial y muestra el mensaje temporal.
+- Lógica de inicio de turno basada en el ganador de la tirada.
+- UI visual no modificada (solo texto temporal en la zona de la barra).
+
+## Respuesta / resultado devuelto por la herramienta
+
+Se implementó la lógica solicitada en el módulo pygame_ui: al iniciar la partida se realizan tiradas internas para ambos jugadores, se determina el ganador por suma de dados, se muestra un mensaje temporal centrado en la barra (2–3 s) indicando quién empieza, y luego la partida continúa normalmente con el jugador elegido como primer turno. El cambio fue exclusivamente lógico y la UI permaneció sin reordenamientos de elementos ni modificaciones de hitboxes.
+
+La salida fue usada sin cambios.
+
+Referencias a archivos afectados:
+
+- backgammon/pygame_ui/ui.py (implementación de la tirada inicial y mensaje temporal)
+- prompts/prompts-desarrollo.md (este registro)
