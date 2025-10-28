@@ -99,9 +99,7 @@ class PygameUI:
         self.selected_source = None  # Can be point index or 'bar'
 
         self.game = BackgammonGame()
-        # Setup game immediately so it's always in a valid state
-        # This will be called again after the initial screens during normal play
-        self._setup_game()
+        # self._setup_game() will be called after the initial screens
 
     def _calculate_bar_rects(self):
         """Calculates the clickable rects for each player's bar."""
