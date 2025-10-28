@@ -350,3 +350,23 @@ Referencias a los archivos finales que incorporaron contenido generado por IA:
 
 - backgammon/pygame_ui/ui.py
 - CHANGELOG.md
+
+## Prompt
+
+Modelo / herramienta usada: jules
+
+Prompt exacto:
+Se quitaron los numeros que indicaban la columna por colicion con fichas ademas se movio el indicador de los dados al medio
+
+Instrucciones del sistema:
+Mantener el formato de documentación de prompts y registrar la acción realizada en CHANGELOG.md.
+
+## Respuesta/resultado completo devuelto por la IA
+
+Se añadió una entrada de versión [1.6.2] en `CHANGELOG.md` describiendo los cambios visuales solicitados: eliminación de los números de columna que colisionaban con las fichas y reubicación del indicador de dados al centro de la barra central.  
+La salida fue usada sin cambios.
+
+Referencia a los archivos finales que incorporaron contenido generado por IA:
+
+- CHANGELOG.md
+- backgammon/pygame_ui/ui.py
