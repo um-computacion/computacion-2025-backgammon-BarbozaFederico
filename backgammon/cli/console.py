@@ -111,9 +111,7 @@ class BackgammonCLI:
         """
         while True:
             try:
-                seleccion = int(
-                    input(f"Ingrese el número de movimiento (1-{num_opciones}): ")
-                )
+                seleccion = int(input(f"Ingrese el número de movimiento (1-{num_opciones}): "))
                 if 1 <= seleccion <= num_opciones:
                     return seleccion
                 else:

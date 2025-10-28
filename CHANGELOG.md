@@ -5,6 +5,20 @@ Todas las modificaciones notables de este proyecto serán documentadas en este a
 El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/),
 y este proyecto sigue [Semantic Versioning](https://semver.org/lang/es/).
 
+## [1.6.3] - 2025-10-29
+
+### Added
+
+- docs: Se añadieron docstrings completos y detallados a la clase `PygameUI` y a todos sus métodos en `backgammon/pygame_ui/ui.py`.
+  - La documentación sigue el formato solicitado por el usuario, incluyendo secciones de atributos y métodos.
+  - Mejora la claridad y mantenibilidad del código.
+
+---
+
+**Referencias:**
+
+- backgammon/pygame_ui/ui.py
+
 ## [1.6.2] - 2025-10-28
 
 ### Changed
