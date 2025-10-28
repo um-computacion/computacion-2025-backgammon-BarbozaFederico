@@ -1,7 +1,13 @@
+# pylint: disable=protected-access
+# pylint: disable=unused-import
+# pylint: disable=unused-variable
+# pylint: disable=no-member
+# pylint: disable=redefined-outer-name
 import pytest
 from unittest.mock import Mock, MagicMock
 from backgammon.pygame_ui.ui import PygameUI
 from backgammon.core.backgammon import BackgammonGame
+
 
 @pytest.fixture
 def mock_pygame():
@@ -10,10 +16,11 @@ def mock_pygame():
     pygame.Rect.return_value = MagicMock()
     return pygame
 
+
 def test_move_from_bar(monkeypatch, mock_pygame):
     """Test moving a checker from the bar to the board."""
     # Mock pygame to avoid display initialization
-    monkeypatch.setattr('backgammon.pygame_ui.ui.pygame', mock_pygame)
+    monkeypatch.setattr("backgammon.pygame_ui.ui.pygame", mock_pygame)
 
     # Initialize UI
     ui = PygameUI()
@@ -28,10 +35,12 @@ def test_move_from_bar(monkeypatch, mock_pygame):
     checker_to_bar = player.get_checkers()[0]
     game.board.send_to_bar(checker_to_bar)
 
-    opponent_checker = next(p.get_checkers()[0] for p in game.players if p.get_color() == opponent_color)
+    opponent_checker = next(
+        p.get_checkers()[0] for p in game.players if p.get_color() == opponent_color
+    )
     game.board.place_checker(opponent_checker, 23)
 
-    game.board.points[2] = [] # Ensure point 3 (index 2) is open
+    game.board.points[2] = []  # Ensure point 3 (index 2) is open
 
     # 2. Set dice to a specific roll (e.g., 3) that allows re-entry.
     # White player's entry is -1. So -1 + 3 = 2, which is point 3.
@@ -42,16 +51,16 @@ def test_move_from_bar(monkeypatch, mock_pygame):
     # - First click: on the bar to select the checker.
     # The bar's rect for the current player is needed. Let's assume a click is within it.
     ui.bar_rects[player.get_color()] = Mock(collidepoint=lambda pos: True)
-    ui._handle_click((0, 0)) # Position doesn't matter due to mocking
+    ui._handle_click((0, 0))  # Position doesn't matter due to mocking
 
     # Check that the bar is now selected
-    assert ui.selected_source == 'bar'
-    assert 2 in ui.possible_dests # Destination for die '3'
+    assert ui.selected_source == "bar"
+    assert 2 in ui.possible_dests  # Destination for die '3'
 
     # - Second click: on the destination point (point 3, which is index 2).
     # We need to mock _get_point_from_pos to return the correct point index.
-    monkeypatch.setattr(ui, '_get_point_from_pos', lambda pos: 2)
-    ui._handle_click((100, 100)) # Position doesn't matter
+    monkeypatch.setattr(ui, "_get_point_from_pos", lambda pos: 2)
+    ui._handle_click((100, 100))  # Position doesn't matter
 
     # 4. Assert the game state has changed as expected:
     # - The checker is no longer on the bar.
@@ -64,20 +73,21 @@ def test_move_from_bar(monkeypatch, mock_pygame):
     assert ui.selected_source is None
     assert not ui.possible_dests
 
+
 def test_bear_off_move(monkeypatch, mock_pygame):
     """Test bearing off a checker."""
-    monkeypatch.setattr('backgammon.pygame_ui.ui.pygame', mock_pygame)
+    monkeypatch.setattr("backgammon.pygame_ui.ui.pygame", mock_pygame)
     ui = PygameUI()
     game = ui.game
-    player = game.get_current_player() # Assume it's White
+    player = game.get_current_player()  # Assume it's White
 
     # 1. Setup the board for bear-off: all checkers in the home board.
     # We'll place one checker on point 23 (index 22) and the rest elsewhere in home.
-    game.board.points = [[] for _ in range(24)] # Clear the board
+    game.board.points = [[] for _ in range(24)]  # Clear the board
     player_checkers = player.get_checkers()
-    game.board.place_checker(player_checkers[0], 22) # Point 23
+    game.board.place_checker(player_checkers[0], 22)  # Point 23
     for i in range(1, 15):
-        game.board.place_checker(player_checkers[i], 18 + (i % 5)) # Other home points
+        game.board.place_checker(player_checkers[i], 18 + (i % 5))  # Other home points
 
     # 2. Set dice to a roll that allows bearing off from point 23 (e.g., a 2 or more).
     # White moves from high to low, but direction is positive. home_points: 18-23. Entry -1.
@@ -87,22 +97,22 @@ def test_bear_off_move(monkeypatch, mock_pygame):
 
     # 3. Simulate the player's actions:
     # - First click: select the checker on point 23.
-    monkeypatch.setattr(ui, '_get_point_from_pos', lambda pos: 22)
-    ui._handle_click((200, 200)) # Position doesn't matter
+    monkeypatch.setattr(ui, "_get_point_from_pos", lambda pos: 22)
+    ui._handle_click((200, 200))  # Position doesn't matter # pylint: disable=protected-access
 
     # Check that the source is selected and 'bear_off' is a possible destination
     assert ui.selected_source == 22
-    assert 'bear_off' in ui.possible_dests
+    assert "bear_off" in ui.possible_dests
 
     # - Second click: click on the bear-off area.
-    monkeypatch.setattr(ui, '_get_point_from_pos', lambda pos: None) # Click is not on a point
+    monkeypatch.setattr(ui, "_get_point_from_pos", lambda pos: None)  # Click is not on a point
     # Mock the bear_off_rects to return a mock rect that will register the click
     mock_bear_off_rect = Mock()
     mock_bear_off_rect.collidepoint.return_value = True
     ui.bear_off_rects[player.get_color()] = mock_bear_off_rect
     # We also need to mock _get_bear_off_from_pos to return 'bear_off'
-    monkeypatch.setattr(ui, '_get_bear_off_from_pos', lambda pos: 'bear_off')
-    ui._handle_click((1300, 100)) # A position in the new bear-off area
+    monkeypatch.setattr(ui, "_get_bear_off_from_pos", lambda pos: "bear_off")
+    ui._handle_click((1300, 100))  # A position in the new bear-off area # pylint: disable=protected-access
 
     # 4. Assert the game state has changed as expected:
     # - The checker is no longer on the board.
@@ -114,9 +124,10 @@ def test_bear_off_move(monkeypatch, mock_pygame):
     # - The selection state is reset.
     assert ui.selected_source is None
 
-def test_game_over_detection(monkeypatch, mock_pygame):
+
+def test_game_over_detection(monkeypatch, mock_pygame): # pylint: disable=redefined-outer-name
     """Test that the UI detects the game over state correctly."""
-    monkeypatch.setattr('backgammon.pygame_ui.ui.pygame', mock_pygame)
+    monkeypatch.setattr("backgammon.pygame_ui.ui.pygame", mock_pygame)
     ui = PygameUI()
     game = ui.game
     player = game.get_current_player()
@@ -129,10 +140,10 @@ def test_game_over_detection(monkeypatch, mock_pygame):
     # 2. Mock the is_game_over method to return True
     # In a real scenario, this would be based on the board state.
     # The game logic is tested elsewhere, here we ensure the UI reacts to it.
-    monkeypatch.setattr(game, 'is_game_over', lambda: True)
+    monkeypatch.setattr(game, "is_game_over", lambda: True)
 
     # 3. Call _end_turn(), which should trigger the game over logic.
-    ui._end_turn()
+    ui._end_turn() # pylint: disable=protected-access
 
     # 4. Assert that the UI has entered the game over state.
     assert ui.game_over is True

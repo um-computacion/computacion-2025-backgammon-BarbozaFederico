@@ -61,9 +61,7 @@ class TableroFachada(Protocol):
         self, jugador: "Player", dados: Sequence[ValorDado]
     ) -> List[OpcionMovimiento]: ...
 
-    def aplicar_movimiento(
-        self, jugador: "Player", secuencia: SecuenciaMovimiento
-    ) -> None: ...
+    def aplicar_movimiento(self, jugador: "Player", secuencia: SecuenciaMovimiento) -> None: ...
 
 
 class Politica(Protocol):
@@ -72,9 +70,7 @@ class Politica(Protocol):
     Útil para Humano/CPU; Player no depende de UI.
     """
 
-    def elegir(
-        self, opciones: List[OpcionMovimiento]
-    ) -> Optional[SecuenciaMovimiento]: ...
+    def elegir(self, opciones: List[OpcionMovimiento]) -> Optional[SecuenciaMovimiento]: ...
 
 
 class PoliticaNula:
@@ -353,9 +349,7 @@ class Player:
         """
         return tablero.enumerar_opciones_legales(self, dados)
 
-    def elegir_movimiento(
-        self, opciones: List[OpcionMovimiento]
-    ) -> Optional[SecuenciaMovimiento]:
+    def elegir_movimiento(self, opciones: List[OpcionMovimiento]) -> Optional[SecuenciaMovimiento]:
         """
         Selects a move sequence from available options using the player's strategy.
 
@@ -371,9 +365,7 @@ class Player:
             return None
         return self.__politica__.elegir(opciones)
 
-    def confirmar_movimiento(
-        self, tablero: TableroFachada, secuencia: SecuenciaMovimiento
-    ) -> None:
+    def confirmar_movimiento(self, tablero: TableroFachada, secuencia: SecuenciaMovimiento) -> None:
         """
         Applies a move sequence to the board.
 

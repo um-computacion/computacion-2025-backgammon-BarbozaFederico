@@ -1,4 +1,6 @@
-import pytest
+# pylint: disable=unused-argument
+
+import pytest  # pylint: disable=unused-import
 from backgammon.core.player import (
     Player,
     PoliticaNula,
@@ -139,6 +141,7 @@ def test_player_puede_bear_off():
     assert p.puede_bear_off(dummy) is True
     dummy.bar = True
     assert p.puede_bear_off(dummy) is False
+
 
 def test_puede_bear_off_con_oponente_en_cuadrante():
     """Testea que no se pueda hacer bear off con oponente en el cuadrante."""

@@ -1,3 +1,5 @@
+"""pass"""
+
 from typing import List, Optional, Dict, TYPE_CHECKING
 
 if TYPE_CHECKING:
@@ -334,7 +336,10 @@ class Board:
         secuencia : SecuenciaMovimiento
             Sequence of move steps to apply
         """
-        from backgammon.core.player import SecuenciaMovimiento, PasoMovimiento
+        from backgammon.core.player import (  # pylint: disable=unused-import
+            SecuenciaMovimiento,
+            PasoMovimiento,
+        )  # pylint: disable=unused-import
 
         for paso in secuencia:
             self._aplicar_paso_movimiento(player, paso)
@@ -493,13 +498,15 @@ class Board:
                     break
 
             if farthest_point_with_checker != -1:
-                point_for_exact_move = (24 - die_value) if direccion == 1 else (die_value - 1)
+                point_for_exact_move = (
+                    (24 - die_value) if direccion == 1 else (die_value - 1)
+                )
 
-                can_bear_off_inexact = False
-                if direccion == 1: # Blancas
+                can_bear_off_inexact = False  # pylint: disable=unused-variable
+                if direccion == 1:  # Blancas
                     if farthest_point_with_checker < point_for_exact_move:
                         can_bear_off_inexact = True
-                else: # Negras
+                else:  # Negras
                     if farthest_point_with_checker > point_for_exact_move:
                         can_bear_off_inexact = True
 
@@ -507,12 +514,18 @@ class Board:
                 has_checkers_beyond_exact = False
                 if direccion == 1:
                     for p in range(point_for_exact_move):
-                        if any(c.get_color() == color for c in tablero.get_checkers_on_point(p)):
+                        if any(
+                            c.get_color() == color
+                            for c in tablero.get_checkers_on_point(p)
+                        ):
                             has_checkers_beyond_exact = True
                             break
                 else:
-                     for p in range(point_for_exact_move + 1, 24):
-                        if any(c.get_color() == color for c in tablero.get_checkers_on_point(p)):
+                    for p in range(point_for_exact_move + 1, 24):
+                        if any(
+                            c.get_color() == color
+                            for c in tablero.get_checkers_on_point(p)
+                        ):
                             has_checkers_beyond_exact = True
                             break
 
@@ -664,7 +677,3 @@ class Board:
             if checkers and checkers[0].get_color() == opponent_color:
                 return True
         return False
-
-
-class prueba1:
-    pass
