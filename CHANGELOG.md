@@ -5,6 +5,19 @@ Todas las modificaciones notables de este proyecto serán documentadas en este a
 El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/),
 y este proyecto sigue [Semantic Versioning](https://semver.org/lang/es/).
 
+## [1.6.4] - 2025-10-29
+
+### Added
+
+- docs: Se añadió un diagrama UML completo y detallado de todas las clases del core (Player, Checker, Dice, Board, BackgammonGame, Move) en `plantaUML.mermaid`.
+  - El diagrama incluye atributos, métodos principales y relaciones entre clases para facilitar la comprensión y el mantenimiento del diseño.
+
+---
+
+**Referencias:**
+
+- plantaUML.mermaid
+
 ## [1.6.3] - 2025-10-29
 
 ### Added
