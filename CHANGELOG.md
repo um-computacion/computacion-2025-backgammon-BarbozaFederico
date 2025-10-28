@@ -5,6 +5,24 @@ Todas las modificaciones notables de este proyecto serán documentadas en este a
 El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/),
 y este proyecto sigue [Semantic Versioning](https://semver.org/lang/es/).
 
+## [1.6.1] - 2025-10-28
+
+### Fixed
+
+- fix(ui): Alinear las hit-boxes de las fichas en la barra con su representación visual.
+
+  Se resolvió un problema por el cual el área clicable (hitbox) de las fichas ubicadas en la barra no coincidía con su nueva posición visual. Cambios clave:
+
+  - Se ajustaron las posiciones verticales de dibujo de las fichas blancas y negras en la barra para que queden centradas en la mitad superior (blancas) y en la mitad inferior (negras) de la barra, respectivamente.
+  - Este ajuste alinea la representación visual de las fichas con los rectángulos clicables subyacentes, de modo que las fichas sean seleccionables según lo previsto.
+  - Se mantienen las mejoras de UI previas, como la visualización de una sola ficha con un contador cuando hay múltiples fichas en la barra.
+
+---
+
+**Referencias:**
+
+- backgammon/pygame_ui/ui.py
+
 ## [1.6.0] - 2025-10-27
 
 ### Added

@@ -209,9 +209,6 @@ def test_aplicar_movimiento_and_enumerar_opciones_legales():
     for i, c in enumerate(checkers[1:]):
         board.place_checker(c, 19 + (i % 5))  # Distribuye en posiciones 19-23
 
-    # El método ahora puede requerir un set en home_points, ajustamos si es necesario
-    p._home_points = set([18, 19, 20, 21, 22, 23])
-
     opciones = board.enumerar_opciones_legales(p, [6])
     assert isinstance(opciones, list)
     assert opciones

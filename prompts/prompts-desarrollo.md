@@ -323,7 +323,7 @@ Tareas a realizar:
 
 ## Prompt
 
-Herramienta usada: jules
+Modelo / herramienta usada: jules
 
 Tareas a realizar:
 
@@ -445,3 +445,20 @@ Referencias a archivos afectados:
 
 - backgammon/pygame_ui/ui.py (implementación de la tirada inicial y mensaje temporal)
 - prompts/prompts-desarrollo.md (este registro)
+
+## Prompt
+
+Modelo / herramienta usada: jules
+
+### Instrucciones del sistema
+
+- Registrar el prompt tal cual y documentar la respuesta en este archivo.
+- Mantener formato consistente con los demás prompts.
+
+### Prompt exacto
+
+Arregla la hitbox para las blancas para que cuando las toque me deje sacarlas, en el estado actual del juego debo tocar la parte de arriba de la barra, si se te hace mas facil deja la parte de arriba de la barra solo para las blancas y la parte de abajo de la barra solo para las negras
+
+### Respuesta / resultado esperado
+
+Se debe actualizar la UI para que la mitad superior de la barra sea el área clicable para las fichas blancas y la mitad inferior para las fichas negras, manteniendo el comportamiento actual (selección y reingreso desde la barra). Documentar el cambio y confirmar que las hitboxes y el render se alinean correctamente.
