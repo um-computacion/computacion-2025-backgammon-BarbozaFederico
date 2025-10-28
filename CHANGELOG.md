@@ -5,6 +5,19 @@ Todas las modificaciones notables de este proyecto serán documentadas en este a
 El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/),
 y este proyecto sigue [Semantic Versioning](https://semver.org/lang/es/).
 
+## [1.6.2] - 2025-10-28
+
+### Changed
+
+- UI: Se quitaron los números de columna (números de punta) que colisionaban visualmente con las fichas, evitando superposiciones y mejorando la legibilidad.
+- UI: Se movió el indicador de los dados al centro de la barra central para mejorar su visibilidad y coherencia con el diseño del tablero.
+
+---
+
+**Referencias:**
+
+- backgammon/pygame_ui/ui.py
+
 ## [1.6.1] - 2025-10-28
 
 ### Fixed
