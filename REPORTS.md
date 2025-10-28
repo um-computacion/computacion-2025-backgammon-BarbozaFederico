@@ -24,7 +24,7 @@ tests/test_board.py:212: AttributeError
 =========================== short test summary info ============================
 FAILED tests/test_board.py::test_aplicar_movimiento_and_enumerar_opciones_legales - AttributeError: 'Board' object has no attribute 'enumerar_opciones_legales'
 !!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!
-1 failed, 17 passed in 1.19s
+1 failed, 17 passed in 0.96s
 
 ```
 ## Pylint Report
