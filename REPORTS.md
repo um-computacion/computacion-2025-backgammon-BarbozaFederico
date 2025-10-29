@@ -1,30 +1,23 @@
 # Automated Reports
 ## Coverage Report
 ```text
-.......................................................F
-=================================== FAILURES ===================================
-_______________________ test_jugador_pip_count_en_barra ________________________
+........................................................................ [ 77%]
+.....................                                                    [100%]
+================================ tests coverage ================================
+_______________ coverage: platform linux, python 3.10.18-final-0 _______________
 
-    def test_jugador_pip_count_en_barra():
-        """Testea el cálculo del pip count con fichas en la barra."""
-        board = Board()
-        player = DummyPlayer()
-        board.add_player(player)
-        checker = player.get_checkers()[0]
-        board.send_to_bar(checker)
-    
-        # The other 14 checkers are in the "fuera" state by default in the dummy checker,
-        # so they don't add to the pip count.
-        # A checker on the bar is 25 pips away.
-        pip = board.jugador_pip_count(player)
->       assert pip == 25
-E       assert 24 == 25
-
-tests/test_board.py:832: AssertionError
-=========================== short test summary info ============================
-FAILED tests/test_board.py::test_jugador_pip_count_en_barra - assert 24 == 25
-!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!
-1 failed, 55 passed in 1.82s
+Name                            Stmts   Miss Branch BrPart  Cover   Missing
+---------------------------------------------------------------------------
+backgammon/core/backgammon.py      55      0     24      1    99%   110->117
+backgammon/core/board.py          338     29    198     33    87%   316->315, 318, 319->315, 348, 352, 358, 364, 403-404, 409->408, 421->429, 454-455, 469->464, 503-504, 530->537, 545-548, 558-567, 579, 624, 635, 663, 730, 755->754, 771->782, 775->782, 777->782, 778->777, 784, 788-789, 797->exit, 869
+backgammon/core/checker.py         44      0      0      0   100%
+backgammon/core/dice.py            13      0      0      0   100%
+backgammon/core/move.py            18      0      4      0   100%
+backgammon/core/player.py          80      0      2      0   100%
+---------------------------------------------------------------------------
+TOTAL                             548     29    228     34    91%
+Coverage XML written to file cobertura.xml
+93 passed in 0.59s
 
 ```
 ## Pylint Report
