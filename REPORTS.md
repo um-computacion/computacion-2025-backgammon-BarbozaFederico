@@ -6,8 +6,8 @@
 =================================== FAILURES ===================================
 ______________________________ test_move_from_bar ______________________________
 
-monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f50581ac100>
-mock_pygame = <Mock id='139983052260736'>
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7fe8ab307220>
+mock_pygame = <Mock id='140637281219392'>
 
     def test_move_from_bar(monkeypatch, mock_pygame):
         """Test moving a checker from the bar to the board."""
@@ -22,7 +22,7 @@ mock_pygame = <Mock id='139983052260736'>
 tests/test_ui.py:28: 
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-self = <backgammon.core.backgammon.BackgammonGame object at 0x7f5057d6f040>
+self = <backgammon.core.backgammon.BackgammonGame object at 0x7fe8ab3b1cf0>
 
     def get_current_player(self) -> Player:
         """
@@ -39,7 +39,7 @@ backgammon/core/backgammon.py:158: IndexError
 =========================== short test summary info ============================
 FAILED tests/test_ui.py::test_move_from_bar - IndexError: list index out of range
 !!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!
-1 failed, 82 passed in 1.05s
+1 failed, 82 passed in 1.24s
 
 ```
 ## Pylint Report
