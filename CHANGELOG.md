@@ -5,6 +5,30 @@ Todas las modificaciones notables de este proyecto serán documentadas en este a
 El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/),
 y este proyecto sigue [Semantic Versioning](https://semver.org/lang/es/).
 
+## [1.6.7] - 2025-10-29
+
+### Changed
+
+- refactor: Se refactorizó el método `display` en `backgammon/core/board.py` para renderizar una representación en arte ASCII del tablero de juego. Esto mejora significativamente la experiencia de usuario en la interfaz de línea de comandos, proporcionando un diseño claro, intuitivo y visualmente atractivo.
+
+#### Mejoras incluidas:
+- Diseño completo del tablero con numeración de puntos.
+- Caracteres 'W' y 'B' para representar las fichas blancas y negras.
+- Área designada para la barra.
+- Conteo claro de fichas en la barra y fichas que han salido (bear-off).
+
+### Fixed
+
+- Se actualizaron las pruebas unitarias correspondientes al método `display` para validar el nuevo formato ASCII, asegurando que los cambios estén cubiertos y que el conjunto de tests siga siendo robusto.
+- La lógica central del juego y la interfaz gráfica Pygame no se ven afectadas por esta mejora visual.
+
+---
+
+**Referencias:**
+
+- backgammon/core/board.py
+- tests/
+
 ## [1.6.6] - 2025-10-29
 
 ### Added

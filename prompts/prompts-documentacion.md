@@ -389,14 +389,15 @@ Referencia a los archivos finales que incorporaron contenido generado por IA:
 **Prompt exacto:**
 Plante los siguientes cambios en español en changelog siguiendo versionado semantico y "keep a changelog" ademas de plantear este prompt en "prompts de documentacion"
 Texto:
-The key changes include:
-- Implemented the `enumerar_opciones_legales` method in the `Board` class to correctly generate all legal moves.
-- Refactored the move generation logic to use a more efficient backtracking algorithm instead of `deepcopy`, significantly improving performance.
-- Cleaned up the codebase by moving imports to the top of the file and removing unused code.
-- Restored and corrected a previously deleted unit test to ensure proper test coverage.
-- Verified that both the CLI and the Pygame UI are fully functional after the changes.
+Refactors the `display` method in `backgammon/core/board.py` to render an ASCII art representation of the game board. This significantly enhances the user experience in the command-line interface by providing a clear, intuitive, and visually appealing layout.
 
-All relevant tests now pass, and the code quality has been improved based on the code review feedback.
+The new design includes:
+- A full board layout with numbered points.
+- 'W' and 'B' characters to represent white and black checkers.
+- A designated area for the bar.
+- Clear counts for checkers on the bar and those that have been borne off.
+
+The corresponding unit tests for the `display` method have been updated to validate the new ASCII format, ensuring that the changes are covered and the test suite remains robust. The core game logic and the Pygame UI are unaffected by this visual enhancement.
 
 **Instrucciones del sistema:**  
 Siempre sigue los principios SOLID  
@@ -410,19 +411,20 @@ Se añadió la siguiente entrada al archivo CHANGELOG.md:
 
 ## [1.6.7] - 2025-10-29
 
-### Added
-
-- Se implementó el método `enumerar_opciones_legales` en la clase `Board` para generar correctamente todos los movimientos legales posibles según las reglas del juego.
-- Se restauró y corrigió una prueba unitaria que había sido eliminada previamente, asegurando una cobertura de tests adecuada.
-
 ### Changed
 
-- Se refactorizó la lógica de generación de movimientos en `Board` para utilizar un algoritmo de backtracking más eficiente en lugar de `deepcopy`, mejorando significativamente el rendimiento.
-- Se realizó una limpieza general del código: se movieron los imports al inicio de los archivos y se eliminaron fragmentos de código no utilizados.
+- refactor: Se refactorizó el método `display` en `backgammon/core/board.py` para renderizar una representación en arte ASCII del tablero de juego. Esto mejora significativamente la experiencia de usuario en la interfaz de línea de comandos, proporcionando un diseño claro, intuitivo y visualmente atractivo.
+
+#### Mejoras incluidas:
+- Diseño completo del tablero con numeración de puntos.
+- Caracteres 'W' y 'B' para representar las fichas blancas y negras.
+- Área designada para la barra.
+- Conteo claro de fichas en la barra y fichas que han salido (bear-off).
 
 ### Fixed
 
-- Se verificó que tanto la interfaz de línea de comandos (CLI) como la interfaz gráfica (Pygame UI) funcionen correctamente tras los cambios.
+- Se actualizaron las pruebas unitarias correspondientes al método `display` para validar el nuevo formato ASCII, asegurando que los cambios estén cubiertos y que el conjunto de tests siga siendo robusto.
+- La lógica central del juego y la interfaz gráfica Pygame no se ven afectadas por esta mejora visual.
 
 ---
 
@@ -430,7 +432,6 @@ Se añadió la siguiente entrada al archivo CHANGELOG.md:
 
 - backgammon/core/board.py
 - tests/
-- CLI y Pygame UI
 
 La salida fue usada sin cambios.
 
