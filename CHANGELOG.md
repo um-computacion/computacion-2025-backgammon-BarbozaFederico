@@ -5,6 +5,30 @@ Todas las modificaciones notables de este proyecto serán documentadas en este a
 El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/),
 y este proyecto sigue [Semantic Versioning](https://semver.org/lang/es/).
 
+## [1.6.6] - 2025-10-29
+
+### Added
+
+- Se implementó el método `enumerar_opciones_legales` en la clase `Board` para generar correctamente todos los movimientos legales posibles según las reglas del juego.
+- Se restauró y corrigió una prueba unitaria que había sido eliminada previamente, asegurando una cobertura de tests adecuada.
+
+### Changed
+
+- Se refactorizó la lógica de generación de movimientos en `Board` para utilizar un algoritmo de backtracking más eficiente en lugar de `deepcopy`, mejorando significativamente el rendimiento.
+- Se realizó una limpieza general del código: se movieron los imports al inicio de los archivos y se eliminaron fragmentos de código no utilizados.
+
+### Fixed
+
+- Se verificó que tanto la interfaz de línea de comandos (CLI) como la interfaz gráfica (Pygame UI) funcionen correctamente tras los cambios.
+
+---
+
+**Referencias:**
+
+- backgammon/core/board.py
+- tests/
+- CLI y Pygame UI
+
 ## [1.6.5] - 2025-10-29
 
 ### Added
