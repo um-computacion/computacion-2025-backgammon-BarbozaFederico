@@ -5,6 +5,24 @@ Todas las modificaciones notables de este proyecto serán documentadas en este a
 El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/),
 y este proyecto sigue [Semantic Versioning](https://semver.org/lang/es/).
 
+## [1.6.5] - 2025-10-29
+
+### Added
+
+- docs: Se completó el archivo `JUSTIFICACION.md` con una documentación exhaustiva y accesible del diseño del proyecto.
+  - Se justifica cada clase (Checker, Dice, Player, Board, Move, BackgammonGame) de forma clara y sin tecnicismos innecesarios.
+  - Se detallan todos los atributos con explicaciones de por qué existen y cómo funcionan.
+  - Se documentan las decisiones de diseño principales: orientación opuesta de jugadores, prioridad de la barra, bear-off dinámico, validación de puntos.
+  - Se incluye un análisis completo del manejo de errores y excepciones en cada clase.
+  - Se describe la estrategia de testing y cobertura de código.
+  - Se explican las referencias a los principios SOLID aplicados en el proyecto.
+
+---
+
+**Referencias:**
+
+- JUSTIFICACION.md
+
 ## [1.6.4] - 2025-10-29
 
 ### Added
