@@ -1,34 +1,30 @@
 # Automated Reports
 ## Coverage Report
 ```text
-....F
+.......................................................F
 =================================== FAILURES ===================================
-________________________ test_roll_dice_and_cli_display ________________________
+_______________________ test_jugador_pip_count_en_barra ________________________
 
-capsys = <_pytest.capture.CaptureFixture object at 0x7f46b6c38970>
+    def test_jugador_pip_count_en_barra():
+        """Testea el cálculo del pip count con fichas en la barra."""
+        board = Board()
+        player = DummyPlayer()
+        board.add_player(player)
+        checker = player.get_checkers()[0]
+        board.send_to_bar(checker)
+    
+        # The other 14 checkers are in the "fuera" state by default in the dummy checker,
+        # so they don't add to the pip count.
+        # A checker on the bar is 25 pips away.
+        pip = board.jugador_pip_count(player)
+>       assert pip == 25
+E       assert 24 == 25
 
-    def test_roll_dice_and_cli_display(capsys):
-        """Testea el lanzamiento de dados y la visualización CLI."""
-        game = BackgammonGame()
-        game.setup_players(get_player_configs())
-        vals = game.roll_dice()
-        assert isinstance(vals, tuple)
-        assert len(vals) == 2
-        assert all(1 <= v <= 6 for v in vals)
-        game.cli_display()
-        captured = capsys.readouterr()
-        assert "Turno de:" in captured.out
-        assert "Dados:" in captured.out
->       assert "Tablero:" in captured.out
-E       AssertionError: assert 'Tablero:' in 'Turno de: Blanco (blancas)\nDados: (4, 1)\n 13 14 15 16 17 18   19 20 21 22 23 24\n+------------------+--------------...-+\n 12 11 10  9  8  7    6  5  4  3  2  1\n\nBar:\n  Blancas: 0\n  Negras: 0\nBorne Off:\n  Blancas: 0\n  Negras: 0\n'
-E        +  where 'Turno de: Blanco (blancas)\nDados: (4, 1)\n 13 14 15 16 17 18   19 20 21 22 23 24\n+------------------+--------------...-+\n 12 11 10  9  8  7    6  5  4  3  2  1\n\nBar:\n  Blancas: 0\n  Negras: 0\nBorne Off:\n  Blancas: 0\n  Negras: 0\n' = CaptureResult(out='Turno de: Blanco (blancas)\nDados: (4, 1)\n 13 14 15 16 17 18   19 20 21 22 23 24\n+---------------...1 10  9  8  7    6  5  4  3  2  1\n\nBar:\n  Blancas: 0\n  Negras: 0\nBorne Off:\n  Blancas: 0\n  Negras: 0\n', err='').out
-
-tests/test_backgammon.py:94: AssertionError
+tests/test_board.py:832: AssertionError
 =========================== short test summary info ============================
-FAILED tests/test_backgammon.py::test_roll_dice_and_cli_display - AssertionError: assert 'Tablero:' in 'Turno de: Blanco (blancas)\nDados: (4, 1)\n 13 14 15 16 17 18   19 20 21 22 23 24\n+------------------+--------------...-+\n 12 11 10  9  8  7    6  5  4  3  2  1\n\nBar:\n  Blancas: 0\n  Negras: 0\nBorne Off:\n  Blancas: 0\n  Negras: 0\n'
- +  where 'Turno de: Blanco (blancas)\nDados: (4, 1)\n 13 14 15 16 17 18   19 20 21 22 23 24\n+------------------+--------------...-+\n 12 11 10  9  8  7    6  5  4  3  2  1\n\nBar:\n  Blancas: 0\n  Negras: 0\nBorne Off:\n  Blancas: 0\n  Negras: 0\n' = CaptureResult(out='Turno de: Blanco (blancas)\nDados: (4, 1)\n 13 14 15 16 17 18   19 20 21 22 23 24\n+---------------...1 10  9  8  7    6  5  4  3  2  1\n\nBar:\n  Blancas: 0\n  Negras: 0\nBorne Off:\n  Blancas: 0\n  Negras: 0\n', err='').out
+FAILED tests/test_board.py::test_jugador_pip_count_en_barra - assert 24 == 25
 !!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!
-1 failed, 4 passed in 1.23s
+1 failed, 55 passed in 1.48s
 
 ```
 ## Pylint Report
