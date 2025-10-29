@@ -1,45 +1,34 @@
 # Automated Reports
 ## Coverage Report
 ```text
-........................................................................ [ 84%]
-..........F
+....F
 =================================== FAILURES ===================================
-______________________________ test_move_from_bar ______________________________
+________________________ test_roll_dice_and_cli_display ________________________
 
-monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7fbe8919d390>
-mock_pygame = <Mock id='140456320684032'>
+capsys = <_pytest.capture.CaptureFixture object at 0x7f66e4790490>
 
-    def test_move_from_bar(monkeypatch, mock_pygame):
-        """Test moving a checker from the bar to the board."""
-        # Mock pygame to avoid display initialization
-        monkeypatch.setattr("backgammon.pygame_ui.ui.pygame", mock_pygame)
-    
-        # Initialize UI
-        ui = PygameUI()
-        game = ui.game
->       player = game.get_current_player()
+    def test_roll_dice_and_cli_display(capsys):
+        """Testea el lanzamiento de dados y la visualización CLI."""
+        game = BackgammonGame()
+        game.setup_players(get_player_configs())
+        vals = game.roll_dice()
+        assert isinstance(vals, tuple)
+        assert len(vals) == 2
+        assert all(1 <= v <= 6 for v in vals)
+        game.cli_display()
+        captured = capsys.readouterr()
+        assert "Turno de:" in captured.out
+        assert "Dados:" in captured.out
+>       assert "Tablero:" in captured.out
+E       AssertionError: assert 'Tablero:' in 'Turno de: Blanco (blancas)\nDados: (3, 5)\n 13 14 15 16 17 18   19 20 21 22 23 24\n+------------------+--------------...-+\n 12 11 10  9  8  7    6  5  4  3  2  1\n\nBar:\n  Blancas: 0\n  Negras: 0\nBorne Off:\n  Blancas: 0\n  Negras: 0\n'
+E        +  where 'Turno de: Blanco (blancas)\nDados: (3, 5)\n 13 14 15 16 17 18   19 20 21 22 23 24\n+------------------+--------------...-+\n 12 11 10  9  8  7    6  5  4  3  2  1\n\nBar:\n  Blancas: 0\n  Negras: 0\nBorne Off:\n  Blancas: 0\n  Negras: 0\n' = CaptureResult(out='Turno de: Blanco (blancas)\nDados: (3, 5)\n 13 14 15 16 17 18   19 20 21 22 23 24\n+---------------...1 10  9  8  7    6  5  4  3  2  1\n\nBar:\n  Blancas: 0\n  Negras: 0\nBorne Off:\n  Blancas: 0\n  Negras: 0\n', err='').out
 
-tests/test_ui.py:28: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
-
-self = <backgammon.core.backgammon.BackgammonGame object at 0x7fbe88d5efe0>
-
-    def get_current_player(self) -> Player:
-        """
-        Returns the current Player object.
-    
-        Returns
-        -------
-        Player
-        """
->       return self.players[self.current_player_idx]
-E       IndexError: list index out of range
-
-backgammon/core/backgammon.py:158: IndexError
+tests/test_backgammon.py:94: AssertionError
 =========================== short test summary info ============================
-FAILED tests/test_ui.py::test_move_from_bar - IndexError: list index out of range
+FAILED tests/test_backgammon.py::test_roll_dice_and_cli_display - AssertionError: assert 'Tablero:' in 'Turno de: Blanco (blancas)\nDados: (3, 5)\n 13 14 15 16 17 18   19 20 21 22 23 24\n+------------------+--------------...-+\n 12 11 10  9  8  7    6  5  4  3  2  1\n\nBar:\n  Blancas: 0\n  Negras: 0\nBorne Off:\n  Blancas: 0\n  Negras: 0\n'
+ +  where 'Turno de: Blanco (blancas)\nDados: (3, 5)\n 13 14 15 16 17 18   19 20 21 22 23 24\n+------------------+--------------...-+\n 12 11 10  9  8  7    6  5  4  3  2  1\n\nBar:\n  Blancas: 0\n  Negras: 0\nBorne Off:\n  Blancas: 0\n  Negras: 0\n' = CaptureResult(out='Turno de: Blanco (blancas)\nDados: (3, 5)\n 13 14 15 16 17 18   19 20 21 22 23 24\n+---------------...1 10  9  8  7    6  5  4  3  2  1\n\nBar:\n  Blancas: 0\n  Negras: 0\nBorne Off:\n  Blancas: 0\n  Negras: 0\n', err='').out
 !!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!
-1 failed, 82 passed in 1.11s
+1 failed, 4 passed in 1.21s
 
 ```
 ## Pylint Report
@@ -55,24 +44,25 @@ backgammon/core/backgammon.py:180:0: C0301: Line too long (107/100) (line-too-lo
 backgammon/core/backgammon.py:1:0: C0114: Missing module docstring (missing-module-docstring)
 backgammon/core/backgammon.py:93:16: W0212: Access to a protected member _player of a client class (protected-access)
 ************* Module core.board
-backgammon/core/board.py:488:0: C0325: Unnecessary parens after '=' keyword (superfluous-parens)
+backgammon/core/board.py:528:0: C0325: Unnecessary parens after '=' keyword (superfluous-parens)
 backgammon/core/board.py:1:0: C0114: Missing module docstring (missing-module-docstring)
 backgammon/core/board.py:15:0: C0413: Import "from backgammon.core.player import OpcionMovimiento" should be placed at the top of the module (wrong-import-position)
 backgammon/core/board.py:70:8: C0104: Disallowed name "bar" (disallowed-name)
-backgammon/core/board.py:217:8: C0206: Consider iterating with .items() (consider-using-dict-items)
-backgammon/core/board.py:220:8: C0206: Consider iterating with .items() (consider-using-dict-items)
-backgammon/core/board.py:277:16: R1705: Unnecessary "elif" after "return", remove the leading "el" from "elif" (no-else-return)
-backgammon/core/board.py:311:12: R1724: Unnecessary "elif" after "continue", remove the leading "el" from "elif" (no-else-continue)
-backgammon/core/board.py:396:4: R0914: Too many local variables (24/15) (too-many-locals)
-backgammon/core/board.py:403:8: C0415: Import outside toplevel (backgammon.core.player.PasoMovimiento) (import-outside-toplevel)
-backgammon/core/board.py:474:8: R1705: Unnecessary "else" after "return", remove the "else" and de-indent the code inside it (no-else-return)
-backgammon/core/board.py:396:4: R0912: Too many branches (25/12) (too-many-branches)
-backgammon/core/board.py:396:4: R0915: Too many statements (55/50) (too-many-statements)
-backgammon/core/board.py:541:4: R0911: Too many return statements (7/6) (too-many-return-statements)
-backgammon/core/board.py:686:8: W0404: Reimport 'OpcionMovimiento' (imported line 15) (reimported)
-backgammon/core/board.py:686:8: C0415: Import outside toplevel (backgammon.core.player.OpcionMovimiento, backgammon.core.player.ValorDado) (import-outside-toplevel)
-backgammon/core/board.py:774:8: W0404: Reimport 'OpcionMovimiento' (imported line 15) (reimported)
-backgammon/core/board.py:774:8: C0415: Import outside toplevel (backgammon.core.player.OpcionMovimiento) (import-outside-toplevel)
+backgammon/core/board.py:256:8: C0206: Consider iterating with .items() (consider-using-dict-items)
+backgammon/core/board.py:259:8: C0206: Consider iterating with .items() (consider-using-dict-items)
+backgammon/core/board.py:199:4: R0912: Too many branches (13/12) (too-many-branches)
+backgammon/core/board.py:317:16: R1705: Unnecessary "elif" after "return", remove the leading "el" from "elif" (no-else-return)
+backgammon/core/board.py:351:12: R1724: Unnecessary "elif" after "continue", remove the leading "el" from "elif" (no-else-continue)
+backgammon/core/board.py:436:4: R0914: Too many local variables (24/15) (too-many-locals)
+backgammon/core/board.py:443:8: C0415: Import outside toplevel (backgammon.core.player.PasoMovimiento) (import-outside-toplevel)
+backgammon/core/board.py:514:8: R1705: Unnecessary "else" after "return", remove the "else" and de-indent the code inside it (no-else-return)
+backgammon/core/board.py:436:4: R0912: Too many branches (25/12) (too-many-branches)
+backgammon/core/board.py:436:4: R0915: Too many statements (55/50) (too-many-statements)
+backgammon/core/board.py:581:4: R0911: Too many return statements (7/6) (too-many-return-statements)
+backgammon/core/board.py:726:8: W0404: Reimport 'OpcionMovimiento' (imported line 15) (reimported)
+backgammon/core/board.py:726:8: C0415: Import outside toplevel (backgammon.core.player.OpcionMovimiento, backgammon.core.player.ValorDado) (import-outside-toplevel)
+backgammon/core/board.py:814:8: W0404: Reimport 'OpcionMovimiento' (imported line 15) (reimported)
+backgammon/core/board.py:814:8: C0415: Import outside toplevel (backgammon.core.player.OpcionMovimiento) (import-outside-toplevel)
 ************* Module core.dice
 backgammon/core/dice.py:1:0: C0114: Missing module docstring (missing-module-docstring)
 ************* Module core.move
@@ -125,7 +115,7 @@ backgammon/pygame_ui/ui.py:6:0: W0611: Unused PasoMovimiento imported from backg
 backgammon/pygame_ui/ui.py:6:0: W0611: Unused SecuenciaMovimiento imported from backgammon.core.player (unused-import)
 
 -----------------------------------
-Your code has been rated at 9.29/10
+Your code has been rated at 9.30/10
 
 
 ```
