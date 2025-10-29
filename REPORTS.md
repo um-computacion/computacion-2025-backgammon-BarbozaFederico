@@ -24,15 +24,13 @@ tests/test_board.py:212: AttributeError
 =========================== short test summary info ============================
 FAILED tests/test_board.py::test_aplicar_movimiento_and_enumerar_opciones_legales - AttributeError: 'Board' object has no attribute 'enumerar_opciones_legales'
 !!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!
-1 failed, 17 passed in 0.96s
+1 failed, 17 passed in 1.57s
 
 ```
 ## Pylint Report
 ```text
 ************* Module cli.console
 backgammon/cli/console.py:1:0: C0114: Missing module docstring (missing-module-docstring)
-backgammon/cli/console.py:1:0: E0401: Unable to import 'backgammon.core.backgammon' (import-error)
-backgammon/cli/console.py:2:0: E0401: Unable to import 'backgammon.core.player' (import-error)
 backgammon/cli/console.py:115:16: R1705: Unnecessary "else" after "return", remove the "else" and de-indent the code inside it (no-else-return)
 backgammon/cli/console.py:98:26: W0613: Unused argument 'player' (unused-argument)
 backgammon/cli/console.py:2:0: W0611: Unused OpcionMovimiento imported from backgammon.core.player (unused-import)
@@ -40,10 +38,6 @@ backgammon/cli/console.py:2:0: W0611: Unused SecuenciaMovimiento imported from b
 ************* Module core.backgammon
 backgammon/core/backgammon.py:180:0: C0301: Line too long (107/100) (line-too-long)
 backgammon/core/backgammon.py:1:0: C0114: Missing module docstring (missing-module-docstring)
-backgammon/core/backgammon.py:2:0: E0401: Unable to import 'backgammon.core.player' (import-error)
-backgammon/core/backgammon.py:3:0: E0401: Unable to import 'backgammon.core.checker' (import-error)
-backgammon/core/backgammon.py:4:0: E0401: Unable to import 'backgammon.core.dice' (import-error)
-backgammon/core/backgammon.py:5:0: E0401: Unable to import 'backgammon.core.board' (import-error)
 backgammon/core/backgammon.py:93:16: W0212: Access to a protected member _player of a client class (protected-access)
 ************* Module core.board
 backgammon/core/board.py:491:0: C0325: Unnecessary parens after '=' keyword (superfluous-parens)
@@ -52,10 +46,8 @@ backgammon/core/board.py:215:8: C0206: Consider iterating with .items() (conside
 backgammon/core/board.py:218:8: C0206: Consider iterating with .items() (consider-using-dict-items)
 backgammon/core/board.py:275:16: R1705: Unnecessary "elif" after "return", remove the leading "el" from "elif" (no-else-return)
 backgammon/core/board.py:309:12: R1724: Unnecessary "elif" after "continue", remove the leading "el" from "elif" (no-else-continue)
-backgammon/core/board.py:339:8: E0401: Unable to import 'backgammon.core.player' (import-error)
 backgammon/core/board.py:339:8: C0415: Import outside toplevel (backgammon.core.player.SecuenciaMovimiento, backgammon.core.player.PasoMovimiento) (import-outside-toplevel)
 backgammon/core/board.py:399:4: R0914: Too many local variables (24/15) (too-many-locals)
-backgammon/core/board.py:406:8: E0401: Unable to import 'backgammon.core.player' (import-error)
 backgammon/core/board.py:406:8: C0415: Import outside toplevel (backgammon.core.player.PasoMovimiento) (import-outside-toplevel)
 backgammon/core/board.py:477:8: R1705: Unnecessary "else" after "return", remove the "else" and de-indent the code inside it (no-else-return)
 backgammon/core/board.py:399:4: R0912: Too many branches (25/12) (too-many-branches)
@@ -93,8 +85,6 @@ backgammon/pygame_ui/ui.py:991:0: C0301: Line too long (106/100) (line-too-long)
 backgammon/pygame_ui/ui.py:1076:0: C0301: Line too long (133/100) (line-too-long)
 backgammon/pygame_ui/ui.py:1:0: C0302: Too many lines in module (1098/1000) (too-many-lines)
 backgammon/pygame_ui/ui.py:1:0: C0114: Missing module docstring (missing-module-docstring)
-backgammon/pygame_ui/ui.py:5:0: E0401: Unable to import 'backgammon.core.backgammon' (import-error)
-backgammon/pygame_ui/ui.py:6:0: E0401: Unable to import 'backgammon.core.player' (import-error)
 backgammon/pygame_ui/ui.py:50:0: R0902: Too many instance attributes (27/7) (too-many-instance-attributes)
 backgammon/pygame_ui/ui.py:325:4: R0914: Too many local variables (32/15) (too-many-locals)
 backgammon/pygame_ui/ui.py:325:4: R0912: Too many branches (15/12) (too-many-branches)
@@ -115,13 +105,11 @@ backgammon/pygame_ui/ui.py:6:0: W0611: Unused PasoMovimiento imported from backg
 backgammon/pygame_ui/ui.py:6:0: W0611: Unused SecuenciaMovimiento imported from backgammon.core.player (unused-import)
 ************* Module test_backgammon
 tests/test_backgammon.py:1:0: C0114: Missing module docstring (missing-module-docstring)
-tests/test_backgammon.py:2:0: E0401: Unable to import 'backgammon.core.backgammon' (import-error)
 tests/test_backgammon.py:5:0: C0116: Missing function or method docstring (missing-function-docstring)
+tests/test_backgammon.py:30:11: C1803: "game.players == []" can be simplified to "not game.players", if it is strictly a sequence, as an empty list is falsey (use-implicit-booleaness-not-comparison)
 tests/test_backgammon.py:1:0: W0611: Unused import pytest (unused-import)
 ************* Module test_board
 tests/test_board.py:1:0: C0114: Missing module docstring (missing-module-docstring)
-tests/test_board.py:2:0: E0401: Unable to import 'backgammon.core.board' (import-error)
-tests/test_board.py:3:0: E0401: Unable to import 'backgammon.core.checker' (import-error)
 tests/test_board.py:18:4: C0116: Missing function or method docstring (missing-function-docstring)
 tests/test_board.py:21:4: C0116: Missing function or method docstring (missing-function-docstring)
 tests/test_board.py:24:4: C0116: Missing function or method docstring (missing-function-docstring)
@@ -129,23 +117,33 @@ tests/test_board.py:27:4: C0116: Missing function or method docstring (missing-f
 tests/test_board.py:30:4: C0116: Missing function or method docstring (missing-function-docstring)
 tests/test_board.py:33:4: C0116: Missing function or method docstring (missing-function-docstring)
 tests/test_board.py:40:0: C0116: Missing function or method docstring (missing-function-docstring)
+tests/test_board.py:52:11: C1803: "board.players == []" can be simplified to "not board.players", if it is strictly a sequence, as an empty list is falsey (use-implicit-booleaness-not-comparison)
+tests/test_board.py:103:11: C1803: "board.get_checkers_on_point(...) == []" can be simplified to "not board.get_checkers_on_point(...)", if it is strictly a sequence, as an empty list is falsey (use-implicit-booleaness-not-comparison)
+tests/test_board.py:104:11: C1803: "board.get_checkers_on_point(...) == []" can be simplified to "not board.get_checkers_on_point(...)", if it is strictly a sequence, as an empty list is falsey (use-implicit-booleaness-not-comparison)
+tests/test_board.py:118:11: C1803: "board.get_borne_off(...) == []" can be simplified to "not board.get_borne_off(...)", if it is strictly a sequence, as an empty list is falsey (use-implicit-booleaness-not-comparison)
+tests/test_board.py:152:11: C1803: "x == []" can be simplified to "not x", if it is strictly a sequence, as an empty list is falsey (use-implicit-booleaness-not-comparison)
+tests/test_board.py:153:11: C1803: "x == []" can be simplified to "not x", if it is strictly a sequence, as an empty list is falsey (use-implicit-booleaness-not-comparison)
+tests/test_board.py:154:11: C1803: "x == []" can be simplified to "not x", if it is strictly a sequence, as an empty list is falsey (use-implicit-booleaness-not-comparison)
+tests/test_board.py:155:11: C1803: "x == []" can be simplified to "not x", if it is strictly a sequence, as an empty list is falsey (use-implicit-booleaness-not-comparison)
+tests/test_board.py:156:11: C1803: "board.players == []" can be simplified to "not board.players", if it is strictly a sequence, as an empty list is falsey (use-implicit-booleaness-not-comparison)
 tests/test_board.py:160:0: C0116: Missing function or method docstring (missing-function-docstring)
 tests/test_board.py:169:0: C0116: Missing function or method docstring (missing-function-docstring)
 tests/test_board.py:188:0: C0116: Missing function or method docstring (missing-function-docstring)
 tests/test_board.py:200:0: C0116: Missing function or method docstring (missing-function-docstring)
+tests/test_board.py:212:15: E1101: Instance of 'Board' has no 'enumerar_opciones_legales' member (no-member)
 tests/test_board.py:221:0: C0116: Missing function or method docstring (missing-function-docstring)
 tests/test_board.py:231:11: W0212: Access to a protected member _es_movimiento_valido of a client class (protected-access)
 tests/test_board.py:232:11: W0212: Access to a protected member _es_captura of a client class (protected-access)
 tests/test_board.py:236:11: W0212: Access to a protected member _es_movimiento_valido of a client class (protected-access)
+tests/test_board.py:263:11: C1803: "board.get_checkers_on_point(...) == []" can be simplified to "not board.get_checkers_on_point(...)", if it is strictly a sequence, as an empty list is falsey (use-implicit-booleaness-not-comparison)
+tests/test_board.py:264:11: C1803: "board.get_checkers_on_point(...) == []" can be simplified to "not board.get_checkers_on_point(...)", if it is strictly a sequence, as an empty list is falsey (use-implicit-booleaness-not-comparison)
 tests/test_board.py:272:4: W0621: Redefining name 'DummyPlayer' from outer scope (line 6) (redefined-outer-name)
-tests/test_board.py:270:4: E0401: Unable to import 'backgammon.core.player' (import-error)
 tests/test_board.py:270:4: C0415: Import outside toplevel (backgammon.core.player.PasoMovimiento) (import-outside-toplevel)
 tests/test_board.py:272:4: C0115: Missing class docstring (missing-class-docstring)
 tests/test_board.py:273:8: C0116: Missing function or method docstring (missing-function-docstring)
 tests/test_board.py:272:4: R0903: Too few public methods (1/2) (too-few-public-methods)
 tests/test_board.py:278:8: W0212: Access to a protected member _aplicar_paso_movimiento of a client class (protected-access)
 tests/test_board.py:286:4: W0621: Redefining name 'DummyPlayer' from outer scope (line 6) (redefined-outer-name)
-tests/test_board.py:284:4: E0401: Unable to import 'backgammon.core.player' (import-error)
 tests/test_board.py:284:4: C0415: Import outside toplevel (backgammon.core.player.PasoMovimiento) (import-outside-toplevel)
 tests/test_board.py:286:4: C0115: Missing class docstring (missing-class-docstring)
 tests/test_board.py:287:8: C0116: Missing function or method docstring (missing-function-docstring)
@@ -160,6 +158,7 @@ tests/test_board.py:314:8: C0116: Missing function or method docstring (missing-
 tests/test_board.py:317:8: C0116: Missing function or method docstring (missing-function-docstring)
 tests/test_board.py:320:8: C0116: Missing function or method docstring (missing-function-docstring)
 tests/test_board.py:320:33: W0613: Unused argument 'b' (unused-argument)
+tests/test_board.py:324:8: E1101: Instance of 'Board' has no 'enumerar_opciones_legales' member (no-member)
 tests/test_board.py:331:4: W0621: Redefining name 'DummyPlayer' from outer scope (line 6) (redefined-outer-name)
 tests/test_board.py:331:4: C0115: Missing class docstring (missing-class-docstring)
 tests/test_board.py:332:8: C0116: Missing function or method docstring (missing-function-docstring)
@@ -170,8 +169,8 @@ tests/test_board.py:344:8: C0116: Missing function or method docstring (missing-
 tests/test_board.py:347:8: C0116: Missing function or method docstring (missing-function-docstring)
 tests/test_board.py:347:33: W0613: Unused argument 'b' (unused-argument)
 tests/test_board.py:350:13: W0212: Access to a protected member _generar_secuencias_movimiento of a client class (protected-access)
+tests/test_board.py:350:13: E1101: Instance of 'Board' has no '_generar_secuencias_movimiento' member (no-member)
 tests/test_board.py:359:4: W0621: Redefining name 'DummyPlayer' from outer scope (line 6) (redefined-outer-name)
-tests/test_board.py:357:4: E0401: Unable to import 'backgammon.core.player' (import-error)
 tests/test_board.py:357:4: C0415: Import outside toplevel (backgammon.core.player.PasoMovimiento) (import-outside-toplevel)
 tests/test_board.py:359:4: C0115: Missing class docstring (missing-class-docstring)
 tests/test_board.py:360:8: C0116: Missing function or method docstring (missing-function-docstring)
@@ -182,6 +181,7 @@ tests/test_board.py:372:8: C0116: Missing function or method docstring (missing-
 tests/test_board.py:375:8: C0116: Missing function or method docstring (missing-function-docstring)
 tests/test_board.py:375:33: W0613: Unused argument 'b' (unused-argument)
 tests/test_board.py:381:12: W0212: Access to a protected member _generar_movimientos_posibles of a client class (protected-access)
+tests/test_board.py:382:11: C1803: "moves == []" can be simplified to "not moves", if it is strictly a sequence, as an empty list is falsey (use-implicit-booleaness-not-comparison)
 tests/test_board.py:357:4: W0611: Unused PasoMovimiento imported from backgammon.core.player (unused-import)
 tests/test_board.py:389:4: W0621: Redefining name 'DummyPlayer' from outer scope (line 6) (redefined-outer-name)
 tests/test_board.py:389:4: C0115: Missing class docstring (missing-class-docstring)
@@ -208,6 +208,13 @@ tests/test_board.py:437:4: C0115: Missing class docstring (missing-class-docstri
 tests/test_board.py:438:8: C0116: Missing function or method docstring (missing-function-docstring)
 tests/test_board.py:437:4: R0903: Too few public methods (1/2) (too-few-public-methods)
 tests/test_board.py:441:8: W0212: Access to a protected member _calcular_hash_secuencia of a client class (protected-access)
+tests/test_board.py:484:11: C1803: "board.get_bar(...) == []" can be simplified to "not board.get_bar(...)", if it is strictly a sequence, as an empty list is falsey (use-implicit-booleaness-not-comparison)
+tests/test_board.py:490:11: C1803: "board.get_borne_off(...) == []" can be simplified to "not board.get_borne_off(...)", if it is strictly a sequence, as an empty list is falsey (use-implicit-booleaness-not-comparison)
+tests/test_board.py:508:11: C1803: "x == []" can be simplified to "not x", if it is strictly a sequence, as an empty list is falsey (use-implicit-booleaness-not-comparison)
+tests/test_board.py:509:11: C1803: "x == []" can be simplified to "not x", if it is strictly a sequence, as an empty list is falsey (use-implicit-booleaness-not-comparison)
+tests/test_board.py:510:11: C1803: "x == []" can be simplified to "not x", if it is strictly a sequence, as an empty list is falsey (use-implicit-booleaness-not-comparison)
+tests/test_board.py:511:11: C1803: "x == []" can be simplified to "not x", if it is strictly a sequence, as an empty list is falsey (use-implicit-booleaness-not-comparison)
+tests/test_board.py:512:11: C1803: "board.players == []" can be simplified to "not board.players", if it is strictly a sequence, as an empty list is falsey (use-implicit-booleaness-not-comparison)
 tests/test_board.py:520:4: W0621: Redefining name 'DummyPlayer' from outer scope (line 6) (redefined-outer-name)
 tests/test_board.py:520:4: C0115: Missing class docstring (missing-class-docstring)
 tests/test_board.py:520:4: R0903: Too few public methods (0/2) (too-few-public-methods)
@@ -220,6 +227,7 @@ tests/test_board.py:541:8: C0116: Missing function or method docstring (missing-
 tests/test_board.py:544:8: C0116: Missing function or method docstring (missing-function-docstring)
 tests/test_board.py:547:8: C0116: Missing function or method docstring (missing-function-docstring)
 tests/test_board.py:547:33: W0613: Unused argument 'b' (unused-argument)
+tests/test_board.py:550:15: E1101: Instance of 'Board' has no 'enumerar_opciones_legales' member (no-member)
 tests/test_board.py:558:4: W0621: Redefining name 'DummyPlayer' from outer scope (line 6) (redefined-outer-name)
 tests/test_board.py:558:4: C0115: Missing class docstring (missing-class-docstring)
 tests/test_board.py:559:8: C0116: Missing function or method docstring (missing-function-docstring)
@@ -230,6 +238,7 @@ tests/test_board.py:571:8: C0116: Missing function or method docstring (missing-
 tests/test_board.py:574:8: C0116: Missing function or method docstring (missing-function-docstring)
 tests/test_board.py:574:33: W0613: Unused argument 'b' (unused-argument)
 tests/test_board.py:577:13: W0212: Access to a protected member _generar_secuencias_movimiento of a client class (protected-access)
+tests/test_board.py:577:13: E1101: Instance of 'Board' has no '_generar_secuencias_movimiento' member (no-member)
 tests/test_board.py:585:4: W0621: Redefining name 'DummyPlayer' from outer scope (line 6) (redefined-outer-name)
 tests/test_board.py:585:4: C0115: Missing class docstring (missing-class-docstring)
 tests/test_board.py:586:8: C0116: Missing function or method docstring (missing-function-docstring)
@@ -240,6 +249,7 @@ tests/test_board.py:598:8: C0116: Missing function or method docstring (missing-
 tests/test_board.py:601:8: C0116: Missing function or method docstring (missing-function-docstring)
 tests/test_board.py:601:33: W0613: Unused argument 'b' (unused-argument)
 tests/test_board.py:604:12: W0212: Access to a protected member _generar_movimientos_posibles of a client class (protected-access)
+tests/test_board.py:605:11: C1803: "moves == []" can be simplified to "not moves", if it is strictly a sequence, as an empty list is falsey (use-implicit-booleaness-not-comparison)
 tests/test_board.py:612:4: W0621: Redefining name 'DummyPlayer' from outer scope (line 6) (redefined-outer-name)
 tests/test_board.py:612:4: C0115: Missing class docstring (missing-class-docstring)
 tests/test_board.py:613:8: C0116: Missing function or method docstring (missing-function-docstring)
@@ -251,7 +261,6 @@ tests/test_board.py:627:4: C0115: Missing class docstring (missing-class-docstri
 tests/test_board.py:628:8: C0116: Missing function or method docstring (missing-function-docstring)
 tests/test_board.py:627:4: R0903: Too few public methods (1/2) (too-few-public-methods)
 tests/test_board.py:631:11: W0212: Access to a protected member _es_captura of a client class (protected-access)
-tests/test_board.py:637:4: E0401: Unable to import 'backgammon.core.player' (import-error)
 tests/test_board.py:637:4: C0415: Import outside toplevel (backgammon.core.player.PasoMovimiento) (import-outside-toplevel)
 tests/test_board.py:640:8: W0212: Access to a protected member _calcular_hash_secuencia of a client class (protected-access)
 tests/test_board.py:668:24: W0212: Access to a protected member _generar_movimientos_posibles of a client class (protected-access)
@@ -261,26 +270,19 @@ tests/test_board.py:729:12: W0212: Access to a protected member _generar_movimie
 tests/test_board.py:758:12: W0212: Access to a protected member _generar_movimientos_posibles of a client class (protected-access)
 ************* Module test_checker
 tests/test_checker.py:1:0: C0114: Missing module docstring (missing-module-docstring)
-tests/test_checker.py:1:0: E0401: Unable to import 'backgammon.core.checker' (import-error)
 tests/test_checker.py:62:4: C0115: Missing class docstring (missing-class-docstring)
 tests/test_checker.py:62:4: R0903: Too few public methods (0/2) (too-few-public-methods)
 ************* Module test_dice
 tests/test_dice.py:1:0: C0114: Missing module docstring (missing-module-docstring)
-tests/test_dice.py:1:0: E0401: Unable to import 'backgammon.core.board' (import-error)
-tests/test_dice.py:2:0: E0401: Unable to import 'backgammon.core.dice' (import-error)
 tests/test_dice.py:5:0: C0116: Missing function or method docstring (missing-function-docstring)
 ************* Module test_move
 tests/test_move.py:1:0: C0114: Missing module docstring (missing-module-docstring)
-tests/test_move.py:1:0: E0401: Unable to import 'backgammon.core.move' (import-error)
 tests/test_move.py:50:4: W0621: Redefining name 'Move' from outer scope (line 1) (redefined-outer-name)
-tests/test_move.py:50:4: E0401: Unable to import 'backgammon.core.move' (import-error)
 tests/test_move.py:50:4: W0404: Reimport 'Move' (imported line 1) (reimported)
 tests/test_move.py:50:4: C0415: Import outside toplevel (backgammon.core.move.Move) (import-outside-toplevel)
 tests/test_move.py:53:11: C2801: Unnecessarily calls dunder method __eq__. Use == operator. (unnecessary-dunder-call)
 ************* Module test_player
 tests/test_player.py:1:0: C0114: Missing module docstring (missing-module-docstring)
-tests/test_player.py:4:0: E0401: Unable to import 'backgammon.core.player' (import-error)
-tests/test_player.py:10:0: E0401: Unable to import 'backgammon.core.checker' (import-error)
 tests/test_player.py:17:8: C0104: Disallowed name "bar" (disallowed-name)
 tests/test_player.py:23:4: C0116: Missing function or method docstring (missing-function-docstring)
 tests/test_player.py:26:4: C0116: Missing function or method docstring (missing-function-docstring)
@@ -293,13 +295,12 @@ tests/test_player.py:150:4: C0115: Missing class docstring (missing-class-docstr
 tests/test_player.py:203:4: C0115: Missing class docstring (missing-class-docstring)
 tests/test_player.py:204:8: C0116: Missing function or method docstring (missing-function-docstring)
 tests/test_player.py:203:4: R0903: Too few public methods (1/2) (too-few-public-methods)
+tests/test_player.py:209:11: C1803: "moves == []" can be simplified to "not moves", if it is strictly a sequence, as an empty list is falsey (use-implicit-booleaness-not-comparison)
 tests/test_player.py:224:4: C0115: Missing class docstring (missing-class-docstring)
 tests/test_player.py:225:8: C0116: Missing function or method docstring (missing-function-docstring)
 tests/test_player.py:224:4: R0903: Too few public methods (1/2) (too-few-public-methods)
 ************* Module test_ui
 tests/test_ui.py:1:0: C0114: Missing module docstring (missing-module-docstring)
-tests/test_ui.py:8:0: E0401: Unable to import 'backgammon.pygame_ui.ui' (import-error)
-tests/test_ui.py:9:0: E0401: Unable to import 'backgammon.core.backgammon' (import-error)
 tests/test_ui.py:7:0: C0411: standard import "unittest.mock.Mock" should be placed before third party import "pytest" (wrong-import-order)
 tests/test_ui.py:1:0: R0801: Similar lines in 2 files
 ==cli.console:[47:54]
@@ -313,7 +314,7 @@ tests/test_ui.py:1:0: R0801: Similar lines in 2 files
             "id": "P2", (duplicate-code)
 
 -----------------------------------
-Your code has been rated at 8.00/10
+Your code has been rated at 8.46/10
 
 
 ```
