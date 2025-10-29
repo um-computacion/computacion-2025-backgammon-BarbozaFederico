@@ -24,7 +24,7 @@ tests/test_board.py:832: AssertionError
 =========================== short test summary info ============================
 FAILED tests/test_board.py::test_jugador_pip_count_en_barra - assert 24 == 25
 !!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!
-1 failed, 55 passed in 1.08s
+1 failed, 55 passed in 1.61s
 
 ```
 ## Pylint Report
