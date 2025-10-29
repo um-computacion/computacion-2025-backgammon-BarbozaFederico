@@ -5,7 +5,7 @@
 =================================== FAILURES ===================================
 ________________________ test_roll_dice_and_cli_display ________________________
 
-capsys = <_pytest.capture.CaptureFixture object at 0x7f66e4790490>
+capsys = <_pytest.capture.CaptureFixture object at 0x7f46b6c38970>
 
     def test_roll_dice_and_cli_display(capsys):
         """Testea el lanzamiento de dados y la visualización CLI."""
@@ -20,15 +20,15 @@ capsys = <_pytest.capture.CaptureFixture object at 0x7f66e4790490>
         assert "Turno de:" in captured.out
         assert "Dados:" in captured.out
 >       assert "Tablero:" in captured.out
-E       AssertionError: assert 'Tablero:' in 'Turno de: Blanco (blancas)\nDados: (3, 5)\n 13 14 15 16 17 18   19 20 21 22 23 24\n+------------------+--------------...-+\n 12 11 10  9  8  7    6  5  4  3  2  1\n\nBar:\n  Blancas: 0\n  Negras: 0\nBorne Off:\n  Blancas: 0\n  Negras: 0\n'
-E        +  where 'Turno de: Blanco (blancas)\nDados: (3, 5)\n 13 14 15 16 17 18   19 20 21 22 23 24\n+------------------+--------------...-+\n 12 11 10  9  8  7    6  5  4  3  2  1\n\nBar:\n  Blancas: 0\n  Negras: 0\nBorne Off:\n  Blancas: 0\n  Negras: 0\n' = CaptureResult(out='Turno de: Blanco (blancas)\nDados: (3, 5)\n 13 14 15 16 17 18   19 20 21 22 23 24\n+---------------...1 10  9  8  7    6  5  4  3  2  1\n\nBar:\n  Blancas: 0\n  Negras: 0\nBorne Off:\n  Blancas: 0\n  Negras: 0\n', err='').out
+E       AssertionError: assert 'Tablero:' in 'Turno de: Blanco (blancas)\nDados: (4, 1)\n 13 14 15 16 17 18   19 20 21 22 23 24\n+------------------+--------------...-+\n 12 11 10  9  8  7    6  5  4  3  2  1\n\nBar:\n  Blancas: 0\n  Negras: 0\nBorne Off:\n  Blancas: 0\n  Negras: 0\n'
+E        +  where 'Turno de: Blanco (blancas)\nDados: (4, 1)\n 13 14 15 16 17 18   19 20 21 22 23 24\n+------------------+--------------...-+\n 12 11 10  9  8  7    6  5  4  3  2  1\n\nBar:\n  Blancas: 0\n  Negras: 0\nBorne Off:\n  Blancas: 0\n  Negras: 0\n' = CaptureResult(out='Turno de: Blanco (blancas)\nDados: (4, 1)\n 13 14 15 16 17 18   19 20 21 22 23 24\n+---------------...1 10  9  8  7    6  5  4  3  2  1\n\nBar:\n  Blancas: 0\n  Negras: 0\nBorne Off:\n  Blancas: 0\n  Negras: 0\n', err='').out
 
 tests/test_backgammon.py:94: AssertionError
 =========================== short test summary info ============================
-FAILED tests/test_backgammon.py::test_roll_dice_and_cli_display - AssertionError: assert 'Tablero:' in 'Turno de: Blanco (blancas)\nDados: (3, 5)\n 13 14 15 16 17 18   19 20 21 22 23 24\n+------------------+--------------...-+\n 12 11 10  9  8  7    6  5  4  3  2  1\n\nBar:\n  Blancas: 0\n  Negras: 0\nBorne Off:\n  Blancas: 0\n  Negras: 0\n'
- +  where 'Turno de: Blanco (blancas)\nDados: (3, 5)\n 13 14 15 16 17 18   19 20 21 22 23 24\n+------------------+--------------...-+\n 12 11 10  9  8  7    6  5  4  3  2  1\n\nBar:\n  Blancas: 0\n  Negras: 0\nBorne Off:\n  Blancas: 0\n  Negras: 0\n' = CaptureResult(out='Turno de: Blanco (blancas)\nDados: (3, 5)\n 13 14 15 16 17 18   19 20 21 22 23 24\n+---------------...1 10  9  8  7    6  5  4  3  2  1\n\nBar:\n  Blancas: 0\n  Negras: 0\nBorne Off:\n  Blancas: 0\n  Negras: 0\n', err='').out
+FAILED tests/test_backgammon.py::test_roll_dice_and_cli_display - AssertionError: assert 'Tablero:' in 'Turno de: Blanco (blancas)\nDados: (4, 1)\n 13 14 15 16 17 18   19 20 21 22 23 24\n+------------------+--------------...-+\n 12 11 10  9  8  7    6  5  4  3  2  1\n\nBar:\n  Blancas: 0\n  Negras: 0\nBorne Off:\n  Blancas: 0\n  Negras: 0\n'
+ +  where 'Turno de: Blanco (blancas)\nDados: (4, 1)\n 13 14 15 16 17 18   19 20 21 22 23 24\n+------------------+--------------...-+\n 12 11 10  9  8  7    6  5  4  3  2  1\n\nBar:\n  Blancas: 0\n  Negras: 0\nBorne Off:\n  Blancas: 0\n  Negras: 0\n' = CaptureResult(out='Turno de: Blanco (blancas)\nDados: (4, 1)\n 13 14 15 16 17 18   19 20 21 22 23 24\n+---------------...1 10  9  8  7    6  5  4  3  2  1\n\nBar:\n  Blancas: 0\n  Negras: 0\nBorne Off:\n  Blancas: 0\n  Negras: 0\n', err='').out
 !!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!
-1 failed, 4 passed in 1.21s
+1 failed, 4 passed in 1.23s
 
 ```
 ## Pylint Report
