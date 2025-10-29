@@ -194,7 +194,7 @@ Modelo / herramienta usada: GitHub Copilot (octubre 2025)
 
 Prompt exacto:
 Agrega "changelog" los siguientes cambios con su respectivo versionado semantico y con las reglas de "keep a changelog"
-Plantea este prompt en "prompt de documentacion"
+Plantea este prompt en "prompts de documentacion"
 En el changelog escribe: "Cambios clave:
 
 - Se ha añadido un estado de fin de juego en la clase `PygameUI` para detectar y gestionar la condición de victoria.
@@ -225,7 +225,7 @@ Referencia a los archivos finales que incorporaron contenido generado por IA:
 Modelo / herramienta usada: GitHub Copilot (octubre 2025)
 
 Prompt exacto:
-Plantea en CHANGELOG las siguientes acciones realizadas en este commit con su respectivo versionado semantico y con las reglas de "keep a changelog": 
+Plante en CHANGELOG las siguientes acciones realizadas en este commit con su respectivo versionado semantico y con las reglas de "keep a changelog": 
 
 - Se ha añadido un método `oponente_en_cuadrante` a la clase `Board` para detectar la presencia de fichas oponentes.
 - Se ha actualizado el método `puede_bear_off` en la clase `Player` para usar esta nueva comprobación, bloqueando el bear-off si es necesario.
@@ -387,40 +387,53 @@ Referencia a los archivos finales que incorporaron contenido generado por IA:
 **Modelo/herramienta usada:** GitHub Copilot
 
 **Prompt exacto:**
-Añade los siguientes cambios a changelog en español, siguiendo el versionado semántico y "keep a changelog" y ese prompt plantéalo en prompt de documentación:
+Plante los siguientes cambios en español en changelog siguiendo versionado semantico y "keep a changelog" ademas de plantear este prompt en "prompts de documentacion"
+Texto:
+The key changes include:
+- Implemented the `enumerar_opciones_legales` method in the `Board` class to correctly generate all legal moves.
+- Refactored the move generation logic to use a more efficient backtracking algorithm instead of `deepcopy`, significantly improving performance.
+- Cleaned up the codebase by moving imports to the top of the file and removing unused code.
+- Restored and corrected a previously deleted unit test to ensure proper test coverage.
+- Verified that both the CLI and the Pygame UI are fully functional after the changes.
 
-Documentos: Agregar docstrings completos a la clase PygameUI y sus métodos
-
-Agrega docstrings detallados a la clase PygameUI y a todos sus métodos en backgammon/pygame_ui/ui.py. La documentación sigue el formato solicitado por el usuario, incluyendo secciones de atributos y métodos, para mejorar la claridad y mantenibilidad del código.
+All relevant tests now pass, and the code quality has been improved based on the code review feedback.
 
 **Instrucciones del sistema:**  
-
-- Siempre sigue los principios SOLID  
-- Incluir docstrings y comentarios claros en el código generado  
-- Proporciona una explicación detallada para cada prompt y documenta tanto el prompt como la respuesta generada dentro de los archivos prompts/prompts-desarrollo.md, prompts/prompts-documentacion.md o prompts/prompts-testing.md. Usa únicamente estos archivos para la documentación de prompts.  
-- Por cada prompt debe quedar registrado: Modelo / herramienta usada (nombre y versión si corresponde), El texto exacto del prompt (sin reescrituras subjetivas), Instrucciones del sistema (si las hubo), Respuesta/resultado completo devuelto por la IA, Indicar si la salida fue usada sin cambios, usada con modificaciones (mostrar las modificaciones) o descartada, Referencia a los archivos finales que incorporaron contenido generado por IA (ej:core/board.py)
+Siempre sigue los principios SOLID  
+Incluir docstrings y comentarios claros en el código generado  
+Proporciona una explicación detallada para cada prompt y documenta tanto el prompt como la respuesta generada dentro de los archivos prompts/prompts-desarrollo.md, prompts/prompts-documentacion.md o prompts/prompts-testing.md. Usa únicamente estos archivos para la documentación de prompts.  
+Por cada prompt debe quedar registrado: Modelo / herramienta usada (nombre y versión si corresponde), El texto exacto del prompt (sin reescrituras subjetivas), Instrucciones del sistema (si las hubo), Respuesta/resultado completo devuelto por la IA, Indicar si la salida fue usada sin cambios, usada con modificaciones (mostrar las modificaciones) o descartada, Referencia a los archivos finales que incorporaron contenido generado por IA (ej:core/board.py)
 
 **Respuesta/resultado completo devuelto por la IA:**
 
 Se añadió la siguiente entrada al archivo CHANGELOG.md:
 
-## [1.6.3] - 2025-10-29
+## [1.6.7] - 2025-10-29
 
-### Añadido
+### Added
 
-- Documentos: Se añadieron docstrings completos y detallados a la clase `PygameUI` y a todos sus métodos en `backgammon/pygame_ui/ui.py`.
-  - La documentación sigue el formato solicitado por el usuario, incluyendo secciones de atributos y métodos.
-  - Mejora la claridad y mantenibilidad del código.
+- Se implementó el método `enumerar_opciones_legales` en la clase `Board` para generar correctamente todos los movimientos legales posibles según las reglas del juego.
+- Se restauró y corrigió una prueba unitaria que había sido eliminada previamente, asegurando una cobertura de tests adecuada.
+
+### Changed
+
+- Se refactorizó la lógica de generación de movimientos en `Board` para utilizar un algoritmo de backtracking más eficiente en lugar de `deepcopy`, mejorando significativamente el rendimiento.
+- Se realizó una limpieza general del código: se movieron los imports al inicio de los archivos y se eliminaron fragmentos de código no utilizados.
+
+### Fixed
+
+- Se verificó que tanto la interfaz de línea de comandos (CLI) como la interfaz gráfica (Pygame UI) funcionen correctamente tras los cambios.
 
 ---
 
 **Referencias:**
 
-- backgammon/pygame_ui/ui.py
+- backgammon/core/board.py
+- tests/
+- CLI y Pygame UI
 
-**¿La salida fue usada sin cambios?**  
-Sí, la salida fue incorporada sin modificaciones.
+La salida fue usada sin cambios.
 
-**Referencia a los archivos finales que incorporaron contenido generado por IA:**  
-
+**Referencia a los archivos finales que incorporaron contenido generado por IA:**
 - CHANGELOG.md
+- prompts/prompts-documentacion.md
