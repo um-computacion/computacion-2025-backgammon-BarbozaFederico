@@ -230,7 +230,9 @@ class PygameUI:
         # The top half of the bar is for white's checkers
         self.bar_rects["blancas"] = pygame.Rect(bar_x, 0, self.bar_width, HEIGHT / 2)
         # The bottom half of the bar is for black's checkers
-        self.bar_rects["negras"] = pygame.Rect(bar_x, HEIGHT / 2, self.bar_width, HEIGHT / 2)
+        self.bar_rects["negras"] = pygame.Rect(
+            bar_x, HEIGHT / 2, self.bar_width, HEIGHT / 2
+        )
 
     def _calculate_bear_off_rects(self):
         """
@@ -240,7 +242,9 @@ class PygameUI:
         will move their checkers to bear them off.
         """
         # This area is now to the right of the main board
-        bear_off_x = self.board_edge + (12 * self.point_width) + self.bar_width + self.board_edge
+        bear_off_x = (
+            self.board_edge + (12 * self.point_width) + self.bar_width + self.board_edge
+        )
         bear_off_width = WIDTH - bear_off_x - self.board_edge
 
         # White's bear-off is top-right
@@ -352,7 +356,9 @@ class PygameUI:
             is_top_row = point_idx >= 12
             direction = 1 if is_top_row else -1
             base_y = (
-                rect.top + self.checker_radius if is_top_row else rect.bottom - self.checker_radius
+                rect.top + self.checker_radius
+                if is_top_row
+                else rect.bottom - self.checker_radius
             )
 
             # Draw up to 4 checkers
@@ -361,7 +367,9 @@ class PygameUI:
                 center_x = rect.centerx
                 center_y = base_y + (i * 2 * self.checker_radius * direction)
                 border_color = (
-                    COLOR_BORDE_BLANCA if player_color == "blancas" else COLOR_BORDE_NEGRA
+                    COLOR_BORDE_BLANCA
+                    if player_color == "blancas"
+                    else COLOR_BORDE_NEGRA
                 )
                 pygame.draw.circle(
                     self.screen,
@@ -379,7 +387,11 @@ class PygameUI:
 
             # If there are more than 5 checkers, display the count on the last visible checker
             if len(checkers) > 5:
-                text_color = COLOR_PIEZA_NEGRA if player_color == "blancas" else COLOR_PIEZA_BLANCA
+                text_color = (
+                    COLOR_PIEZA_NEGRA
+                    if player_color == "blancas"
+                    else COLOR_PIEZA_BLANCA
+                )
                 count_text = self.font.render(str(len(checkers)), True, text_color)
                 # Position the count on the 5th checker's position (index 4)
                 count_y = base_y + (4 * 2 * self.checker_radius * direction)
@@ -403,13 +415,21 @@ class PygameUI:
             center_y = positions[color_name]
 
             # Draw a single checker representing the stack on the bar
-            border_color = COLOR_BORDE_BLANCA if color_name == "blancas" else COLOR_BORDE_NEGRA
-            pygame.draw.circle(self.screen, color, (bar_x, center_y), self.checker_radius)
-            pygame.draw.circle(self.screen, border_color, (bar_x, center_y), self.checker_radius, 2)
+            border_color = (
+                COLOR_BORDE_BLANCA if color_name == "blancas" else COLOR_BORDE_NEGRA
+            )
+            pygame.draw.circle(
+                self.screen, color, (bar_x, center_y), self.checker_radius
+            )
+            pygame.draw.circle(
+                self.screen, border_color, (bar_x, center_y), self.checker_radius, 2
+            )
 
             # If there's more than one, draw the count
             if len(checkers) > 1:
-                text_color = COLOR_PIEZA_NEGRA if color_name == "blancas" else COLOR_PIEZA_BLANCA
+                text_color = (
+                    COLOR_PIEZA_NEGRA if color_name == "blancas" else COLOR_PIEZA_BLANCA
+                )
                 count_text = self.font.render(str(len(checkers)), True, text_color)
                 text_rect = count_text.get_rect(center=(bar_x, center_y))
                 self.screen.blit(count_text, text_rect)
@@ -418,7 +438,9 @@ class PygameUI:
         white_borne_off = len(self.game.board.get_borne_off("blancas"))
         if white_borne_off > 0:
             white_rect = self.bear_off_rects["blancas"]
-            white_text = self.font.render(f"Off: {white_borne_off}", True, COLOR_TEXTO_NEGRO)
+            white_text = self.font.render(
+                f"Off: {white_borne_off}", True, COLOR_TEXTO_NEGRO
+            )
             self.screen.blit(
                 white_text,
                 (
@@ -430,7 +452,9 @@ class PygameUI:
         black_borne_off = len(self.game.board.get_borne_off("negras"))
         if black_borne_off > 0:
             black_rect = self.bear_off_rects["negras"]
-            black_text = self.font.render(f"Off: {black_borne_off}", True, COLOR_TEXTO_BLANCO)
+            black_text = self.font.render(
+                f"Off: {black_borne_off}", True, COLOR_TEXTO_BLANCO
+            )
             self.screen.blit(
                 black_text,
                 (
@@ -516,7 +540,9 @@ class PygameUI:
 
         # Dibuja la barra central
         bar_x = self.board_edge + 6 * self.point_width
-        pygame.draw.rect(self.screen, COLOR_FONDO_TABLERO, (bar_x, 0, self.bar_width, HEIGHT))
+        pygame.draw.rect(
+            self.screen, COLOR_FONDO_TABLERO, (bar_x, 0, self.bar_width, HEIGHT)
+        )
 
         # Dibuja las áreas de bear-off
         for (
@@ -769,7 +795,9 @@ class PygameUI:
         available_dice = self._get_available_dice()
         # Test each unique die value. If any of them yield a move, return True.
         for die_value in set(available_dice):
-            if self.game.board._generar_movimientos_posibles(player, die_value, self.game.board):
+            if self.game.board._generar_movimientos_posibles(
+                player, die_value, self.game.board
+            ):
                 return True
         return False
 
@@ -829,7 +857,9 @@ class PygameUI:
         player = self.game.get_current_player()
         clicked_point = self._get_point_from_pos(pos)
         clicked_bear_off = self._get_bear_off_from_pos(pos)
-        clicked_destination = clicked_point if clicked_point is not None else clicked_bear_off
+        clicked_destination = (
+            clicked_point if clicked_point is not None else clicked_bear_off
+        )
 
         # If a source is selected, a click can mean one of three things:
         if self.selected_source is not None:
@@ -895,7 +925,9 @@ class PygameUI:
             return False
         return True
 
-    def _draw_boton_redondeado(self, text, rect, text_color, bg_color, hover_color, radius=20):
+    def _draw_boton_redondeado(
+        self, text, rect, text_color, bg_color, hover_color, radius=20
+    ):
         """
         Draws a rounded button with text and hover effect.
 
@@ -947,9 +979,9 @@ class PygameUI:
         # Botón Empezar
         empezar_text = "Empezar"
         empezar_surface = self.large_font.render(empezar_text, True, COLOR_TEXTO_BLANCO)
-        empezar_rect_inflated = empezar_surface.get_rect(center=(WIDTH / 2, HEIGHT / 2)).inflate(
-            40, 20
-        )
+        empezar_rect_inflated = empezar_surface.get_rect(
+            center=(WIDTH / 2, HEIGHT / 2)
+        ).inflate(40, 20)
         self.boton_empezar_rect = empezar_rect_inflated
 
         self._draw_boton_redondeado(
@@ -973,7 +1005,9 @@ class PygameUI:
             The Pygame event to process.
         """
         if event.type == pygame.MOUSEBUTTONDOWN:  # pylint: disable=no-member
-            if self.boton_empezar_rect and self.boton_empezar_rect.collidepoint(event.pos):
+            if self.boton_empezar_rect and self.boton_empezar_rect.collidepoint(
+                event.pos
+            ):
                 self.estado_juego = TIRADA_INICIAL
 
     def _draw_pantalla_tirada_inicial(self):
@@ -996,7 +1030,9 @@ class PygameUI:
 
         if self.ganador_tirada_inicial and self.ganador_tirada_inicial != "empate":
             ganador_msg = f"Comienzan las {self.ganador_tirada_inicial}"
-            ganador_surface = self.large_font.render(ganador_msg, True, COLOR_TEXTO_NEGRO)
+            ganador_surface = self.large_font.render(
+                ganador_msg, True, COLOR_TEXTO_NEGRO
+            )
             ganador_rect = ganador_surface.get_rect(center=(WIDTH / 2, HEIGHT / 2))
             self.screen.blit(ganador_surface, ganador_rect)
 
@@ -1060,7 +1096,8 @@ class PygameUI:
                             running = False
                     else:
                         if (
-                            event.type == pygame.MOUSEBUTTONDOWN  # pylint: disable=no-member
+                            event.type
+                            == pygame.MOUSEBUTTONDOWN  # pylint: disable=no-member
                         ):  # pylint: disable=no-member
                             self._handle_click(event.pos)
 

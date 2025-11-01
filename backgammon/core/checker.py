@@ -1,4 +1,5 @@
 "pass"
+
 from typing import Optional, TYPE_CHECKING
 
 if TYPE_CHECKING:
@@ -154,4 +155,4 @@ class Checker:
 
     def __repr__(self) -> str:
         """Texto técnico para debugging."""
-        return f"Checker(color={self._color}, owner={self._player}, posicion={self._posicion}, barra={self._en_barra}, fuera={self._fuera}, id={self._id})" # pylint: disable=line-too-long
+        return f"Checker(color={self._color}, owner={self._player}, posicion={self._posicion}, barra={self._en_barra}, fuera={self._fuera}, id={self._id})"  # pylint: disable=line-too-long

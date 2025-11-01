@@ -220,7 +220,9 @@ class Board:
                 point = self.points[j]
                 if len(point) > i:
                     checker = point[i]
-                    line += " " + ("W" if checker.get_color() == "blancas" else "B") + " "
+                    line += (
+                        " " + ("W" if checker.get_color() == "blancas" else "B") + " "
+                    )
                 else:
                     line += " . "
                 if j == 17:
@@ -239,7 +241,9 @@ class Board:
                 point = self.points[j]
                 if len(point) > i:
                     checker = point[i]
-                    line += " " + ("W" if checker.get_color() == "blancas" else "B") + " "
+                    line += (
+                        " " + ("W" if checker.get_color() == "blancas" else "B") + " "
+                    )
                 else:
                     line += " . "
                 if j == 6:
@@ -258,7 +262,6 @@ class Board:
         print("Borne Off:")
         for color in self.borne_off:
             print(f"  {color.capitalize()}: {len(self.borne_off[color])}")
-
 
     def reset(self) -> None:
         """
@@ -825,7 +828,9 @@ class Board:
             if secuencia_actual:
                 hash_tablero = self._calcular_hash_tablero()
                 opciones_completas.append(
-                    OpcionMovimiento(secuencia=list(secuencia_actual), hash_tablero=hash_tablero)
+                    OpcionMovimiento(
+                        secuencia=list(secuencia_actual), hash_tablero=hash_tablero
+                    )
                 )
             return
 
