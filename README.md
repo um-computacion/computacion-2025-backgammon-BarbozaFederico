@@ -55,6 +55,16 @@ docker run -it backgammon-cli
 
 Esto abrirá la versión de consola del Backgammon directamente dentro del contenedor.
 
+### 🧪 Ejecutar los tests dentro del contenedor
+
+Si querés correr los tests del proyecto usando Docker, ejecutá:
+
+```bash
+docker run -it backgammon-cli pytest
+```
+
+Esto ejecutará la suite de tests dentro del contenedor Docker.
+
 ---
 
 ## Uso de la Interfaz Pygame
