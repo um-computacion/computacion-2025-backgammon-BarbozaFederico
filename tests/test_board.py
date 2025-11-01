@@ -299,8 +299,6 @@ def test_aplicar_paso_movimiento_captura():
     assert checker_blanca in board.points[1]
 
 
-
-
 def test_enumerar_opciones_legales_no_dice():
     """Testea enumerar_opciones_legales sin dados restantes."""
     board = Board()
