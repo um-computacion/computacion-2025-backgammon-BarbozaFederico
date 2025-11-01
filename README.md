@@ -33,6 +33,30 @@ python main.py
 python -m backgammon.cli.console
 ```
 
+---
+
+## 🐳 Ejecutar con Docker
+
+Si no querés instalar Python ni dependencias, podés correr el juego directamente con Docker.
+
+### 🔧 Construir la imagen
+
+Desde la raíz del proyecto (donde está el Dockerfile):
+
+```bash
+docker build -t backgammon-cli .
+```
+
+### ▶️ Ejecutar el juego en modo CLI
+
+```bash
+docker run -it backgammon-cli
+```
+
+Esto abrirá la versión de consola del Backgammon directamente dentro del contenedor.
+
+---
+
 ## Uso de la Interfaz Pygame
 
 ### Controles:
@@ -201,3 +225,4 @@ Repositorio: [computacion-2025-backgammon-BarbozaFederico](https://github.com/Ba
 ## Licencia
 
 Este proyecto es parte del curso de Computación 2025.
+
