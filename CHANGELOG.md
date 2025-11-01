@@ -5,6 +5,23 @@ Todas las modificaciones notables de este proyecto serán documentadas en este a
 El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/),
 y este proyecto sigue [Semantic Versioning](https://semver.org/lang/es/).
 
+## [1.6.9] - 29/10/2025
+
+### Added
+
+- docs: Se actualizó el archivo `README.md` agregando instrucciones detalladas para ejecutar el CLI del juego usando Docker, incluyendo los comandos para construir la imagen y ejecutar el contenedor.
+- feat: Se añadieron los archivos necesarios para soporte Docker:
+  - `Dockerfile` para construir la imagen del juego.
+  - `compose.yaml` para facilitar la ejecución y orquestación del contenedor.
+
+---
+
+**Referencias:**
+
+- [README](./README.md)
+- [Dockerfile](./Dockerfile)
+- [compose](compose.yaml)
+
 ## [1.6.8] - 29/10/2025
 
 ### Fixed
