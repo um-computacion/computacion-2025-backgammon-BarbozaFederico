@@ -49,3 +49,6 @@ EXPOSE 8000
 
 # Run the application.
 CMD python -m backgammon.cli.console
+
+# Ejecutar tests automáticamente al construir
+RUN pytest --maxfail=1 --disable-warnings -q
